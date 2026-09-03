@@ -1,0 +1,1688 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Career Growth | Career Finder</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#f7f3ff,#eef7ff);
+    color:#222;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    width:92%;
+    margin:18px auto;
+    padding:15px 25px;
+    background:#172554;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 8px 25px rgba(23,37,84,.18);
+    position:sticky;
+    top:12px;
+    z-index:1000;
+}
+
+.logo{
+    color:white;
+    font-size:23px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.nav-links{
+    display:flex;
+    gap:7px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#e5e7eb;
+    padding:10px 13px;
+    border-radius:10px;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    background:#3344a0;
+    color:white;
+    transform:translateY(-2px);
+}
+
+.nav-links a.active{
+    background:#6366f1;
+    color:white;
+    box-shadow:0 4px 12px rgba(99,102,241,.4);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    text-align:center;
+    padding:55px 20px 35px;
+}
+
+.hero h1{
+    font-size:45px;
+    color:#172554;
+    margin-bottom:12px;
+}
+
+.hero h1 span{
+    color:#6366f1;
+}
+
+.hero p{
+    color:#555;
+    max-width:750px;
+    margin:auto;
+    line-height:1.7;
+    font-size:17px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-area{
+    width:90%;
+    max-width:850px;
+    margin:20px auto 40px;
+    position:relative;
+}
+
+.search-area input{
+    width:100%;
+    padding:18px 25px;
+    border:none;
+    border-radius:18px;
+    outline:none;
+    font-size:17px;
+    background:white;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    border:2px solid transparent;
+}
+
+.search-area input:focus{
+    border-color:#6366f1;
+}
+
+.search-icon{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:25px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    width:90%;
+    max-width:1100px;
+    margin:0 auto 40px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.stat{
+    background:white;
+    padding:22px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 7px 22px rgba(0,0,0,.07);
+}
+
+.stat h2{
+    color:#6366f1;
+    font-size:28px;
+}
+
+.stat p{
+    color:#666;
+    margin-top:5px;
+}
+
+/* ================= CAREER GRID ================= */
+
+.career-grid{
+    width:92%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:22px;
+    padding-bottom:60px;
+}
+
+.career-card{
+    background:white;
+    border-radius:20px;
+    padding:23px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 8px 24px rgba(0,0,0,.07);
+    transition:.35s;
+    border:1px solid #eee;
+}
+
+.career-card::before{
+    content:"";
+    position:absolute;
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#eef2ff;
+    right:-25px;
+    top:-25px;
+    transition:.35s;
+}
+
+.career-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(79,70,229,.17);
+}
+
+.career-card:hover::before{
+    transform:scale(1.8);
+}
+
+.career-icon{
+    font-size:34px;
+    position:relative;
+    z-index:2;
+}
+
+.career-card h3{
+    margin:13px 0 18px;
+    color:#172554;
+    font-size:20px;
+}
+
+.info{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:11px 0;
+    border-bottom:1px solid #eee;
+}
+
+.info:last-child{
+    border-bottom:none;
+}
+
+.label{
+    color:#777;
+    font-size:14px;
+}
+
+.value{
+    font-weight:bold;
+    text-align:right;
+    color:#333;
+}
+
+.demand{
+    padding:5px 9px;
+    border-radius:8px;
+    font-size:12px;
+}
+
+.very-high{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.high{
+    background:#e0e7ff;
+    color:#3730a3;
+}
+
+.medium{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.low{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* ================= NO RESULT ================= */
+
+.no-result{
+    display:none;
+    text-align:center;
+    width:90%;
+    margin:20px auto 60px;
+    color:#666;
+}
+
+.no-result h2{
+    color:#172554;
+    margin-bottom:8px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#172554;
+    color:white;
+    padding:40px 25px 25px;
+    border-radius:10% 10% 0 0;
+    text-align:center;
+}
+
+footer h2{
+    margin-bottom:10px;
+}
+
+footer p{
+    color:#cbd5e1;
+    margin-bottom:20px;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:white;
+    text-decoration:none;
+}
+
+.footer-links a:hover{
+    color:#a5b4fc;
+}
+
+.copyright{
+    margin-top:25px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.15);
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+    nav{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav-links{
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+        🌟 Career Finder
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">🏠 Home</a>
+
+        <a href="careers.html">💼 Careers</a>
+
+        <a href="career-growth.html" class="active">
+            📈 Career Growth
+        </a>
+
+        <a href="selected-career.html">
+            🎯 Selected Career
+        </a>
+
+        <a href="progress.html">
+            📊 Progress
+        </a>
+
+        <a href="profile.html">
+            👤 Profile
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <h1>
+        📈 Career <span>Growth</span>
+    </h1>
+
+    <p>
+        Explore salary, job demand and approximate employment
+        across different careers in India.
+        Search any career to compare opportunities quickly.
+    </p>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<div class="search-area">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search career... e.g. AI Engineer, Doctor, Pilot"
+        onkeyup="searchCareer()"
+    >
+
+    <span class="search-icon">🔎</span>
+
+</div>
+
+
+<!-- ================= STATS ================= -->
+
+<div class="stats">
+
+    <div class="stat">
+        <h2 id="careerCount">100</h2>
+        <p>Career Options</p>
+    </div>
+
+    <div class="stat">
+        <h2>₹2L+</h2>
+        <p>Possible Salary Range</p>
+    </div>
+
+    <div class="stat">
+        <h2>🌎</h2>
+        <p>India + Global Opportunities</p>
+    </div>
+
+</div>
+
+
+<!-- ================= CAREERS ================= -->
+
+<div class="career-grid" id="careerGrid"></div>
+
+<div class="no-result" id="noResult">
+
+    <h2>😕 Career Not Found</h2>
+
+    <p>
+        Try searching with another career name.
+    </p>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h2>🌟 Career Finder by Deepshikha</h2>
+
+    <p>
+        Find your career. Understand your growth. Build your future.
+    </p>
+
+    <div class="footer-links">
+
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+        <a href="career-growth.html">Career Growth</a>
+        <a href="profile.html">Profile</a>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 Career Finder | Designed by Deepshikha
+    </div>
+
+</footer>
+
+
+<script>
+
+/*
+    CAREER DATA
+
+    salary = approximate annual salary range in India
+    demand = indicative current market demand
+    workers = broad approximate employment/workforce indicator
+
+    These are NOT exact census counts.
+*/
+
+const careers = [
+
+/* ================= TECHNOLOGY ================= */
+
+{
+name:"AI Engineer",
+icon:"🤖",
+salary:"₹6L – ₹35L+",
+demand:"Very High",
+workers:"1L+",
+search:"ai artificial intelligence engineer"
+},
+
+{
+name:"Machine Learning Engineer",
+icon:"🧠",
+salary:"₹6L – ₹32L+",
+demand:"Very High",
+workers:"1L+",
+search:"machine learning ml"
+},
+
+{
+name:"Software Engineer",
+icon:"💻",
+salary:"₹4L – ₹30L+",
+demand:"Very High",
+workers:"20L+",
+search:"software developer programmer"
+},
+
+{
+name:"Data Scientist",
+icon:"📊",
+salary:"₹6L – ₹30L+",
+demand:"Very High",
+workers:"2L+",
+search:"data science"
+},
+
+{
+name:"Data Analyst",
+icon:"📈",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"5L+",
+search:"data analyst analytics"
+},
+
+{
+name:"Cybersecurity Analyst",
+icon:"🔐",
+salary:"₹4L – ₹22L+",
+demand:"Very High",
+workers:"2L+",
+search:"cyber security security analyst"
+},
+
+{
+name:"Ethical Hacker",
+icon:"🛡️",
+salary:"₹4L – ₹20L+",
+demand:"High",
+workers:"1L+",
+search:"ethical hacking penetration tester"
+},
+
+{
+name:"Cloud Engineer",
+icon:"☁️",
+salary:"₹5L – ₹25L+",
+demand:"Very High",
+workers:"3L+",
+search:"cloud aws azure"
+},
+
+{
+name:"DevOps Engineer",
+icon:"⚙️",
+salary:"₹5L – ₹28L+",
+demand:"Very High",
+workers:"2L+",
+search:"devops"
+},
+
+{
+name:"Web Developer",
+icon:"🌐",
+salary:"₹3L – ₹18L+",
+demand:"High",
+workers:"8L+",
+search:"web developer website"
+},
+
+{
+name:"Frontend Developer",
+icon:"🖥️",
+salary:"₹3L – ₹18L+",
+demand:"High",
+workers:"4L+",
+search:"frontend html css javascript"
+},
+
+{
+name:"Backend Developer",
+icon:"⚙️",
+salary:"₹4L – ₹22L+",
+demand:"High",
+workers:"4L+",
+search:"backend server"
+},
+
+{
+name:"Full Stack Developer",
+icon:"💻",
+salary:"₹4L – ₹25L+",
+demand:"Very High",
+workers:"5L+",
+search:"full stack"
+},
+
+{
+name:"Mobile App Developer",
+icon:"📱",
+salary:"₹4L – ₹20L+",
+demand:"High",
+workers:"3L+",
+search:"android ios app"
+},
+
+{
+name:"Game Developer",
+icon:"🎮",
+salary:"₹3L – ₹18L+",
+demand:"High",
+workers:"1L+",
+search:"game gaming unity unreal"
+},
+
+{
+name:"UI/UX Designer",
+icon:"🎨",
+salary:"₹3L – ₹18L+",
+demand:"High",
+workers:"2L+",
+search:"ui ux designer"
+},
+
+{
+name:"Product Designer",
+icon:"✨",
+salary:"₹5L – ₹25L+",
+demand:"High",
+workers:"1L+",
+search:"product design"
+},
+
+{
+name:"Blockchain Developer",
+icon:"⛓️",
+salary:"₹5L – ₹25L+",
+demand:"Medium",
+workers:"50K+",
+search:"blockchain web3"
+},
+
+{
+name:"Robotics Engineer",
+icon:"🤖",
+salary:"₹4L – ₹25L+",
+demand:"High",
+workers:"50K+",
+search:"robot robotics"
+},
+
+{
+name:"Embedded Systems Engineer",
+icon:"🔧",
+salary:"₹4L – ₹22L+",
+demand:"High",
+workers:"2L+",
+search:"embedded electronics"
+},
+
+/* ================= ENGINEERING ================= */
+
+{
+name:"Civil Engineer",
+icon:"🏗️",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"20L+",
+search:"civil construction"
+},
+
+{
+name:"Mechanical Engineer",
+icon:"⚙️",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"15L+",
+search:"mechanical engineering"
+},
+
+{
+name:"Electrical Engineer",
+icon:"⚡",
+salary:"₹3L – ₹16L+",
+demand:"High",
+workers:"10L+",
+search:"electrical"
+},
+
+{
+name:"Electronics Engineer",
+icon:"🔌",
+salary:"₹3L – ₹18L+",
+demand:"High",
+workers:"8L+",
+search:"electronics"
+},
+
+{
+name:"Chemical Engineer",
+icon:"🧪",
+salary:"₹4L – ₹18L+",
+demand:"Medium",
+workers:"2L+",
+search:"chemical engineering"
+},
+
+{
+name:"Aerospace Engineer",
+icon:"🚀",
+salary:"₹5L – ₹25L+",
+demand:"High",
+workers:"50K+",
+search:"aerospace aeronautical"
+},
+
+{
+name:"Automobile Engineer",
+icon:"🚗",
+salary:"₹3L – ₹18L+",
+demand:"High",
+workers:"5L+",
+search:"automobile automotive"
+},
+
+{
+name:"Environmental Engineer",
+icon:"🌱",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"1L+",
+search:"environment environment engineering"
+},
+
+{
+name:"Biomedical Engineer",
+icon:"🧬",
+salary:"₹3L – ₹16L+",
+demand:"High",
+workers:"50K+",
+search:"biomedical"
+},
+
+{
+name:"Nuclear Engineer",
+icon:"⚛️",
+salary:"₹6L – ₹25L+",
+demand:"Medium",
+workers:"20K+",
+search:"nuclear"
+},
+
+/* ================= MEDICAL ================= */
+
+{
+name:"Doctor",
+icon:"🩺",
+salary:"₹6L – ₹30L+",
+demand:"Very High",
+workers:"13L+",
+search:"doctor physician mbbs"
+},
+
+{
+name:"Surgeon",
+icon:"🏥",
+salary:"₹10L – ₹50L+",
+demand:"Very High",
+workers:"1L+",
+search:"surgeon surgery"
+},
+
+{
+name:"Dentist",
+icon:"🦷",
+salary:"₹3L – ₹20L+",
+demand:"High",
+workers:"3L+",
+search:"dentist dental"
+},
+
+{
+name:"Pharmacist",
+icon:"💊",
+salary:"₹2.5L – ₹10L+",
+demand:"High",
+workers:"8L+",
+search:"pharmacy pharmacist"
+},
+
+{
+name:"Nurse",
+icon:"👩‍⚕️",
+salary:"₹2.5L – ₹12L+",
+demand:"Very High",
+workers:"30L+",
+search:"nurse nursing"
+},
+
+{
+name:"Physiotherapist",
+icon:"🏃",
+salary:"₹3L – ₹12L+",
+demand:"High",
+workers:"2L+",
+search:"physiotherapy"
+},
+
+{
+name:"Psychologist",
+icon:"🧠",
+salary:"₹3L – ₹15L+",
+demand:"Very High",
+workers:"1L+",
+search:"psychology psychologist"
+},
+
+{
+name:"Veterinarian",
+icon:"🐾",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"1L+",
+search:"vet veterinary animal"
+},
+
+{
+name:"Radiologist",
+icon:"🩻",
+salary:"₹10L – ₹40L+",
+demand:"Very High",
+workers:"30K+",
+search:"radiology"
+},
+
+{
+name:"Medical Lab Technologist",
+icon:"🔬",
+salary:"₹2.5L – ₹10L+",
+demand:"High",
+workers:"5L+",
+search:"medical laboratory lab"
+},
+
+/* ================= SCIENCE ================= */
+
+{
+name:"Astronomer",
+icon:"🔭",
+salary:"₹5L – ₹25L+",
+demand:"Medium",
+workers:"20K+",
+search:"astronomy astronomer space"
+},
+
+{
+name:"Astrophysicist",
+icon:"🌌",
+salary:"₹5L – ₹25L+",
+demand:"Medium",
+workers:"20K+",
+search:"astrophysics"
+},
+
+{
+name:"Physicist",
+icon:"⚛️",
+salary:"₹4L – ₹20L+",
+demand:"Medium",
+workers:"1L+",
+search:"physics physicist"
+},
+
+{
+name:"Chemist",
+icon:"🧪",
+salary:"₹3L – ₹15L+",
+demand:"Medium",
+workers:"2L+",
+search:"chemistry chemist"
+},
+
+{
+name:"Biologist",
+icon:"🧬",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"2L+",
+search:"biology biologist"
+},
+
+{
+name:"Geologist",
+icon:"🌍",
+salary:"₹4L – ₹18L+",
+demand:"Medium",
+workers:"50K+",
+search:"geology"
+},
+
+{
+name:"Marine Scientist",
+icon:"🌊",
+salary:"₹4L – ₹18L+",
+demand:"Medium",
+workers:"20K+",
+search:"marine ocean"
+},
+
+{
+name:"Meteorologist",
+icon:"🌦️",
+salary:"₹4L – ₹18L+",
+demand:"Medium",
+workers:"20K+",
+search:"weather meteorology"
+},
+
+{
+name:"Environmental Scientist",
+icon:"🌳",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"1L+",
+search:"environment science"
+},
+
+{
+name:"Research Scientist",
+icon:"🔬",
+salary:"₹4L – ₹25L+",
+demand:"High",
+workers:"2L+",
+search:"research scientist"
+},
+
+/* ================= BUSINESS & FINANCE ================= */
+
+{
+name:"Business Analyst",
+icon:"📊",
+salary:"₹4L – ₹20L+",
+demand:"Very High",
+workers:"3L+",
+search:"business analyst"
+},
+
+{
+name:"Financial Analyst",
+icon:"💰",
+salary:"₹4L – ₹20L+",
+demand:"High",
+workers:"3L+",
+search:"finance analyst"
+},
+
+{
+name:"Chartered Accountant",
+icon:"🧾",
+salary:"₹6L – ₹30L+",
+demand:"High",
+workers:"4L+",
+search:"ca chartered accountant"
+},
+
+{
+name:"Company Secretary",
+icon:"📋",
+salary:"₹4L – ₹20L+",
+demand:"High",
+workers:"70K+",
+search:"cs company secretary"
+},
+
+{
+name:"Investment Banker",
+icon:"🏦",
+salary:"₹8L – ₹50L+",
+demand:"High",
+workers:"1L+",
+search:"investment banking"
+},
+
+{
+name:"Economist",
+icon:"📈",
+salary:"₹5L – ₹25L+",
+demand:"Medium",
+workers:"1L+",
+search:"economics economist"
+},
+
+{
+name:"Actuary",
+icon:"📐",
+salary:"₹6L – ₹30L+",
+demand:"High",
+workers:"20K+",
+search:"actuarial"
+},
+
+{
+name:"Bank Manager",
+icon:"🏦",
+salary:"₹6L – ₹20L+",
+demand:"High",
+workers:"2L+",
+search:"banking bank manager"
+},
+
+{
+name:"Entrepreneur",
+icon:"🚀",
+salary:"Variable",
+demand:"High",
+workers:"1Cr+",
+search:"business entrepreneur startup"
+},
+
+{
+name:"Management Consultant",
+icon:"💼",
+salary:"₹6L – ₹35L+",
+demand:"High",
+workers:"1L+",
+search:"consulting consultant"
+},
+
+/* ================= MANAGEMENT ================= */
+
+{
+name:"Project Manager",
+icon:"📋",
+salary:"₹6L – ₹25L+",
+demand:"Very High",
+workers:"5L+",
+search:"project management"
+},
+
+{
+name:"Product Manager",
+icon:"🎯",
+salary:"₹8L – ₹35L+",
+demand:"Very High",
+workers:"1L+",
+search:"product manager"
+},
+
+{
+name:"HR Manager",
+icon:"👥",
+salary:"₹5L – ₹20L+",
+demand:"High",
+workers:"3L+",
+search:"human resources hr"
+},
+
+{
+name:"Operations Manager",
+icon:"⚙️",
+salary:"₹5L – ₹20L+",
+demand:"High",
+workers:"5L+",
+search:"operations"
+},
+
+{
+name:"Marketing Manager",
+icon:"📢",
+salary:"₹5L – ₹25L+",
+demand:"High",
+workers:"5L+",
+search:"marketing"
+},
+
+{
+name:"Sales Manager",
+icon:"💼",
+salary:"₹4L – ₹20L+",
+demand:"Very High",
+workers:"10L+",
+search:"sales"
+},
+
+{
+name:"Supply Chain Manager",
+icon:"🚚",
+salary:"₹5L – ₹22L+",
+demand:"High",
+workers:"3L+",
+search:"supply chain"
+},
+
+{
+name:"Business Development Manager",
+icon:"🤝",
+salary:"₹4L – ₹20L+",
+demand:"High",
+workers:"5L+",
+search:"business development"
+},
+
+{
+name:"Risk Manager",
+icon:"⚠️",
+salary:"₹6L – ₹25L+",
+demand:"High",
+workers:"1L+",
+search:"risk management"
+},
+
+{
+name:"Quality Manager",
+icon:"✅",
+salary:"₹4L – ₹18L+",
+demand:"High",
+workers:"3L+",
+search:"quality assurance"
+},
+
+/* ================= LAW & GOVERNMENT ================= */
+
+{
+name:"Lawyer",
+icon:"⚖️",
+salary:"₹3L – ₹30L+",
+demand:"High",
+workers:"15L+",
+search:"law lawyer advocate"
+},
+
+{
+name:"Judge",
+icon:"⚖️",
+salary:"₹10L – ₹30L+",
+demand:"Medium",
+workers:"20K+",
+search:"judge judiciary"
+},
+
+{
+name:"Government Officer",
+icon:"🏛️",
+salary:"₹5L – ₹25L+",
+demand:"High",
+workers:"1Cr+",
+search:"government civil service"
+},
+
+{
+name:"IAS Officer",
+icon:"🏛️",
+salary:"₹8L – ₹25L+",
+demand:"High",
+workers:"5K+",
+search:"ias upsc civil services"
+},
+
+{
+name:"IPS Officer",
+icon:"👮",
+salary:"₹8L – ₹25L+",
+demand:"High",
+workers:"5K+",
+search:"ips police"
+},
+
+{
+name:"Diplomat",
+icon:"🌎",
+salary:"₹8L – ₹30L+",
+demand:"Medium",
+workers:"10K+",
+search:"diplomacy foreign service"
+},
+
+{
+name:"Policy Analyst",
+icon:"📜",
+salary:"₹4L – ₹20L+",
+demand:"High",
+workers:"50K+",
+search:"policy government"
+},
+
+{
+name:"Legal Advisor",
+icon:"📚",
+salary:"₹5L – ₹25L+",
+demand:"High",
+workers:"2L+",
+search:"legal advisor law"
+},
+
+{
+name:"Public Prosecutor",
+icon:"⚖️",
+salary:"₹5L – ₹20L+",
+demand:"Medium",
+workers:"50K+",
+search:"prosecutor"
+},
+
+{
+name:"Tax Consultant",
+icon:"🧾",
+salary:"₹4L – ₹20L+",
+demand:"High",
+workers:"2L+",
+search:"tax taxation"
+},
+
+/* ================= EDUCATION ================= */
+
+{
+name:"School Teacher",
+icon:"👩‍🏫",
+salary:"₹2.5L – ₹12L+",
+demand:"Very High",
+workers:"1Cr+",
+search:"teacher teaching school"
+},
+
+{
+name:"College Professor",
+icon:"🎓",
+salary:"₹5L – ₹18L+",
+demand:"High",
+workers:"15L+",
+search:"professor lecturer"
+},
+
+{
+name:"University Researcher",
+icon:"🔬",
+salary:"₹5L – ₹20L+",
+demand:"High",
+workers:"1L+",
+search:"university research"
+},
+
+{
+name:"Online Educator",
+icon:"💻",
+salary:"₹2L – ₹20L+",
+demand:"High",
+workers:"5L+",
+search:"online teacher educator"
+},
+
+{
+name:"Education Counselor",
+icon:"🎓",
+salary:"₹3L – ₹12L+",
+demand:"High",
+workers:"1L+",
+search:"career education counselor"
+},
+
+{
+name:"Instructional Designer",
+icon:"📚",
+salary:"₹4L – ₹15L+",
+demand:"High",
+workers:"50K+",
+search:"instructional design"
+},
+
+{
+name:"Special Education Teacher",
+icon:"❤️",
+salary:"₹3L – ₹12L+",
+demand:"Very High",
+workers:"1L+",
+search:"special education"
+},
+
+{
+name:"Librarian",
+icon:"📖",
+salary:"₹2.5L – ₹10L+",
+demand:"Medium",
+workers:"2L+",
+search:"library librarian"
+},
+
+{
+name:"Sports Coach",
+icon:"🏆",
+salary:"₹2.5L – ₹15L+",
+demand:"High",
+workers:"2L+",
+search:"sports coach"
+},
+
+{
+name:"Fitness Trainer",
+icon:"🏋️",
+salary:"₹2L – ₹12L+",
+demand:"High",
+workers:"5L+",
+search:"fitness trainer"
+},
+
+/* ================= ARTS & MEDIA ================= */
+
+{
+name:"Graphic Designer",
+icon:"🎨",
+salary:"₹2.5L – ₹15L+",
+demand:"High",
+workers:"5L+",
+search:"graphic design"
+},
+
+{
+name:"Animator",
+icon:"🎬",
+salary:"₹3L – ₹18L+",
+demand:"High",
+workers:"2L+",
+search:"animation animator"
+},
+
+{
+name:"Film Director",
+icon:"🎥",
+salary:"₹4L – ₹50L+",
+demand:"Medium",
+workers:"50K+",
+search:"film director cinema"
+},
+
+{
+name:"Photographer",
+icon:"📷",
+salary:"₹2L – ₹15L+",
+demand:"High",
+workers:"5L+",
+search:"photography"
+},
+
+{
+name:"Video Editor",
+icon:"🎞️",
+salary:"₹2.5L – ₹15L+",
+demand:"Very High",
+workers:"3L+",
+search:"video editing"
+},
+
+{
+name:"Content Creator",
+icon:"📱",
+salary:"₹2L – ₹30L+",
+demand:"Very High",
+workers:"10L+",
+search:"content creator youtube"
+},
+
+{
+name:"Writer",
+icon:"✍️",
+salary:"₹2L – ₹15L+",
+demand:"High",
+workers:"5L+",
+search:"writer writing"
+},
+
+{
+name:"Journalist",
+icon:"📰",
+salary:"₹2.5L – ₹15L+",
+demand:"Medium",
+workers:"2L+",
+search:"journalism journalist"
+},
+
+{
+name:"Fashion Designer",
+icon:"👗",
+salary:"₹3L – ₹20L+",
+demand:"High",
+workers:"2L+",
+search:"fashion"
+},
+
+{
+name:"Interior Designer",
+icon:"🏠",
+salary:"₹3L – ₹18L+",
+demand:"High",
+workers:"2L+",
+search:"interior design"
+},
+
+/* ================= TRANSPORT ================= */
+
+{
+name:"Pilot",
+icon:"✈️",
+salary:"₹8L – ₹50L+",
+demand:"Very High",
+workers:"20K+",
+search:"pilot aviation"
+},
+
+{
+name:"Air Traffic Controller",
+icon:"🛫",
+salary:"₹8L – ₹25L+",
+demand:"High",
+workers:"10K+",
+search:"air traffic control"
+},
+
+{
+name:"Cabin Crew",
+icon:"🛩️",
+salary:"₹3L – ₹12L+",
+demand:"High",
+workers:"50K+",
+search:"air hostess cabin crew"
+},
+
+{
+name:"Logistics Manager",
+icon:"🚚",
+salary:"₹4L – ₹20L+",
+demand:"Very High",
+workers:"3L+",
+search:"logistics"
+},
+
+{
+name:"Commercial Driver",
+icon:"🚛",
+salary:"₹2L – ₹8L+",
+demand:"Very High",
+workers:"1Cr+",
+search:"driver truck transport"
+},
+
+/* ================= AGRICULTURE ================= */
+
+{
+name:"Agricultural Scientist",
+icon:"🌾",
+salary:"₹4L – ₹18L+",
+demand:"High",
+workers:"1L+",
+search:"agriculture scientist"
+},
+
+{
+name:"Agronomist",
+icon:"🌱",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"50K+",
+search:"agronomy agriculture"
+},
+
+{
+name:"Horticulturist",
+icon:"🌷",
+salary:"₹3L – ₹12L+",
+demand:"Medium",
+workers:"50K+",
+search:"horticulture garden"
+},
+
+{
+name:"Food Technologist",
+icon:"🍎",
+salary:"₹3L – ₹15L+",
+demand:"High",
+workers:"1L+",
+search:"food technology"
+},
+
+{
+name:"Forestry Officer",
+icon:"🌳",
+salary:"₹4L – ₹15L+",
+demand:"Medium",
+workers:"50K+",
+search:"forest forestry"
+},
+
+/* ================= SKILLED TRADES ================= */
+
+{
+name:"Electrician",
+icon:"⚡",
+salary:"₹2L – ₹8L+",
+demand:"Very High",
+workers:"30L+",
+search:"electrician electrical"
+},
+
+{
+name:"Plumber",
+icon:"🔧",
+salary:"₹2L – ₹8L+",
+demand:"Very High",
+workers:"20L+",
+search:"plumber plumbing"
+},
+
+{
+name:"Carpenter",
+icon:"🪚",
+salary:"₹2L – ₹8L+",
+demand:"High",
+workers:"20L+",
+search:"carpenter wood"
+},
+
+{
+name:"Welder",
+icon:"🔩",
+salary:"₹2L – ₹9L+",
+demand:"High",
+workers:"10L+",
+search:"welding welder"
+},
+
+{
+name:"Mechanic",
+icon:"🔧",
+salary:"₹2L – ₹10L+",
+demand:"Very High",
+workers:"20L+",
+search:"mechanic automobile"
+}
+
+];
+
+
+/* ================= DISPLAY CAREERS ================= */
+
+const grid = document.getElementById("careerGrid");
+
+function displayCareers(list){
+
+    grid.innerHTML = "";
+
+    list.forEach(career => {
+
+        let demandClass = "";
+
+        if(career.demand === "Very High"){
+            demandClass = "very-high";
+        }
+        else if(career.demand === "High"){
+            demandClass = "high";
+        }
+        else if(career.demand === "Medium"){
+            demandClass = "medium";
+        }
+        else{
+            demandClass = "low";
+        }
+
+        const card = document.createElement("div");
+
+        card.className = "career-card";
+
+        card.innerHTML = `
+
+            <div class="career-icon">
+                ${career.icon}
+            </div>
+
+            <h3>${career.name}</h3>
+
+            <div class="info">
+                <span class="label">
+                    💰 Salary
+                </span>
+
+                <span class="value">
+                    ${career.salary}
+                </span>
+            </div>
+
+            <div class="info">
+                <span class="label">
+                    📈 Demand
+                </span>
+
+                <span class="value">
+                    <span class="demand ${demandClass}">
+                        ${career.demand}
+                    </span>
+                </span>
+            </div>
+
+            <div class="info">
+                <span class="label">
+                    👥 Approx. Workforce
+                </span>
+
+                <span class="value">
+                    ${career.workers}
+                </span>
+            </div>
+
+        `;
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function searchCareer(){
+
+    const input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const noResult =
+        document.getElementById("noResult");
+
+    if(input === ""){
+
+        displayCareers(careers);
+
+        noResult.style.display = "none";
+
+        return;
+    }
+
+    const filtered = careers.filter(career => {
+
+        return (
+            career.name.toLowerCase().includes(input) ||
+            career.search.toLowerCase().includes(input)
+        );
+
+    });
+
+    displayCareers(filtered);
+
+    if(filtered.length === 0){
+        noResult.style.display = "block";
+    }
+    else{
+        noResult.style.display = "none";
+    }
+
+}
+
+
+/* ================= INITIAL LOAD ================= */
+
+displayCareers(careers);
+
+document.getElementById("careerCount").innerText =
+    careers.length;
+
+</script>
+
+</body>
+</html>
+
