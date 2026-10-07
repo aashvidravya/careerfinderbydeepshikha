@@ -1,0 +1,2071 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Progress | Career Finder</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f7f4ff, #eef7ff);
+    color: #202040;
+}
+
+/* ================= NAVBAR ================= */
+
+header {
+    background: rgba(255,255,255,0.96);
+    padding: 15px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(60,50,120,0.12);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    color: #5b42d6;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #444;
+    padding: 9px 13px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #eeeaff;
+    color: #5b42d6;
+}
+
+nav a.active {
+    background: linear-gradient(135deg, #6954e8, #8d70ff);
+    color: white;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #5140bd;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #666;
+    font-size: 17px;
+}
+
+
+/* ================= MAIN ================= */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+
+/* ================= SELECTED CAREER ================= */
+
+.selected-career {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(70,50,150,0.13);
+    margin-bottom: 25px;
+}
+
+.selected-career h2 {
+    color: #5744c8;
+    margin-bottom: 12px;
+}
+
+#careerName {
+    font-size: 30px;
+    font-weight: 800;
+    color: #222;
+}
+
+.no-career {
+    color: #888;
+}
+
+
+/* ================= OVERALL PROGRESS ================= */
+
+.overall {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 10px 35px rgba(70,50,150,0.12);
+    margin-bottom: 30px;
+}
+
+.overall-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.overall-top h2 {
+    color: #5140bd;
+}
+
+#overallPercent {
+    font-size: 30px;
+    font-weight: 800;
+    color: #6652df;
+}
+
+.progress-bar {
+    height: 18px;
+    width: 100%;
+    background: #e8e5f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #6550e8, #a080ff);
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.progress-message {
+    margin-top: 14px;
+    color: #666;
+}
+
+
+/* ================= STATS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 7px 25px rgba(50,40,100,0.09);
+}
+
+.stat-card span {
+    font-size: 30px;
+}
+
+.stat-card h3 {
+    margin: 8px 0;
+    color: #5542c7;
+}
+
+.stat-card p {
+    color: #777;
+}
+
+
+/* ================= SKILLS ================= */
+
+.skills-box {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 10px 35px rgba(70,50,150,0.12);
+    margin-bottom: 30px;
+}
+
+.skills-box h2 {
+    color: #5140bd;
+    margin-bottom: 8px;
+}
+
+.skills-subtitle {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.skill-card {
+    background: #f9f8ff;
+    border: 2px solid #eeeafa;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateX(5px);
+    border-color: #c8bfff;
+}
+
+.skill-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.skill-name {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.skill-percent {
+    color: #624ed8;
+    font-weight: 800;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 10px;
+    background: #e5e2f0;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 13px;
+}
+
+.skill-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #6954e8, #9b82ff);
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+.skill-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.skill-actions button {
+    border: none;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.minus {
+    background: #ffe9e9;
+    color: #b84b4b;
+}
+
+.plus {
+    background: #e8e4ff;
+    color: #5c49d2;
+}
+
+.complete {
+    background: #ddf7ea;
+    color: #18804d;
+}
+
+
+/* ================= MILESTONE ================= */
+
+.milestone {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 10px 35px rgba(70,50,150,0.12);
+    margin-bottom: 60px;
+}
+
+.milestone h2 {
+    color: #5140bd;
+    margin-bottom: 20px;
+}
+
+.milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #f8f7ff;
+    margin-bottom: 10px;
+}
+
+.milestone-icon {
+    font-size: 28px;
+}
+
+.milestone-item.locked {
+    opacity: 0.45;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(60,50,120,0.1);
+}
+
+.empty-state h2 {
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #777;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #17204d;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    border-radius: 10% 10% 0 0;
+}
+
+footer p {
+    color: #cbd0ef;
+    margin-top: 8px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 750px) {
+
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .overall-top {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <div class="logo">🌟 Career Finder</div>
+
+    <nav>
+
+        <a href="index.html">🏠 Home</a>
+
+        <a href="careers.html">💼 Careers</a>
+
+        <a href="career-growth.html">📈 Career Growth</a>
+
+        <a href="selected-career.html">
+            🎯 Selected Career
+        </a>
+
+        <a href="progress.html" class="active">
+            📊 Progress
+        </a>
+
+        <a href="profile.html">
+            👤 Profile
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <h1>📊 Your Career Progress</h1>
+
+    <p>
+        Track your skills and see how close you are to your career goal 🚀
+    </p>
+
+</section>
+
+
+<div class="container" id="mainContent"></div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h3>🌟 Career Finder by Deepshikha</h3>
+
+    <p>
+        Learn today. Grow tomorrow. Build your future. 🚀
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* =====================================================
+   CAREER SKILLS DATABASE
+===================================================== */
+
+const careerSkills = {
+
+
+/* TECHNOLOGY */
+
+"AI Engineer": [
+    "Python",
+    "Mathematics",
+    "Statistics",
+    "Machine Learning",
+    "Deep Learning",
+    "Data Handling",
+    "Problem Solving"
+],
+
+"Machine Learning Engineer": [
+    "Python",
+    "Mathematics",
+    "Statistics",
+    "Machine Learning",
+    "Data Structures",
+    "Model Deployment",
+    "Problem Solving"
+],
+
+"Software Engineer": [
+    "Programming",
+    "Data Structures",
+    "Algorithms",
+    "Git & GitHub",
+    "Problem Solving",
+    "Software Design",
+    "Testing"
+],
+
+"Data Scientist": [
+    "Python",
+    "Statistics",
+    "Mathematics",
+    "Data Analysis",
+    "Machine Learning",
+    "Data Visualization",
+    "SQL"
+],
+
+"Data Analyst": [
+    "Excel",
+    "SQL",
+    "Statistics",
+    "Data Visualization",
+    "Python",
+    "Critical Thinking"
+],
+
+"Cybersecurity Analyst": [
+    "Networking",
+    "Linux",
+    "Cybersecurity",
+    "Python",
+    "Threat Analysis",
+    "Cryptography",
+    "Problem Solving"
+],
+
+"Ethical Hacker": [
+    "Networking",
+    "Linux",
+    "Cybersecurity",
+    "Python",
+    "Web Security",
+    "Penetration Testing"
+],
+
+"Cloud Engineer": [
+    "Linux",
+    "Networking",
+    "Cloud Computing",
+    "Python",
+    "Security",
+    "DevOps"
+],
+
+"DevOps Engineer": [
+    "Linux",
+    "Git",
+    "Cloud Computing",
+    "Docker",
+    "CI/CD",
+    "Python",
+    "Automation"
+],
+
+"Web Developer": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Responsive Design",
+    "Git",
+    "Web Development"
+],
+
+"Frontend Developer": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "UI Design",
+    "Responsive Design"
+],
+
+"Backend Developer": [
+    "Programming",
+    "APIs",
+    "Databases",
+    "SQL",
+    "Server Development",
+    "Security"
+],
+
+"Full Stack Developer": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Frontend Development",
+    "Backend Development",
+    "Databases",
+    "Git"
+],
+
+"Mobile App Developer": [
+    "Programming",
+    "UI Design",
+    "Mobile Development",
+    "APIs",
+    "Databases",
+    "Testing"
+],
+
+"Game Developer": [
+    "Programming",
+    "Game Engines",
+    "Mathematics",
+    "Physics",
+    "3D Concepts",
+    "Problem Solving"
+],
+
+"UI/UX Designer": [
+    "UI Design",
+    "UX Research",
+    "Wireframing",
+    "Prototyping",
+    "Typography",
+    "User Psychology"
+],
+
+"Product Designer": [
+    "UI Design",
+    "UX Research",
+    "Prototyping",
+    "Design Thinking",
+    "User Research",
+    "Communication"
+],
+
+"Blockchain Developer": [
+    "Programming",
+    "Blockchain",
+    "Cryptography",
+    "Smart Contracts",
+    "Databases",
+    "Cybersecurity"
+],
+
+"Robotics Engineer": [
+    "Programming",
+    "Robotics",
+    "Electronics",
+    "Mathematics",
+    "Physics",
+    "Control Systems"
+],
+
+"Embedded Systems Engineer": [
+    "C/C++",
+    "Electronics",
+    "Microcontrollers",
+    "Programming",
+    "Digital Logic",
+    "Problem Solving"
+],
+
+
+/* ENGINEERING */
+
+"Civil Engineer": [
+    "Mathematics",
+    "Physics",
+    "Structural Design",
+    "CAD",
+    "Construction",
+    "Problem Solving"
+],
+
+"Mechanical Engineer": [
+    "Mathematics",
+    "Physics",
+    "CAD",
+    "Mechanics",
+    "Thermodynamics",
+    "Problem Solving"
+],
+
+"Electrical Engineer": [
+    "Mathematics",
+    "Physics",
+    "Circuit Design",
+    "Electronics",
+    "Programming",
+    "Problem Solving"
+],
+
+"Electronics Engineer": [
+    "Electronics",
+    "Circuit Design",
+    "Programming",
+    "Digital Logic",
+    "Microcontrollers",
+    "Mathematics"
+],
+
+"Chemical Engineer": [
+    "Chemistry",
+    "Mathematics",
+    "Physics",
+    "Process Design",
+    "Thermodynamics",
+    "Problem Solving"
+],
+
+"Aerospace Engineer": [
+    "Mathematics",
+    "Physics",
+    "Aerodynamics",
+    "Programming",
+    "CAD",
+    "Mechanics"
+],
+
+"Automobile Engineer": [
+    "Physics",
+    "Mechanics",
+    "Automobile Systems",
+    "CAD",
+    "Electronics",
+    "Problem Solving"
+],
+
+"Environmental Engineer": [
+    "Environmental Science",
+    "Chemistry",
+    "Mathematics",
+    "Sustainability",
+    "Data Analysis",
+    "Problem Solving"
+],
+
+"Biomedical Engineer": [
+    "Biology",
+    "Physics",
+    "Mathematics",
+    "Engineering",
+    "Medical Technology",
+    "Programming"
+],
+
+"Nuclear Engineer": [
+    "Physics",
+    "Mathematics",
+    "Nuclear Science",
+    "Engineering",
+    "Safety",
+    "Data Analysis"
+],
+
+
+/* MEDICAL */
+
+"Doctor": [
+    "Biology",
+    "Chemistry",
+    "Medical Knowledge",
+    "Communication",
+    "Critical Thinking",
+    "Patient Care"
+],
+
+"Surgeon": [
+    "Biology",
+    "Chemistry",
+    "Anatomy",
+    "Medical Knowledge",
+    "Precision",
+    "Decision Making"
+],
+
+"Dentist": [
+    "Biology",
+    "Chemistry",
+    "Dental Science",
+    "Anatomy",
+    "Communication",
+    "Precision"
+],
+
+"Pharmacist": [
+    "Chemistry",
+    "Biology",
+    "Pharmacology",
+    "Medical Knowledge",
+    "Accuracy",
+    "Communication"
+],
+
+"Nurse": [
+    "Biology",
+    "Patient Care",
+    "Communication",
+    "Medical Knowledge",
+    "Teamwork",
+    "Decision Making"
+],
+
+"Physiotherapist": [
+    "Biology",
+    "Anatomy",
+    "Exercise Science",
+    "Patient Care",
+    "Communication",
+    "Observation"
+],
+
+"Psychologist": [
+    "Psychology",
+    "Research",
+    "Communication",
+    "Observation",
+    "Critical Thinking",
+    "Statistics"
+],
+
+"Veterinarian": [
+    "Biology",
+    "Animal Science",
+    "Chemistry",
+    "Medical Knowledge",
+    "Communication",
+    "Observation"
+],
+
+"Radiologist": [
+    "Biology",
+    "Physics",
+    "Medical Imaging",
+    "Anatomy",
+    "Technology",
+    "Critical Thinking"
+],
+
+"Medical Lab Technologist": [
+    "Biology",
+    "Chemistry",
+    "Laboratory Skills",
+    "Medical Knowledge",
+    "Accuracy",
+    "Data Analysis"
+],
+
+
+/* SCIENCE */
+
+"Astronomer": [
+    "Physics",
+    "Mathematics",
+    "Astronomy",
+    "Programming",
+    "Data Analysis",
+    "Research"
+],
+
+"Astrophysicist": [
+    "Physics",
+    "Mathematics",
+    "Astronomy",
+    "Programming",
+    "Research",
+    "Data Analysis"
+],
+
+"Physicist": [
+    "Physics",
+    "Mathematics",
+    "Research",
+    "Programming",
+    "Data Analysis",
+    "Problem Solving"
+],
+
+"Chemist": [
+    "Chemistry",
+    "Mathematics",
+    "Laboratory Skills",
+    "Research",
+    "Data Analysis",
+    "Safety"
+],
+
+"Biologist": [
+    "Biology",
+    "Research",
+    "Laboratory Skills",
+    "Data Analysis",
+    "Observation",
+    "Scientific Writing"
+],
+
+"Geologist": [
+    "Geology",
+    "Earth Science",
+    "Chemistry",
+    "Physics",
+    "Field Research",
+    "Data Analysis"
+],
+
+"Marine Scientist": [
+    "Biology",
+    "Marine Science",
+    "Oceanography",
+    "Research",
+    "Data Analysis",
+    "Field Work"
+],
+
+"Meteorologist": [
+    "Physics",
+    "Mathematics",
+    "Weather Science",
+    "Data Analysis",
+    "Programming",
+    "Research"
+],
+
+"Environmental Scientist": [
+    "Environmental Science",
+    "Biology",
+    "Chemistry",
+    "Data Analysis",
+    "Research",
+    "Sustainability"
+],
+
+"Research Scientist": [
+    "Research",
+    "Critical Thinking",
+    "Data Analysis",
+    "Scientific Writing",
+    "Mathematics",
+    "Problem Solving"
+],
+
+
+/* BUSINESS */
+
+"Business Analyst": [
+    "Business Knowledge",
+    "Data Analysis",
+    "Excel",
+    "SQL",
+    "Communication",
+    "Problem Solving"
+],
+
+"Financial Analyst": [
+    "Finance",
+    "Mathematics",
+    "Excel",
+    "Data Analysis",
+    "Economics",
+    "Critical Thinking"
+],
+
+"Chartered Accountant": [
+    "Accounting",
+    "Mathematics",
+    "Taxation",
+    "Finance",
+    "Auditing",
+    "Excel"
+],
+
+"Company Secretary": [
+    "Law",
+    "Business",
+    "Finance",
+    "Communication",
+    "Management",
+    "Compliance"
+],
+
+"Investment Banker": [
+    "Finance",
+    "Economics",
+    "Mathematics",
+    "Financial Analysis",
+    "Communication",
+    "Excel"
+],
+
+"Economist": [
+    "Economics",
+    "Mathematics",
+    "Statistics",
+    "Data Analysis",
+    "Research",
+    "Critical Thinking"
+],
+
+"Actuary": [
+    "Mathematics",
+    "Statistics",
+    "Probability",
+    "Finance",
+    "Data Analysis",
+    "Risk Analysis"
+],
+
+"Bank Manager": [
+    "Finance",
+    "Banking",
+    "Communication",
+    "Leadership",
+    "Management",
+    "Customer Service"
+],
+
+"Entrepreneur": [
+    "Business",
+    "Communication",
+    "Leadership",
+    "Marketing",
+    "Finance",
+    "Problem Solving"
+],
+
+"Management Consultant": [
+    "Business",
+    "Data Analysis",
+    "Strategy",
+    "Communication",
+    "Problem Solving",
+    "Presentation"
+],
+
+
+/* MANAGEMENT */
+
+"Project Manager": [
+    "Project Management",
+    "Leadership",
+    "Communication",
+    "Planning",
+    "Problem Solving",
+    "Teamwork"
+],
+
+"Product Manager": [
+    "Product Strategy",
+    "User Research",
+    "Communication",
+    "Data Analysis",
+    "Leadership",
+    "Problem Solving"
+],
+
+"HR Manager": [
+    "Communication",
+    "Leadership",
+    "Human Resources",
+    "Recruitment",
+    "Conflict Resolution",
+    "Management"
+],
+
+"Operations Manager": [
+    "Management",
+    "Planning",
+    "Leadership",
+    "Data Analysis",
+    "Operations",
+    "Problem Solving"
+],
+
+"Marketing Manager": [
+    "Marketing",
+    "Communication",
+    "Market Research",
+    "Data Analysis",
+    "Creativity",
+    "Leadership"
+],
+
+"Sales Manager": [
+    "Sales",
+    "Communication",
+    "Negotiation",
+    "Leadership",
+    "Customer Relations",
+    "Strategy"
+],
+
+"Supply Chain Manager": [
+    "Logistics",
+    "Supply Chain",
+    "Planning",
+    "Data Analysis",
+    "Management",
+    "Problem Solving"
+],
+
+"Business Development Manager": [
+    "Business",
+    "Communication",
+    "Sales",
+    "Negotiation",
+    "Market Research",
+    "Networking"
+],
+
+"Risk Manager": [
+    "Risk Analysis",
+    "Finance",
+    "Statistics",
+    "Data Analysis",
+    "Critical Thinking",
+    "Decision Making"
+],
+
+"Quality Manager": [
+    "Quality Control",
+    "Data Analysis",
+    "Management",
+    "Problem Solving",
+    "Communication",
+    "Process Improvement"
+],
+
+
+/* LAW & GOVERNMENT */
+
+"Lawyer": [
+    "Law",
+    "Research",
+    "Communication",
+    "Critical Thinking",
+    "Writing",
+    "Argumentation"
+],
+
+"Judge": [
+    "Law",
+    "Legal Research",
+    "Critical Thinking",
+    "Decision Making",
+    "Communication",
+    "Ethics"
+],
+
+"Government Officer": [
+    "General Knowledge",
+    "Communication",
+    "Administration",
+    "Problem Solving",
+    "Leadership",
+    "Decision Making"
+],
+
+"IAS Officer": [
+    "General Knowledge",
+    "Current Affairs",
+    "Administration",
+    "Leadership",
+    "Communication",
+    "Decision Making"
+],
+
+"IPS Officer": [
+    "General Knowledge",
+    "Law",
+    "Leadership",
+    "Physical Fitness",
+    "Decision Making",
+    "Communication"
+],
+
+"Diplomat": [
+    "International Relations",
+    "Communication",
+    "Languages",
+    "Negotiation",
+    "Current Affairs",
+    "Critical Thinking"
+],
+
+"Policy Analyst": [
+    "Research",
+    "Data Analysis",
+    "Economics",
+    "Policy Knowledge",
+    "Writing",
+    "Critical Thinking"
+],
+
+"Legal Advisor": [
+    "Law",
+    "Legal Research",
+    "Writing",
+    "Communication",
+    "Critical Thinking",
+    "Business Knowledge"
+],
+
+"Public Prosecutor": [
+    "Law",
+    "Legal Research",
+    "Argumentation",
+    "Communication",
+    "Evidence Analysis",
+    "Critical Thinking"
+],
+
+"Tax Consultant": [
+    "Taxation",
+    "Accounting",
+    "Finance",
+    "Law",
+    "Mathematics",
+    "Communication"
+],
+
+
+/* EDUCATION */
+
+"School Teacher": [
+    "Subject Knowledge",
+    "Communication",
+    "Teaching",
+    "Classroom Management",
+    "Technology",
+    "Patience"
+],
+
+"College Professor": [
+    "Subject Knowledge",
+    "Research",
+    "Communication",
+    "Teaching",
+    "Presentation",
+    "Critical Thinking"
+],
+
+"University Researcher": [
+    "Research",
+    "Data Analysis",
+    "Scientific Writing",
+    "Critical Thinking",
+    "Subject Knowledge",
+    "Communication"
+],
+
+"Online Educator": [
+    "Subject Knowledge",
+    "Communication",
+    "Teaching",
+    "Video Creation",
+    "Technology",
+    "Presentation"
+],
+
+"Education Counselor": [
+    "Communication",
+    "Counseling",
+    "Psychology",
+    "Career Knowledge",
+    "Listening",
+    "Problem Solving"
+],
+
+"Instructional Designer": [
+    "Education",
+    "Design",
+    "Technology",
+    "Communication",
+    "Research",
+    "Content Creation"
+],
+
+"Special Education Teacher": [
+    "Teaching",
+    "Communication",
+    "Psychology",
+    "Patience",
+    "Special Education",
+    "Classroom Management"
+],
+
+"Librarian": [
+    "Library Science",
+    "Research",
+    "Organization",
+    "Technology",
+    "Communication",
+    "Information Management"
+],
+
+"Sports Coach": [
+    "Sports Knowledge",
+    "Training",
+    "Leadership",
+    "Communication",
+    "Fitness",
+    "Motivation"
+],
+
+"Fitness Trainer": [
+    "Fitness",
+    "Exercise Science",
+    "Nutrition Basics",
+    "Communication",
+    "Training",
+    "Motivation"
+],
+
+
+/* ARTS & MEDIA */
+
+"Graphic Designer": [
+    "Graphic Design",
+    "Typography",
+    "Color Theory",
+    "Adobe Tools",
+    "Creativity",
+    "Visual Communication"
+],
+
+"Animator": [
+    "Animation",
+    "Drawing",
+    "3D Design",
+    "Storytelling",
+    "Design Software",
+    "Creativity"
+],
+
+"Film Director": [
+    "Storytelling",
+    "Film Production",
+    "Leadership",
+    "Communication",
+    "Visual Design",
+    "Creativity"
+],
+
+"Photographer": [
+    "Photography",
+    "Composition",
+    "Lighting",
+    "Photo Editing",
+    "Creativity",
+    "Visual Storytelling"
+],
+
+"Video Editor": [
+    "Video Editing",
+    "Storytelling",
+    "Audio Editing",
+    "Color Correction",
+    "Creativity",
+    "Editing Software"
+],
+
+"Content Creator": [
+    "Content Creation",
+    "Communication",
+    "Video Editing",
+    "Writing",
+    "Social Media",
+    "Creativity"
+],
+
+"Writer": [
+    "Writing",
+    "Grammar",
+    "Research",
+    "Storytelling",
+    "Creativity",
+    "Communication"
+],
+
+"Journalist": [
+    "Writing",
+    "Research",
+    "Communication",
+    "Current Affairs",
+    "Interviewing",
+    "Critical Thinking"
+],
+
+"Fashion Designer": [
+    "Fashion Design",
+    "Drawing",
+    "Textiles",
+    "Creativity",
+    "Color Theory",
+    "Design"
+],
+
+"Interior Designer": [
+    "Interior Design",
+    "Drawing",
+    "Space Planning",
+    "Color Theory",
+    "CAD",
+    "Creativity"
+]
+
+};
+
+
+/* =====================================================
+   COMMON SKILLS FOR CAREERS NOT EXPLICITLY LISTED
+===================================================== */
+
+const commonSkills = [
+    "Communication",
+    "Problem Solving",
+    "Critical Thinking",
+    "Teamwork",
+    "Time Management",
+    "Technology"
+];
+
+
+/* =====================================================
+   GET SELECTED CAREER
+===================================================== */
+
+const selectedCareer =
+    localStorage.getItem("selectedCareer");
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+const mainContent =
+    document.getElementById("mainContent");
+
+
+if(!selectedCareer) {
+
+    mainContent.innerHTML = `
+
+        <div class="empty-state">
+
+            <h2>🎯 No Career Selected Yet</h2>
+
+            <p>
+                Please choose a career first from the
+                Selected Career page.
+            </p>
+
+        </div>
+
+    `;
+
+} else {
+
+    renderProgress(selectedCareer);
+
+}
+
+
+/* =====================================================
+   RENDER PROGRESS
+===================================================== */
+
+function renderProgress(career) {
+
+    let skills =
+        careerSkills[career];
+
+    if(!skills) {
+
+        skills = commonSkills;
+
+    }
+
+    const storageKey =
+        "skillProgress_" + career;
+
+    let saved =
+        JSON.parse(
+            localStorage.getItem(storageKey)
+        ) || {};
+
+
+    /* Make sure every skill has a value */
+
+    skills.forEach(skill => {
+
+        if(saved[skill] === undefined) {
+
+            saved[skill] = 0;
+
+        }
+
+    });
+
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(saved)
+    );
+
+
+    mainContent.innerHTML = `
+
+        <!-- SELECTED CAREER -->
+
+        <section class="selected-career">
+
+            <h2>🎯 Your Chosen Career</h2>
+
+            <div id="careerName">
+                ${career}
+            </div>
+
+        </section>
+
+
+        <!-- OVERALL -->
+
+        <section class="overall">
+
+            <div class="overall-top">
+
+                <h2>🚀 Overall Career Progress</h2>
+
+                <span id="overallPercent">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="overallFill">
+                </div>
+
+            </div>
+
+            <p
+                class="progress-message"
+                id="progressMessage">
+                Start learning your required skills!
+            </p>
+
+        </section>
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <span>📚</span>
+
+                <h3 id="totalSkills">
+                    0
+                </h3>
+
+                <p>Total Skills</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>✅</span>
+
+                <h3 id="completedSkills">
+                    0
+                </h3>
+
+                <p>Completed Skills</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>🔥</span>
+
+                <h3 id="remainingSkills">
+                    0
+                </h3>
+
+                <p>Skills Remaining</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section class="skills-box">
+
+            <h2>🧠 Skills You Need</h2>
+
+            <p class="skills-subtitle">
+                Improve each skill and track your progress.
+            </p>
+
+            <div id="skillsContainer"></div>
+
+        </section>
+
+
+        <!-- MILESTONES -->
+
+        <section class="milestone">
+
+            <h2>🏆 Your Milestones</h2>
+
+            <div
+                id="milestones">
+            </div>
+
+        </section>
+
+    `;
+
+
+    const skillsContainer =
+        document.getElementById("skillsContainer");
+
+
+    /* CREATE SKILL CARDS */
+
+    skills.forEach((skill, index) => {
+
+        const value =
+            saved[skill] || 0;
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "skill-card";
+
+        card.innerHTML = `
+
+            <div class="skill-top">
+
+                <span class="skill-name">
+                    ${getSkillIcon(skill)}
+                    ${skill}
+                </span>
+
+                <span
+                    class="skill-percent"
+                    id="percent-${index}">
+                    ${value}%
+                </span>
+
+            </div>
+
+
+            <div class="skill-bar">
+
+                <div
+                    class="skill-fill"
+                    id="fill-${index}"
+                    style="width:${value}%">
+                </div>
+
+            </div>
+
+
+            <div class="skill-actions">
+
+                <button
+                    class="minus"
+                    onclick="changeSkill(
+                        '${escapeSkill(skill)}',
+                        -10
+                    )">
+                    −10
+                </button>
+
+
+                <button
+                    class="plus"
+                    onclick="changeSkill(
+                        '${escapeSkill(skill)}',
+                        10
+                    )">
+                    +10
+                </button>
+
+
+                <button
+                    class="complete"
+                    onclick="completeSkill(
+                        '${escapeSkill(skill)}'
+                    )">
+                    ✓ Complete
+                </button>
+
+            </div>
+
+        `;
+
+        skillsContainer.appendChild(card);
+
+    });
+
+
+    updateProgress(career, skills, saved);
+
+}
+
+
+/* =====================================================
+   CHANGE SKILL
+===================================================== */
+
+function changeSkill(skill, amount) {
+
+    const career =
+        localStorage.getItem("selectedCareer");
+
+    const storageKey =
+        "skillProgress_" + career;
+
+    let saved =
+        JSON.parse(
+            localStorage.getItem(storageKey)
+        ) || {};
+
+    saved[skill] =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                (saved[skill] || 0) + amount
+            )
+        );
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(saved)
+    );
+
+    renderProgress(career);
+
+}
+
+
+/* =====================================================
+   COMPLETE SKILL
+===================================================== */
+
+function completeSkill(skill) {
+
+    const career =
+        localStorage.getItem("selectedCareer");
+
+    const storageKey =
+        "skillProgress_" + career;
+
+    let saved =
+        JSON.parse(
+            localStorage.getItem(storageKey)
+        ) || {};
+
+    saved[skill] = 100;
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(saved)
+    );
+
+    renderProgress(career);
+
+}
+
+
+/* =====================================================
+   UPDATE OVERALL
+===================================================== */
+
+function updateProgress(
+    career,
+    skills,
+    saved
+) {
+
+    let total = 0;
+
+    let completed = 0;
+
+    skills.forEach(skill => {
+
+        const value =
+            saved[skill] || 0;
+
+        total += value;
+
+        if(value === 100) {
+
+            completed++;
+
+        }
+
+    });
+
+
+    const overall =
+        Math.round(
+            total / skills.length
+        );
+
+
+    document.getElementById(
+        "overallPercent"
+    ).innerText =
+        overall + "%";
+
+
+    document.getElementById(
+        "overallFill"
+    ).style.width =
+        overall + "%";
+
+
+    document.getElementById(
+        "totalSkills"
+    ).innerText =
+        skills.length;
+
+
+    document.getElementById(
+        "completedSkills"
+    ).innerText =
+        completed;
+
+
+    document.getElementById(
+        "remainingSkills"
+    ).innerText =
+        skills.length - completed;
+
+
+    /* MESSAGE */
+
+    const message =
+        document.getElementById(
+            "progressMessage"
+        );
+
+
+    if(overall === 0) {
+
+        message.innerText =
+            "🌱 Start learning your required skills!";
+
+    }
+
+    else if(overall < 25) {
+
+        message.innerText =
+            "🌱 Great start! Keep learning.";
+
+    }
+
+    else if(overall < 50) {
+
+        message.innerText =
+            "🔥 You're making progress!";
+
+    }
+
+    else if(overall < 75) {
+
+        message.innerText =
+            "🚀 You're halfway there!";
+
+    }
+
+    else if(overall < 100) {
+
+        message.innerText =
+            "⭐ Amazing! You're almost ready!";
+
+    }
+
+    else {
+
+        message.innerText =
+            "🏆 Fantastic! You've completed all listed skills!";
+
+    }
+
+
+    updateMilestones(overall);
+
+}
+
+
+/* =====================================================
+   MILESTONES
+===================================================== */
+
+function updateMilestones(progress) {
+
+    const container =
+        document.getElementById(
+            "milestones"
+        );
+
+
+    const milestones = [
+
+        {
+            value: 25,
+            icon: "🌱",
+            title: "First Step",
+            text: "You reached 25% progress!"
+        },
+
+        {
+            value: 50,
+            icon: "🔥",
+            title: "Halfway Hero",
+            text: "You reached 50% progress!"
+        },
+
+        {
+            value: 75,
+            icon: "🚀",
+            title: "Almost There",
+            text: "You reached 75% progress!"
+        },
+
+        {
+            value: 100,
+            icon: "🏆",
+            title: "Career Ready",
+            text: "You reached 100% progress!"
+        }
+
+    ];
+
+
+    container.innerHTML = "";
+
+
+    milestones.forEach(item => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "milestone-item";
+
+
+        if(progress < item.value) {
+
+            div.classList.add(
+                "locked"
+            );
+
+        }
+
+
+        div.innerHTML = `
+
+            <div class="milestone-icon">
+                ${item.icon}
+            </div>
+
+            <div>
+
+                <strong>
+                    ${item.title}
+                </strong>
+
+                <p>
+                    ${progress >= item.value
+                        ? item.text
+                        : "🔒 Complete more skills to unlock"
+                    }
+                </p>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   SKILL ICONS
+===================================================== */
+
+function getSkillIcon(skill) {
+
+    const icons = {
+
+        "Python": "🐍",
+        "Mathematics": "📐",
+        "Statistics": "📊",
+        "Machine Learning": "🧠",
+        "Deep Learning": "🤖",
+        "Programming": "💻",
+        "Data Analysis": "📈",
+        "SQL": "🗃️",
+        "HTML": "🌐",
+        "CSS": "🎨",
+        "JavaScript": "⚡",
+        "React": "⚛️",
+        "Cybersecurity": "🔐",
+        "Networking": "🌐",
+        "Linux": "🐧",
+        "Git": "🔧",
+        "Cloud Computing": "☁️",
+        "Communication": "💬",
+        "Leadership": "👑",
+        "Research": "🔬",
+        "Physics": "⚛️",
+        "Chemistry": "🧪",
+        "Biology": "🧬",
+        "Finance": "💰",
+        "Marketing": "📢",
+        "Design": "🎨",
+        "Creativity": "✨",
+        "Writing": "✍️",
+        "Law": "⚖️",
+        "Teaching": "📚",
+        "Photography": "📷",
+        "Video Editing": "🎬",
+        "Problem Solving": "🧩",
+        "Critical Thinking": "🧠",
+        "Teamwork": "🤝"
+
+    };
+
+    return icons[skill] || "⭐";
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeSkill(text) {
+
+    return text
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
+
+}
+
+
+</script>
+
+</body>
+</html>
+

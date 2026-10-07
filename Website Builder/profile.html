@@ -1,0 +1,1263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | Career Finder</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f3ff;
+            color: #172554;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            width: 100%;
+            min-height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 5%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #312e81;
+            white-space: nowrap;
+        }
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: #334155;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 13px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .navbar nav a:hover {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+        .navbar nav a.active {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+        /* ================= COVER ================= */
+
+        .profile-cover {
+            min-height: 250px;
+            background: linear-gradient(
+                135deg,
+                #071a3d,
+                #312e81,
+                #6d28d9
+            );
+
+            border-radius: 0 0 10% 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .cover-content h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .cover-content p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: -70px auto 50px;
+            position: relative;
+        }
+
+        /* ================= PROFILE CARD ================= */
+
+        .profile-card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 12px 35px rgba(31, 41, 55, 0.12);
+        }
+
+        .profile-top {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 30px;
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+        }
+
+        .profile-photo {
+            width: 145px;
+            height: 145px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            background: #ede9fe;
+        }
+
+        .profile-info h2 {
+            font-size: 30px;
+            color: #1e1b4b;
+            margin-bottom: 8px;
+        }
+
+        .profile-info p {
+            color: #64748b;
+            margin: 5px 0;
+        }
+
+        .edit-btn {
+            margin-left: auto;
+            border: none;
+            background: #6d28d9;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .edit-btn:hover {
+            background: #5b21b6;
+            transform: translateY(-2px);
+        }
+
+        /* ================= INFORMATION ================= */
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .section h3 {
+            font-size: 21px;
+            color: #312e81;
+            margin-bottom: 18px;
+        }
+
+        .information-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .info-box {
+            background: #f8f7ff;
+            border: 1px solid #e9e5ff;
+            border-radius: 15px;
+            padding: 18px;
+        }
+
+        .info-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .info-box strong {
+            color: #172554;
+            font-size: 16px;
+        }
+
+        /* ================= TAGS ================= */
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 9px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* ================= BIO ================= */
+
+        .bio {
+            background: #f8f7ff;
+            padding: 18px;
+            border-radius: 15px;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        /* ================= EDIT FORM ================= */
+
+        #editSection {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 12px 35px rgba(31, 41, 55, 0.12);
+        }
+
+        .form-card h2 {
+            color: #312e81;
+            margin-bottom: 25px;
+        }
+
+        .photo-upload {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .preview-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: auto;
+            background: #ede9fe;
+            border: 5px solid #ddd6fe;
+        }
+
+        .upload-label {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 18px;
+            background: #ede9fe;
+            color: #5b21b6;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        #photoInput {
+            display: none;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #334155;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d8d4f0;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            background: #fafaff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        /* ================= CHECKBOX ================= */
+
+        .interest-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .interest-box label {
+            background: #f1efff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #4c1d95;
+        }
+
+        .interest-box input {
+            margin-right: 5px;
+        }
+
+        /* ================= FORM BUTTONS ================= */
+
+        .form-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .save-btn,
+        .cancel-btn {
+            border: none;
+            padding: 13px 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .save-btn {
+            background: #6d28d9;
+            color: white;
+        }
+
+        .save-btn:hover {
+            background: #5b21b6;
+        }
+
+        .cancel-btn {
+            background: #e5e7eb;
+            color: #334155;
+        }
+
+        /* ================= NOTICE ================= */
+
+        .notice {
+            display: none;
+            margin-bottom: 20px;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .profile-footer {
+            background: navy;
+            color: white;
+            border-radius: 10% 10% 0 0;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        .profile-footer h2 {
+            margin-bottom: 10px;
+        }
+
+        .profile-footer p {
+            opacity: 0.8;
+            margin-bottom: 18px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover {
+            color: #c4b5fd;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .navbar nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .edit-btn {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .information-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .profile-card,
+            .form-card {
+                padding: 22px;
+            }
+
+            .cover-content h1 {
+                font-size: 30px;
+            }
+
+            .navbar nav a {
+                font-size: 13px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🌟 Career Finder
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 Home</a>
+        <a href="careers.html">💼 Careers</a>
+        <a href="career-growth.html">📈 Career Growth</a>
+        <a href="selected-career.html">🎯 Selected Career</a>
+        <a href="progress.html">📊 Progress</a>
+        <a href="profile.html" class="active">👤 Profile</a>
+    </nav>
+
+</header>
+
+
+<!-- ================= COVER ================= -->
+
+<section class="profile-cover">
+
+    <div class="cover-content">
+
+        <h1>👤 My Profile</h1>
+
+        <p>
+            Build your profile and let Career Finder understand you better ✨
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MAIN PROFILE ================= -->
+
+<main class="container">
+
+    <div id="notice" class="notice success">
+        ✅ Profile saved successfully!
+    </div>
+
+
+    <!-- PROFILE PREVIEW -->
+
+    <section class="profile-card">
+
+        <div class="profile-top">
+
+            <div class="profile-photo-wrapper">
+
+                <img
+                    id="profileImage"
+                    class="profile-photo"
+                    src="https://via.placeholder.com/150"
+                    alt="Profile Photo"
+                >
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <h2 id="displayName">
+                    Your Name
+                </h2>
+
+                <p id="displayEducation">
+                    🎓 Student
+                </p>
+
+                <p id="displayGoal">
+                    🎯 Explore your future career
+                </p>
+
+            </div>
+
+
+            <button class="edit-btn" onclick="openEditor()">
+                ✏️ Edit Profile
+            </button>
+
+        </div>
+
+
+        <!-- BASIC INFORMATION -->
+
+        <div class="section">
+
+            <h3>📋 Basic Information</h3>
+
+            <div class="information-grid">
+
+                <div class="info-box">
+                    <span>Date of Birth</span>
+                    <strong id="displayDob">Not added</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Class</span>
+                    <strong id="displayClass">Not added</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Gender</span>
+                    <strong id="displayGender">Not added</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Country</span>
+                    <strong id="displayCountry">Not added</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Language</span>
+                    <strong id="displayLanguage">Not added</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Favorite Subject</span>
+                    <strong id="displaySubject">Not added</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INTERESTS -->
+
+        <div class="section">
+
+            <h3>💡 My Interests</h3>
+
+            <div class="tags" id="displayInterests">
+
+                <span class="tag">
+                    Add your interests
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- BIO -->
+
+        <div class="section">
+
+            <h3>📝 About Me</h3>
+
+            <div class="bio" id="displayBio">
+
+                Tell us something about yourself...
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EDIT SECTION ================= -->
+
+    <section id="editSection">
+
+        <div class="form-card">
+
+            <h2>✏️ Edit Your Profile</h2>
+
+
+            <!-- PHOTO -->
+
+            <div class="photo-upload">
+
+                <img
+                    id="previewImage"
+                    class="preview-image"
+                    src="https://via.placeholder.com/150"
+                    alt="Preview"
+                >
+
+                <label for="photoInput" class="upload-label">
+                    📷 Choose Profile Photo
+                </label>
+
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
+                >
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form id="profileForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Date of Birth</label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Class</label>
+
+                        <select id="className">
+
+                            <option value="">
+                                Select Class
+                            </option>
+
+                            <option>Class 6</option>
+                            <option>Class 7</option>
+                            <option>Class 8</option>
+                            <option>Class 9</option>
+                            <option>Class 10</option>
+                            <option>Class 11</option>
+                            <option>Class 12</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Gender</label>
+
+                        <select id="gender">
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option>Female</option>
+                            <option>Male</option>
+                            <option>Prefer not to say</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Country</label>
+
+                        <input
+                            type="text"
+                            id="country"
+                            placeholder="Enter your country"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Preferred Language</label>
+
+                        <input
+                            type="text"
+                            id="language"
+                            placeholder="e.g. English, Hindi"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Education</label>
+
+                        <input
+                            type="text"
+                            id="education"
+                            placeholder="e.g. School Student"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Favorite Subject</label>
+
+                        <select id="subject">
+
+                            <option value="">
+                                Select Subject
+                            </option>
+
+                            <option>Mathematics</option>
+                            <option>Science</option>
+                            <option>Computer Science</option>
+                            <option>English</option>
+                            <option>Social Science</option>
+                            <option>Art</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Career Goal</label>
+
+                        <input
+                            type="text"
+                            id="careerGoal"
+                            placeholder="e.g. AI Engineer, Doctor, Designer..."
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>My Interests</label>
+
+                        <div class="interest-box">
+
+                            <label>
+                                <input type="checkbox" value="Programming">
+                                💻 Programming
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="AI">
+                                🤖 AI
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="Gaming">
+                                🎮 Gaming
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="Drawing">
+                                🎨 Drawing
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="Editing">
+                                ✂️ Editing
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="Chess">
+                                ♟️ Chess
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="Science">
+                                🔬 Science
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="Business">
+                                💼 Business
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>About Me</label>
+
+                        <textarea
+                            id="bio"
+                            placeholder="Tell us something about yourself..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                    >
+                        💾 Save Profile
+                    </button>
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeEditor()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="profile-footer">
+
+    <h2>🌟 Career Finder</h2>
+
+    <p>
+        Discover your interests. Explore careers. Build your future.
+    </p>
+
+    <div class="footer-links">
+
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+        <a href="progress.html">Progress</a>
+        <a href="profile.html">Profile</a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    /* ================= ELEMENTS ================= */
+
+    const editSection = document.getElementById("editSection");
+    const profileForm = document.getElementById("profileForm");
+
+    const photoInput = document.getElementById("photoInput");
+    const previewImage = document.getElementById("previewImage");
+    const profileImage = document.getElementById("profileImage");
+
+    const notice = document.getElementById("notice");
+
+
+    /* ================= OPEN EDITOR ================= */
+
+    function openEditor() {
+
+        editSection.style.display = "block";
+
+        editSection.scrollIntoView({
+            behavior: "smooth"
+        });
+
+        loadFormData();
+
+    }
+
+
+    /* ================= CLOSE EDITOR ================= */
+
+    function closeEditor() {
+
+        editSection.style.display = "none";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* ================= PHOTO UPLOAD ================= */
+
+    photoInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+
+            previewImage.src = event.target.result;
+
+            profileImage.src = event.target.result;
+
+            localStorage.setItem(
+                "profilePhoto",
+                event.target.result
+            );
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+
+    /* ================= SAVE PROFILE ================= */
+
+    profileForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+
+        const interests = [];
+
+        document
+            .querySelectorAll(".interest-box input:checked")
+            .forEach(function (checkbox) {
+
+                interests.push(checkbox.value);
+
+            });
+
+
+        const profileData = {
+
+            name: document.getElementById("fullName").value,
+
+            dob: document.getElementById("dob").value,
+
+            className: document.getElementById("className").value,
+
+            gender: document.getElementById("gender").value,
+
+            country: document.getElementById("country").value,
+
+            language: document.getElementById("language").value,
+
+            education: document.getElementById("education").value,
+
+            subject: document.getElementById("subject").value,
+
+            careerGoal: document.getElementById("careerGoal").value,
+
+            interests: interests,
+
+            bio: document.getElementById("bio").value
+
+        };
+
+
+        localStorage.setItem(
+            "careerFinderProfile",
+            JSON.stringify(profileData)
+        );
+
+
+        displayProfile(profileData);
+
+
+        notice.style.display = "block";
+
+        setTimeout(function () {
+
+            notice.style.display = "none";
+
+        }, 3000);
+
+
+        closeEditor();
+
+    });
+
+
+    /* ================= DISPLAY PROFILE ================= */
+
+    function displayProfile(data) {
+
+        document.getElementById("displayName").textContent =
+            data.name || "Your Name";
+
+
+        document.getElementById("displayEducation").textContent =
+            "🎓 " + (data.education || "Student");
+
+
+        document.getElementById("displayGoal").textContent =
+            "🎯 " + (data.careerGoal || "Explore your future career");
+
+
+        document.getElementById("displayDob").textContent =
+            data.dob || "Not added";
+
+
+        document.getElementById("displayClass").textContent =
+            data.className || "Not added";
+
+
+        document.getElementById("displayGender").textContent =
+            data.gender || "Not added";
+
+
+        document.getElementById("displayCountry").textContent =
+            data.country || "Not added";
+
+
+        document.getElementById("displayLanguage").textContent =
+            data.language || "Not added";
+
+
+        document.getElementById("displaySubject").textContent =
+            data.subject || "Not added";
+
+
+        document.getElementById("displayBio").textContent =
+            data.bio || "Tell us something about yourself...";
+
+
+        const interestContainer =
+            document.getElementById("displayInterests");
+
+        interestContainer.innerHTML = "";
+
+
+        if (data.interests && data.interests.length > 0) {
+
+            data.interests.forEach(function (interest) {
+
+                const tag = document.createElement("span");
+
+                tag.className = "tag";
+
+                tag.textContent = interest;
+
+                interestContainer.appendChild(tag);
+
+            });
+
+        } else {
+
+            const tag = document.createElement("span");
+
+            tag.className = "tag";
+
+            tag.textContent = "Add your interests";
+
+            interestContainer.appendChild(tag);
+
+        }
+
+    }
+
+
+    /* ================= LOAD FORM DATA ================= */
+
+    function loadFormData() {
+
+        const savedData =
+            localStorage.getItem("careerFinderProfile");
+
+
+        if (!savedData) return;
+
+
+        const data = JSON.parse(savedData);
+
+
+        document.getElementById("fullName").value =
+            data.name || "";
+
+
+        document.getElementById("dob").value =
+            data.dob || "";
+
+
+        document.getElementById("className").value =
+            data.className || "";
+
+
+        document.getElementById("gender").value =
+            data.gender || "";
+
+
+        document.getElementById("country").value =
+            data.country || "";
+
+
+        document.getElementById("language").value =
+            data.language || "";
+
+
+        document.getElementById("education").value =
+            data.education || "";
+
+
+        document.getElementById("subject").value =
+            data.subject || "";
+
+
+        document.getElementById("careerGoal").value =
+            data.careerGoal || "";
+
+
+        document.getElementById("bio").value =
+            data.bio || "";
+
+
+        document
+            .querySelectorAll(".interest-box input")
+            .forEach(function (checkbox) {
+
+                checkbox.checked =
+                    data.interests &&
+                    data.interests.includes(checkbox.value);
+
+            });
+
+    }
+
+
+    /* ================= LOAD SAVED PROFILE ================= */
+
+    window.addEventListener("DOMContentLoaded", function () {
+
+        const savedData =
+            localStorage.getItem("careerFinderProfile");
+
+
+        if (savedData) {
+
+            const data = JSON.parse(savedData);
+
+            displayProfile(data);
+
+        }
+
+
+        const savedPhoto =
+            localStorage.getItem("profilePhoto");
+
+
+        if (savedPhoto) {
+
+            profileImage.src = savedPhoto;
+
+            previewImage.src = savedPhoto;
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
+

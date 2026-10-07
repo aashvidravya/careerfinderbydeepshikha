@@ -1,0 +1,1000 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Selected Career | Career Finder</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f7f4ff, #eef7ff);
+    color: #202040;
+}
+
+/* ================= NAVBAR ================= */
+
+header {
+    background: rgba(255,255,255,0.95);
+    padding: 15px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(60,50,120,0.12);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    color: #5b42d6;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #444;
+    padding: 9px 13px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #eeeaff;
+    color: #5b42d6;
+}
+
+nav a.active {
+    background: linear-gradient(135deg, #6954e8, #8d70ff);
+    color: white;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #5140bd;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: auto;
+    color: #666;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* ================= SELECTED CAREER ================= */
+
+.selected-box {
+    width: 90%;
+    max-width: 1050px;
+    margin: 15px auto 35px;
+    padding: 28px;
+    border-radius: 25px;
+    background: white;
+    box-shadow: 0 10px 35px rgba(70,50,150,0.13);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.selected-box::before {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background: #eeeaff;
+    border-radius: 50%;
+    top: -70px;
+    left: -50px;
+}
+
+.selected-box h2 {
+    color: #5542c7;
+    margin-bottom: 15px;
+}
+
+#selectedCareer {
+    font-size: 27px;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.empty {
+    color: #888;
+    font-size: 16px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-area {
+    margin-top: 20px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #555;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background: #e8e5f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #6550e8, #a080ff);
+    border-radius: 20px;
+    transition: 0.7s;
+}
+
+/* ================= SEARCH ================= */
+
+.search-section {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 18px;
+    padding: 6px 18px;
+    box-shadow: 0 7px 25px rgba(50,40,100,0.1);
+    margin-bottom: 30px;
+}
+
+.search-box span {
+    font-size: 22px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 15px;
+    font-size: 16px;
+}
+
+/* ================= CAREER GRID ================= */
+
+.career-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.career-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 7px 25px rgba(50,40,100,0.09);
+    transition: 0.35s;
+    position: relative;
+    overflow: hidden;
+}
+
+.career-card::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #f0edff;
+    border-radius: 50%;
+    right: -25px;
+    top: -25px;
+}
+
+.career-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 14px 35px rgba(70,50,160,0.18);
+}
+
+.career-icon {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.career-card h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.choose-btn {
+    border: none;
+    background: linear-gradient(135deg, #6350dc, #8b70ff);
+    color: white;
+    padding: 10px 17px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.choose-btn:hover {
+    transform: scale(1.05);
+}
+
+.choose-btn.selected {
+    background: #20a36a;
+}
+
+/* ================= QUIZ ================= */
+
+.quiz-section {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto 70px;
+    background: white;
+    padding: 35px;
+    border-radius: 28px;
+    box-shadow: 0 10px 35px rgba(60,50,120,0.13);
+}
+
+.quiz-section h2 {
+    color: #5542c7;
+    margin-bottom: 8px;
+}
+
+.quiz-subtitle {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.quiz-question {
+    background: #f8f7ff;
+    padding: 22px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+}
+
+.quiz-question h3 {
+    margin-bottom: 15px;
+}
+
+.option {
+    display: block;
+    background: white;
+    border: 2px solid #e4e0f5;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 9px 0;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.option:hover {
+    border-color: #7460e8;
+    background: #f5f2ff;
+}
+
+.option input {
+    margin-right: 8px;
+}
+
+.submit-quiz {
+    border: none;
+    background: linear-gradient(135deg, #5d49d8, #8a6fff);
+    color: white;
+    padding: 13px 25px;
+    border-radius: 13px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.quiz-result {
+    margin-top: 20px;
+    padding: 18px;
+    background: #eefbf5;
+    color: #147a4c;
+    border-radius: 15px;
+    display: none;
+    font-weight: 700;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #17204d;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    border-radius: 10% 10% 0 0;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #cbd0ef;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 800px) {
+
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    nav a {
+        font-size: 12px;
+        padding: 7px 9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <div class="logo">🌟 Career Finder</div>
+
+    <nav>
+        <a href="index.html">🏠 Home</a>
+        <a href="careers.html">💼 Careers</a>
+        <a href="career-growth.html">📈 Career Growth</a>
+        <a href="selected-career.html" class="active">🎯 Selected Career</a>
+        <a href="progress.html">📊 Progress</a>
+        <a href="profile.html">👤 Profile</a>
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <h1>🎯 Choose Your Career</h1>
+
+    <p>
+        Explore different career options, choose the one you are interested in,
+        and start building your career journey!
+    </p>
+
+</section>
+
+
+<!-- ================= SELECTED CAREER ================= -->
+
+<section class="selected-box">
+
+    <h2>🌟 Your Chosen Career</h2>
+
+    <div id="selectedCareer" class="empty">
+        No career selected yet
+    </div>
+
+    <div class="progress-area">
+
+        <div class="progress-text">
+            <span>Your Career Selection Progress</span>
+            <span id="progressPercent">0%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SEARCH + CAREERS ================= -->
+
+<section class="search-section">
+
+    <div class="search-box">
+        <span>🔎</span>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search your career...">
+    </div>
+
+    <div class="career-grid" id="careerGrid"></div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section class="quiz-section">
+
+    <h2>🧠 Career Knowledge Quiz</h2>
+
+    <p class="quiz-subtitle">
+        Select a career first. Then test your knowledge about that career.
+    </p>
+
+    <div id="quizContainer">
+
+        <p class="empty">
+            Choose a career above to unlock your quiz.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h3>🌟 Career Finder by Deepshikha</h3>
+
+    <p>
+        Find your career. Build your future. 🚀
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   100 CAREERS
+===================================================== */
+
+const careers = [
+
+    "AI Engineer",
+    "Machine Learning Engineer",
+    "Software Engineer",
+    "Data Scientist",
+    "Data Analyst",
+    "Cybersecurity Analyst",
+    "Ethical Hacker",
+    "Cloud Engineer",
+    "DevOps Engineer",
+    "Web Developer",
+
+    "Frontend Developer",
+    "Backend Developer",
+    "Full Stack Developer",
+    "Mobile App Developer",
+    "Game Developer",
+    "UI/UX Designer",
+    "Product Designer",
+    "Blockchain Developer",
+    "Robotics Engineer",
+    "Embedded Systems Engineer",
+
+    "Civil Engineer",
+    "Mechanical Engineer",
+    "Electrical Engineer",
+    "Electronics Engineer",
+    "Chemical Engineer",
+    "Aerospace Engineer",
+    "Automobile Engineer",
+    "Environmental Engineer",
+    "Biomedical Engineer",
+    "Nuclear Engineer",
+
+    "Doctor",
+    "Surgeon",
+    "Dentist",
+    "Pharmacist",
+    "Nurse",
+    "Physiotherapist",
+    "Psychologist",
+    "Veterinarian",
+    "Radiologist",
+    "Medical Lab Technologist",
+
+    "Astronomer",
+    "Astrophysicist",
+    "Physicist",
+    "Chemist",
+    "Biologist",
+    "Geologist",
+    "Marine Scientist",
+    "Meteorologist",
+    "Environmental Scientist",
+    "Research Scientist",
+
+    "Business Analyst",
+    "Financial Analyst",
+    "Chartered Accountant",
+    "Company Secretary",
+    "Investment Banker",
+    "Economist",
+    "Actuary",
+    "Bank Manager",
+    "Entrepreneur",
+    "Management Consultant",
+
+    "Project Manager",
+    "Product Manager",
+    "HR Manager",
+    "Operations Manager",
+    "Marketing Manager",
+    "Sales Manager",
+    "Supply Chain Manager",
+    "Business Development Manager",
+    "Risk Manager",
+    "Quality Manager",
+
+    "Lawyer",
+    "Judge",
+    "Government Officer",
+    "IAS Officer",
+    "IPS Officer",
+    "Diplomat",
+    "Policy Analyst",
+    "Legal Advisor",
+    "Public Prosecutor",
+    "Tax Consultant",
+
+    "School Teacher",
+    "College Professor",
+    "University Researcher",
+    "Online Educator",
+    "Education Counselor",
+    "Instructional Designer",
+    "Special Education Teacher",
+    "Librarian",
+    "Sports Coach",
+    "Fitness Trainer",
+
+    "Graphic Designer",
+    "Animator",
+    "Film Director",
+    "Photographer",
+    "Video Editor",
+    "Content Creator",
+    "Writer",
+    "Journalist",
+    "Fashion Designer",
+    "Interior Designer"
+
+];
+
+
+/* =====================================================
+   ICONS
+===================================================== */
+
+const icons = [
+    "🤖","🧠","💻","📊","📈",
+    "🔐","🛡️","☁️","⚙️","🌐",
+    "🎨","🖥️","💻","📱","🎮",
+    "🎨","✨","⛓️","🤖","🔧",
+    "🏗️","⚙️","⚡","🔌","🧪",
+    "🚀","🚗","🌱","🧬","☢️",
+    "🩺","🏥","🦷","💊","👩‍⚕️",
+    "🏃","🧠","🐾","🩻","🔬",
+    "🔭","🌌","⚛️","🧪","🧬",
+    "🌋","🌊","🌦️","🌳","🔬",
+    "💼","💰","📑","🏢","📈",
+    "📉","🏦","🚀","💼","📋",
+    "📌","📦","👥","⚙️","📢",
+    "💼","🚚","📈","⚠️","✅",
+    "⚖️","👨‍⚖️","🏛️","🇮🇳","🛡️",
+    "🌍","📜","⚖️","🏛️","💰",
+    "👩‍🏫","🎓","🔬","💻","🧑‍🏫",
+    "📚","🧑‍🏫","📖","🏆","🏋️",
+    "🎨","🎬","🎥","📷","🎞️",
+    "✍️","📰","👗","🏠"
+];
+
+
+/* =====================================================
+   CREATE CAREER CARDS
+===================================================== */
+
+const careerGrid = document.getElementById("careerGrid");
+
+function displayCareers(list) {
+
+    careerGrid.innerHTML = "";
+
+    if(list.length === 0) {
+
+        careerGrid.innerHTML = `
+            <p style="grid-column:1/-1;text-align:center;color:#777;">
+                😕 No career found. Try another search.
+            </p>
+        `;
+
+        return;
+    }
+
+    list.forEach((career, index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "career-card";
+
+        const selected =
+            localStorage.getItem("selectedCareer") === career;
+
+        card.innerHTML = `
+
+            <div class="career-icon">
+                ${icons[index % icons.length]}
+            </div>
+
+            <h3>${career}</h3>
+
+            <button
+                class="choose-btn ${selected ? "selected" : ""}"
+                onclick="chooseCareer('${career.replace(/'/g, "\\'")}')">
+
+                ${selected ? "✓ Selected" : "Choose Career"}
+
+            </button>
+
+        `;
+
+        careerGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   CHOOSE CAREER
+===================================================== */
+
+function chooseCareer(career) {
+
+    localStorage.setItem("selectedCareer", career);
+
+    updateSelectedCareer();
+
+    displayCareers(careers);
+
+    createQuiz(career);
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   SHOW SELECTED CAREER
+===================================================== */
+
+function updateSelectedCareer() {
+
+    const career =
+        localStorage.getItem("selectedCareer");
+
+    const selectedCareer =
+        document.getElementById("selectedCareer");
+
+    const progressFill =
+        document.getElementById("progressFill");
+
+    const progressPercent =
+        document.getElementById("progressPercent");
+
+    if(career) {
+
+        selectedCareer.innerHTML =
+            `✨ ${career}`;
+
+        selectedCareer.classList.remove("empty");
+
+        progressFill.style.width = "100%";
+
+        progressPercent.innerText = "100%";
+
+    } else {
+
+        selectedCareer.innerText =
+            "No career selected yet";
+
+        selectedCareer.classList.add("empty");
+
+        progressFill.style.width = "0%";
+
+        progressPercent.innerText = "0%";
+
+    }
+
+}
+
+
+/* =====================================================
+   QUIZ DATA
+===================================================== */
+
+const quizData = {
+
+    "AI Engineer": {
+        q: "Which skill is especially important for an AI Engineer?",
+        options: [
+            "Machine Learning",
+            "Cooking",
+            "Painting walls",
+            "Carpentry"
+        ],
+        answer: 0
+    },
+
+    "Software Engineer": {
+        q: "What is a common activity of a Software Engineer?",
+        options: [
+            "Writing and maintaining software",
+            "Growing crops",
+            "Designing buildings only",
+            "Operating trains only"
+        ],
+        answer: 0
+    },
+
+    "Data Scientist": {
+        q: "What does a Data Scientist mainly work with?",
+        options: [
+            "Data and statistical or computational methods",
+            "Wood furniture",
+            "Vehicle engines only",
+            "Food recipes"
+        ],
+        answer: 0
+    },
+
+    "Doctor": {
+        q: "What is a major responsibility of a doctor?",
+        options: [
+            "Diagnosing and treating patients",
+            "Building bridges",
+            "Writing software only",
+            "Designing clothes"
+        ],
+        answer: 0
+    },
+
+    "Civil Engineer": {
+        q: "Civil engineering is strongly associated with:",
+        options: [
+            "Infrastructure and construction",
+            "Film acting",
+            "Music production",
+            "Writing novels"
+        ],
+        answer: 0
+    },
+
+    "Graphic Designer": {
+        q: "What does a Graphic Designer primarily create?",
+        options: [
+            "Visual designs",
+            "Medical prescriptions",
+            "Legal judgments",
+            "Aircraft engines"
+        ],
+        answer: 0
+    }
+
+};
+
+
+/* =====================================================
+   DEFAULT QUIZ FOR OTHER CAREERS
+===================================================== */
+
+function getDefaultQuiz(career) {
+
+    return {
+
+        q: `Which statement best describes the ${career} career?`,
+
+        options: [
+            `${career} involves specialized knowledge and skills related to its field.`,
+            `${career} requires no learning or training.`,
+            `${career} has no connection with any professional skills.`,
+            `${career} can only be performed as a hobby.`
+        ],
+
+        answer: 0
+
+    };
+
+}
+
+
+/* =====================================================
+   CREATE QUIZ
+===================================================== */
+
+function createQuiz(career) {
+
+    const container =
+        document.getElementById("quizContainer");
+
+    const quiz =
+        quizData[career] || getDefaultQuiz(career);
+
+    container.innerHTML = `
+
+        <div class="quiz-question">
+
+            <h3>Question 1</h3>
+
+            <p style="margin-bottom:15px;">
+                ${quiz.q}
+            </p>
+
+            ${quiz.options.map((option, index) => `
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="quizAnswer"
+                        value="${index}">
+
+                    ${option}
+
+                </label>
+
+            `).join("")}
+
+        </div>
+
+        <button
+            class="submit-quiz"
+            onclick="checkQuiz(${quiz.answer})">
+
+            Check Answer ✓
+
+        </button>
+
+        <div
+            class="quiz-result"
+            id="quizResult">
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
+   CHECK QUIZ
+===================================================== */
+
+function checkQuiz(correctAnswer) {
+
+    const selected =
+        document.querySelector(
+            'input[name="quizAnswer"]:checked'
+        );
+
+    const result =
+        document.getElementById("quizResult");
+
+    if(!selected) {
+
+        result.style.display = "block";
+
+        result.style.background = "#fff4df";
+        result.style.color = "#9b6500";
+
+        result.innerText =
+            "⚠️ Please select an answer first.";
+
+        return;
+
+    }
+
+    result.style.display = "block";
+
+    if(Number(selected.value) === correctAnswer) {
+
+        result.style.background = "#eefbf5";
+        result.style.color = "#147a4c";
+
+        result.innerText =
+            "🎉 Correct! Great job!";
+
+    } else {
+
+        result.style.background = "#fff0f0";
+        result.style.color = "#b33a3a";
+
+        result.innerText =
+            "❌ Not quite. Try again!";
+
+    }
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document.getElementById("searchInput")
+.addEventListener("input", function() {
+
+    const search =
+        this.value.toLowerCase().trim();
+
+    const filtered =
+        careers.filter(career =>
+            career.toLowerCase().includes(search)
+        );
+
+    displayCareers(filtered);
+
+});
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+displayCareers(careers);
+
+updateSelectedCareer();
+
+const savedCareer =
+    localStorage.getItem("selectedCareer");
+
+if(savedCareer) {
+
+    createQuiz(savedCareer);
+
+}
+
+</script>
+
+</body>
+</html>
+

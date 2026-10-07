@@ -1,0 +1,2672 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Finder | Careers</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+/* HEADER */
+header{
+    background:#071b3a;
+    color:#e9eef7;
+    padding:16px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+nav{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+nav a{
+    color:#e9eef7;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#7dd3fc;
+}
+
+/* HERO */
+.hero{
+    background:linear-gradient(135deg,#071b3a,#123d70);
+    color:white;
+    text-align:center;
+    padding:55px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    max-width:750px;
+    margin:auto;
+    line-height:1.7;
+    color:#dce8f7;
+}
+
+/* SEARCH */
+.search-area{
+    max-width:900px;
+    margin:-25px auto 30px;
+    padding:0 20px;
+    position:relative;
+    z-index:5;
+}
+
+#search{
+    width:100%;
+    padding:17px 22px;
+    border:none;
+    border-radius:14px;
+    box-shadow:0 8px 25px #0002;
+    font-size:16px;
+    outline:none;
+}
+
+/* FILTERS */
+.filters{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    padding:10px 20px 35px;
+}
+
+.filter{
+    border:1px solid #d5dce8;
+    background:white;
+    padding:10px 17px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+    color:#26344d;
+    transition:.2s;
+}
+
+.filter:hover,
+.filter.active{
+    background:#071b3a;
+    color:white;
+}
+
+/* CAREERS */
+.container{
+    max-width:1250px;
+    margin:auto;
+    padding:0 20px 60px;
+}
+
+.count{
+    text-align:center;
+    margin-bottom:25px;
+    color:#667085;
+}
+
+.careers-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:23px;
+    box-shadow:0 5px 18px #0000000d;
+    border:1px solid #e7ebf2;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px #0002;
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.category{
+    font-size:11px;
+    font-weight:bold;
+    color:#3972a8;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+.card h2{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#667085;
+    line-height:1.6;
+    min-height:76px;
+}
+
+.details-btn{
+    margin-top:15px;
+    width:100%;
+    border:none;
+    background:#071b3a;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.details-btn:hover{
+    background:#123d70;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#0009;
+    z-index:999;
+    padding:25px;
+    overflow-y:auto;
+}
+
+.modal.show{
+    display:block;
+}
+
+.modal-box{
+    max-width:850px;
+    margin:30px auto;
+    background:white;
+    border-radius:22px;
+    padding:30px;
+    position:relative;
+    animation:popup .2s ease;
+}
+
+@keyframes popup{
+    from{transform:scale(.95);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    border:none;
+    background:#edf1f6;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.modal-title{
+    padding-right:50px;
+    margin-bottom:5px;
+}
+
+.modal-category{
+    color:#3972a8;
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+.info{
+    background:#f7f9fc;
+    padding:18px;
+    border-radius:14px;
+    margin:12px 0;
+    border-left:4px solid #123d70;
+}
+
+.info h3{
+    margin-bottom:8px;
+    font-size:17px;
+}
+
+.info p{
+    color:#505b6d;
+    line-height:1.65;
+}
+
+.roadmap{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:8px;
+}
+
+.step{
+    background:#e8f1fb;
+    padding:9px 12px;
+    border-radius:20px;
+    color:#163d68;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.disclaimer{
+    margin-top:20px;
+    font-size:12px;
+    color:#777;
+    background:#fff8e6;
+    padding:12px;
+    border-radius:10px;
+}
+
+/* FOOTER */
+footer{
+    background:#071b3a;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    border-radius:10px 10px 0 0;
+}
+
+footer p{
+    margin:7px;
+    color:#dce8f7;
+}
+
+@media(max-width:700px){
+    header{
+        flex-direction:column;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    nav{
+        gap:10px;
+    }
+
+    .modal{
+        padding:10px;
+    }
+
+    .modal-box{
+        margin:10px auto;
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🌟 Career Finder</div>
+
+    <nav>
+        <a href="/index.html">Home</a>
+        <a href="/careers.html">💼 Careers</a>
+        <a href="/career-growth.html">📈 Career Growth</a>
+        <a href="/selected-career.html">🎯 Selected Career</a>
+        <a href="/progress.html">📊 Progress</a>
+        <a href="/profile.html">👤 Profile</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Different Types of Careers 🚀</h1>
+    <p>
+        Explore career possibilities, discover what professionals do,
+        learn important subjects and skills, and find a career path
+        that matches your interests and strengths.
+    </p>
+</section>
+
+<div class="search-area">
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search a career... e.g. AI Engineer, Doctor, Teacher"
+        oninput="filterCareers()"
+    >
+</div>
+
+<div class="filters">
+    <button class="filter active" onclick="setCategory('All',this)">🌟 All</button>
+    <button class="filter" onclick="setCategory('Technology',this)">💻 Technology</button>
+    <button class="filter" onclick="setCategory('Engineering',this)">⚙️ Engineering</button>
+    <button class="filter" onclick="setCategory('Science',this)">🔬 Science</button>
+    <button class="filter" onclick="setCategory('Medical',this)">🩺 Medical</button>
+    <button class="filter" onclick="setCategory('Business',this)">💼 Business</button>
+    <button class="filter" onclick="setCategory('Creative',this)">🎨 Creative</button>
+    <button class="filter" onclick="setCategory('Public Service',this)">🏛️ Public Service</button>
+    <button class="filter" onclick="setCategory('Other',this)">🌍 Other</button>
+</div>
+
+<main class="container">
+    <div class="count" id="count"></div>
+    <div class="careers-grid" id="careerGrid"></div>
+</main>
+
+<!-- MODAL -->
+<div class="modal" id="careerModal" onclick="outsideClose(event)">
+    <div class="modal-box">
+        <button class="close" onclick="closeModal()">×</button>
+
+        <h1 class="modal-title" id="modalTitle"></h1>
+        <div class="modal-category" id="modalCategory"></div>
+
+        <div class="info">
+            <h3>👩‍💻 What They Do</h3>
+            <p id="what"></p>
+        </div>
+
+        <div class="info">
+            <h3>📚 Important Subjects</h3>
+            <p id="subjects"></p>
+        </div>
+
+        <div class="info">
+            <h3>🧠 Topics to Learn</h3>
+            <p id="topics"></p>
+        </div>
+
+        <div class="info">
+            <h3>🛠️ Important Skills</h3>
+            <p id="skills"></p>
+        </div>
+
+        <div class="info">
+            <h3>🎓 Education Path</h3>
+            <p id="education"></p>
+        </div>
+
+        <div class="info">
+            <h3>💼 Job Opportunities</h3>
+            <p id="jobs"></p>
+        </div>
+
+        <div class="info">
+            <h3>📈 Demand & Growth</h3>
+            <p id="demand"></p>
+        </div>
+
+        <div class="info">
+            <h3>💰 Salary</h3>
+            <p id="salary"></p>
+        </div>
+
+        <div class="info">
+            <h3>🛣️ Beginner Roadmap</h3>
+            <div class="roadmap" id="roadmap"></div>
+        </div>
+
+        <div class="disclaimer">
+            ⚠️ Career information is for educational guidance only.
+            Salaries and job opportunities can vary by country,
+            organization, qualification, experience and specialization.
+        </div>
+    </div>
+</div>
+
+<footer>
+    <h2>🌟 Career Finder by Deepshikha</h2>
+    <p>Explore. Learn. Choose. Build your future. 🚀</p>
+    <p>© 2026 Career Finder • Made with 💜 by Deepshikha</p>
+</footer>
+
+<script>
+
+/* =========================================================
+   CAREER DATA
+   ========================================================= */
+
+const careers = [
+
+/* TECHNOLOGY */
+{
+name:"AI Engineer",icon:"🤖",category:"Technology",
+what:"Designs, develops, tests and deploys artificial intelligence systems.",
+subjects:"Mathematics, Computer Science, Statistics, Physics",
+topics:"Python, Machine Learning, Deep Learning, NLP, Computer Vision, LLMs, APIs",
+skills:"Python, problem solving, data handling, ML frameworks, communication",
+education:"B.Tech/B.E. in CSE, AI, Data Science or a related field. Higher study can specialize further.",
+jobs:"AI Engineer, AI Developer, Applied AI Engineer, AI Solutions Engineer",
+demand:"High-growth technology area with opportunities across software, healthcare, finance and research.",
+salary:"Varies widely by country, company, experience and specialization.",
+roadmap:["Learn Python","Mathematics & Statistics","Data Structures","Machine Learning","Deep Learning","Build AI Projects","Learn Deployment","Create Portfolio"]
+},
+
+{
+name:"Software Engineer",icon:"💻",category:"Technology",
+what:"Designs, develops, tests and maintains software applications and systems.",
+subjects:"Computer Science, Mathematics, English",
+topics:"Programming, Data Structures, Algorithms, Databases, Git, APIs",
+skills:"Programming, logical thinking, debugging, teamwork",
+education:"B.Tech/B.E. in Computer Science, IT or a related field.",
+jobs:"Software Engineer, Backend Developer, Frontend Developer, Full Stack Developer",
+demand:"Strong demand across technology companies and many other industries.",
+salary:"Varies according to location, company, experience and specialization.",
+roadmap:["Learn Programming","HTML & CSS","JavaScript","Python/C++","Data Structures","Projects","Git & GitHub","Apply for Internships"]
+},
+
+{
+name:"Data Scientist",icon:"📊",category:"Technology",
+what:"Uses data, statistics and computing to solve real-world problems and support decisions.",
+subjects:"Mathematics, Statistics, Computer Science",
+topics:"Python, Statistics, SQL, Machine Learning, Data Visualization",
+skills:"Data analysis, mathematics, programming, communication",
+education:"Degree in Computer Science, Data Science, Statistics, Mathematics or a related field.",
+jobs:"Data Scientist, Data Analyst, ML Scientist, Research Analyst",
+demand:"Growing demand as organizations increasingly use data for decisions.",
+salary:"Varies by experience, company, location and technical specialization.",
+roadmap:["Python","Statistics","SQL","Data Analysis","Visualization","Machine Learning","Projects","Portfolio"]
+},
+
+{
+name:"Machine Learning Engineer",icon:"🧠",category:"Technology",
+what:"Builds and deploys machine-learning models and systems.",
+subjects:"Mathematics, Statistics, Computer Science",
+topics:"Python, ML Algorithms, Deep Learning, Model Deployment, APIs",
+skills:"Programming, mathematics, problem solving, model evaluation",
+education:"B.Tech/B.E. in CSE, AI, Data Science or a related field.",
+jobs:"ML Engineer, AI Engineer, Applied ML Engineer",
+demand:"Strong growth in AI-focused technology and software roles.",
+salary:"Varies significantly with experience, location and specialization.",
+roadmap:["Python","Math","Statistics","ML Basics","Deep Learning","Model Deployment","Projects"]
+},
+
+{
+name:"Cybersecurity Analyst",icon:"🔐",category:"Technology",
+what:"Helps protect computer systems, networks and data from security threats.",
+subjects:"Computer Science, Mathematics",
+topics:"Networking, Linux, Security Fundamentals, Cryptography, Threat Analysis",
+skills:"Problem solving, attention to detail, networking, analytical thinking",
+education:"Degree or diploma in Cybersecurity, Computer Science, IT or a related field.",
+jobs:"Security Analyst, SOC Analyst, Cybersecurity Specialist",
+demand:"Increasing as organizations need protection for digital systems and data.",
+salary:"Depends on experience, certification, employer and location.",
+roadmap:["Computer Basics","Networking","Linux","Security Fundamentals","Practice Labs","Security Tools","Certifications"]
+},
+
+{
+name:"Web Developer",icon:"🌐",category:"Technology",
+what:"Creates and maintains websites and web applications.",
+subjects:"Computer Science, Mathematics",
+topics:"HTML, CSS, JavaScript, APIs, Databases, Web Frameworks",
+skills:"Programming, design thinking, debugging, problem solving",
+education:"Degree, diploma or self-learning with a strong project portfolio.",
+jobs:"Frontend Developer, Backend Developer, Full Stack Developer",
+demand:"Web development remains useful across businesses and organizations.",
+salary:"Varies by skills, experience, company and location.",
+roadmap:["HTML","CSS","JavaScript","Responsive Design","Git","APIs","Frameworks","Projects"]
+},
+
+{
+name:"Mobile App Developer",icon:"📱",category:"Technology",
+what:"Develops applications for smartphones and tablets.",
+subjects:"Computer Science, Mathematics",
+topics:"Java/Kotlin, Swift, Flutter, APIs, Databases",
+skills:"Programming, UI development, debugging",
+education:"Computer Science, IT or software-related education is useful.",
+jobs:"Android Developer, iOS Developer, Mobile App Developer",
+demand:"Strong opportunities as mobile applications are widely used.",
+salary:"Varies according to platform, experience, company and location.",
+roadmap:["Programming","Mobile Basics","UI","APIs","Databases","Build Apps","Publish Projects"]
+},
+
+{
+name:"Cloud Engineer",icon:"☁️",category:"Technology",
+what:"Designs and manages cloud-based computing infrastructure.",
+subjects:"Computer Science, Mathematics",
+topics:"Cloud Computing, Linux, Networking, Containers, Security",
+skills:"Networking, scripting, system administration, problem solving",
+education:"Degree or practical training in Computer Science, IT or cloud technologies.",
+jobs:"Cloud Engineer, Cloud Administrator, Cloud Architect",
+demand:"Growing as organizations move systems and services to cloud platforms.",
+salary:"Varies by cloud platform, certification, experience and location.",
+roadmap:["Linux","Networking","Cloud Basics","Storage","Compute","Security","Containers","Projects"]
+},
+
+{
+name:"DevOps Engineer",icon:"⚙️",category:"Technology",
+what:"Helps development teams build, test and deliver software efficiently and reliably.",
+subjects:"Computer Science, Mathematics",
+topics:"Linux, Git, CI/CD, Containers, Cloud, Automation",
+skills:"Automation, scripting, troubleshooting, communication",
+education:"Computer Science, IT or related education with practical experience.",
+jobs:"DevOps Engineer, Platform Engineer, Release Engineer",
+demand:"Strong demand for automation and reliable software delivery.",
+salary:"Depends on skills, experience, employer and location.",
+roadmap:["Linux","Git","Scripting","CI/CD","Docker","Cloud","Monitoring","Projects"]
+},
+
+{
+name:"Database Administrator",icon:"🗄️",category:"Technology",
+what:"Manages databases and helps keep stored information secure and reliable.",
+subjects:"Computer Science, Mathematics",
+topics:"SQL, Database Design, Backups, Security, Performance",
+skills:"SQL, organization, troubleshooting, analytical thinking",
+education:"Degree or diploma in Computer Science, IT or database-related studies.",
+jobs:"Database Administrator, Database Specialist, Data Engineer",
+demand:"Useful across organizations that depend on structured data systems.",
+salary:"Varies with database technology, experience and employer.",
+roadmap:["SQL","Database Basics","Database Design","Security","Backups","Performance","Practice"]
+},
+
+{
+name:"Game Developer",icon:"🎮",category:"Technology",
+what:"Creates interactive video games and game systems.",
+subjects:"Computer Science, Mathematics, Physics",
+topics:"C++, C#, Game Engines, 2D/3D Graphics, Game Physics",
+skills:"Programming, creativity, problem solving, teamwork",
+education:"Computer Science, Game Development or related education can help.",
+jobs:"Game Programmer, Gameplay Developer, Game Developer",
+demand:"Opportunities exist across game studios, mobile gaming and interactive media.",
+salary:"Varies by studio, platform, skills, experience and location.",
+roadmap:["Programming","Game Logic","Game Engine","2D Games","3D Basics","Projects","Portfolio"]
+},
+
+{
+name:"Blockchain Developer",icon:"⛓️",category:"Technology",
+what:"Develops software and applications using blockchain technologies.",
+subjects:"Computer Science, Mathematics",
+topics:"Blockchain, Cryptography, Smart Contracts, Web Development",
+skills:"Programming, security awareness, logical thinking",
+education:"Computer Science or software-related education is useful.",
+jobs:"Blockchain Developer, Smart Contract Developer, Web3 Developer",
+demand:"Specialized field with opportunities that vary with market conditions and technology adoption.",
+salary:"Highly variable depending on employer, experience and specialization.",
+roadmap:["Programming","Web Development","Cryptography","Blockchain Basics","Smart Contracts","Projects"]
+},
+
+{
+name:"Computer Network Engineer",icon:"🌐",category:"Technology",
+what:"Designs, configures and maintains computer networks.",
+subjects:"Computer Science, Mathematics",
+topics:"Networking, TCP/IP, Routing, Switching, Network Security",
+skills:"Troubleshooting, networking, analytical thinking",
+education:"IT, Computer Science or Networking education is useful.",
+jobs:"Network Engineer, Network Administrator, Network Specialist",
+demand:"Important in organizations that operate connected computer systems.",
+salary:"Varies by experience, certifications, employer and location.",
+roadmap:["Computer Basics","Networking","TCP/IP","Routing","Switching","Security","Practice"]
+},
+
+{
+name:"Systems Analyst",icon:"🖥️",category:"Technology",
+what:"Studies business and technical needs and helps design technology solutions.",
+subjects:"Computer Science, Mathematics, Business",
+topics:"Systems Analysis, Databases, Software Development, Documentation",
+skills:"Communication, analysis, problem solving, documentation",
+education:"Computer Science, IT, Business or related degree.",
+jobs:"Systems Analyst, Business Systems Analyst, IT Analyst",
+demand:"Useful where organizations need technology solutions aligned with business goals.",
+salary:"Varies by industry, experience and location.",
+roadmap:["Computer Basics","Business Basics","Analysis","Databases","Documentation","Projects"]
+},
+
+{
+name:"IT Support Specialist",icon:"🛠️",category:"Technology",
+what:"Helps users solve computer, software, hardware and technology problems.",
+subjects:"Computer Science, Mathematics",
+topics:"Hardware, Operating Systems, Networking, Troubleshooting",
+skills:"Communication, troubleshooting, patience, technical knowledge",
+education:"IT, Computer Science, diploma or practical technical training.",
+jobs:"IT Support Specialist, Help Desk Technician, Technical Support",
+demand:"Needed by organizations that provide computer-based services to employees.",
+salary:"Varies by experience, certification, employer and location.",
+roadmap:["Computer Hardware","Operating Systems","Networking","Troubleshooting","Security","Practice"]
+},
+
+{
+name:"Data Analyst",icon:"📈",category:"Technology",
+what:"Turns raw data into useful reports, visualizations and insights.",
+subjects:"Mathematics, Statistics, Computer Science",
+topics:"Excel, SQL, Statistics, Python, Data Visualization",
+skills:"Analysis, mathematics, communication, attention to detail",
+education:"Data Science, Statistics, Mathematics, Computer Science or related studies.",
+jobs:"Data Analyst, BI Analyst, Reporting Analyst",
+demand:"Useful across business, finance, healthcare, technology and many other sectors.",
+salary:"Varies by skills, experience, industry and location.",
+roadmap:["Excel","Statistics","SQL","Python","Visualization","Projects","Portfolio"]
+},
+
+{
+name:"AI Research Scientist",icon:"🔬",category:"Science",
+what:"Researches new methods, models and theories in artificial intelligence.",
+subjects:"Mathematics, Computer Science, Statistics, Physics",
+topics:"Machine Learning, Deep Learning, Algorithms, Research Methods",
+skills:"Mathematics, programming, research, critical thinking",
+education:"Advanced study such as a master's or PhD is common for research-focused roles.",
+jobs:"AI Research Scientist, Research Engineer, ML Researcher",
+demand:"Specialized opportunities in universities, research labs and technology organizations.",
+salary:"Varies greatly by organization, location, research area and experience.",
+roadmap:["Math","Python","Algorithms","ML","Deep Learning","Research Papers","Projects","Advanced Study"]
+},
+
+/* ENGINEERING */
+{
+name:"Robotics Engineer",icon:"🤖",category:"Engineering",
+what:"Designs robots and automated machines.",
+subjects:"Mathematics, Physics, Computer Science",
+topics:"Robotics, Electronics, Programming, Sensors, Control Systems",
+skills:"Programming, electronics, problem solving, design",
+education:"B.Tech/B.E. in Robotics, Mechanical, Electronics or related engineering.",
+jobs:"Robotics Engineer, Automation Engineer, Robotics Developer",
+demand:"Growing applications in manufacturing, research, healthcare and automation.",
+salary:"Varies by industry, specialization, experience and location.",
+roadmap:["Math","Physics","Programming","Electronics","Sensors","Robotics","Build Robots"]
+},
+
+{
+name:"Civil Engineer",icon:"🏗️",category:"Engineering",
+what:"Designs and helps construct buildings, roads, bridges and infrastructure.",
+subjects:"Mathematics, Physics",
+topics:"Structures, Construction, Surveying, Materials, CAD",
+skills:"Mathematics, design, planning, problem solving",
+education:"B.Tech/B.E. in Civil Engineering.",
+jobs:"Civil Engineer, Structural Engineer, Site Engineer, Construction Engineer",
+demand:"Infrastructure development creates opportunities in construction and public works.",
+salary:"Varies by experience, project, employer and location.",
+roadmap:["Math","Physics","Engineering Drawing","CAD","Structures","Site Knowledge","Projects"]
+},
+
+{
+name:"Mechanical Engineer",icon:"⚙️",category:"Engineering",
+what:"Designs machines, mechanical systems and products.",
+subjects:"Mathematics, Physics",
+topics:"Mechanics, Thermodynamics, CAD, Manufacturing, Materials",
+skills:"Problem solving, design, mathematics, technical thinking",
+education:"B.Tech/B.E. in Mechanical Engineering.",
+jobs:"Mechanical Engineer, Design Engineer, Manufacturing Engineer",
+demand:"Used across manufacturing, automotive, energy and industrial sectors.",
+salary:"Varies by industry, experience, specialization and location.",
+roadmap:["Math","Physics","Mechanics","CAD","Manufacturing","Design Projects"]
+},
+
+{
+name:"Electrical Engineer",icon:"⚡",category:"Engineering",
+what:"Works with electrical systems, power systems and electrical equipment.",
+subjects:"Mathematics, Physics",
+topics:"Circuits, Electronics, Power Systems, Control Systems",
+skills:"Mathematics, problem solving, circuit analysis",
+education:"B.Tech/B.E. in Electrical Engineering.",
+jobs:"Electrical Engineer, Power Engineer, Control Engineer",
+demand:"Important in energy, manufacturing, infrastructure and technology.",
+salary:"Varies by specialization, employer, experience and location.",
+roadmap:["Math","Physics","Circuits","Electronics","Power Systems","Projects"]
+},
+
+{
+name:"Electronics Engineer",icon:"🔌",category:"Engineering",
+what:"Designs electronic circuits, devices and systems.",
+subjects:"Mathematics, Physics",
+topics:"Circuits, Digital Electronics, Microcontrollers, Communication Systems",
+skills:"Circuit design, programming, problem solving",
+education:"B.Tech/B.E. in Electronics/ECE or related field.",
+jobs:"Electronics Engineer, Hardware Engineer, Embedded Engineer",
+demand:"Used in consumer electronics, communications, automobiles and many devices.",
+salary:"Varies by industry, skills, experience and location.",
+roadmap:["Math","Physics","Circuits","Digital Electronics","Microcontrollers","Projects"]
+},
+
+{
+name:"Chemical Engineer",icon:"🧪",category:"Engineering",
+what:"Uses chemistry and engineering to design and improve industrial processes.",
+subjects:"Chemistry, Mathematics, Physics",
+topics:"Chemical Processes, Thermodynamics, Materials, Process Design",
+skills:"Problem solving, chemistry, mathematics, process thinking",
+education:"B.Tech/B.E. in Chemical Engineering.",
+jobs:"Chemical Engineer, Process Engineer, Production Engineer",
+demand:"Opportunities exist in chemicals, energy, manufacturing and materials industries.",
+salary:"Varies by industry, experience and location.",
+roadmap:["Chemistry","Math","Physics","Process Basics","Safety","Industrial Projects"]
+},
+
+{
+name:"Aerospace Engineer",icon:"🚀",category:"Engineering",
+what:"Designs aircraft, spacecraft and related systems.",
+subjects:"Mathematics, Physics",
+topics:"Aerodynamics, Propulsion, Flight Mechanics, Materials",
+skills:"Mathematics, physics, design, problem solving",
+education:"B.Tech/B.E. in Aerospace, Aeronautical or related engineering.",
+jobs:"Aerospace Engineer, Aeronautical Engineer, Flight Systems Engineer",
+demand:"Specialized opportunities in aviation, space, defense and research.",
+salary:"Varies by organization, experience, specialization and location.",
+roadmap:["Math","Physics","Mechanics","Aerodynamics","CAD","Projects","Advanced Study"]
+},
+
+{
+name:"Automotive Engineer",icon:"🚗",category:"Engineering",
+what:"Develops vehicles, vehicle systems and automotive technologies.",
+subjects:"Mathematics, Physics",
+topics:"Automotive Systems, Engines, EVs, CAD, Vehicle Dynamics",
+skills:"Design, mechanical knowledge, problem solving",
+education:"Mechanical or Automotive Engineering is a common pathway.",
+jobs:"Automotive Engineer, Vehicle Engineer, EV Engineer",
+demand:"Opportunities continue in vehicle manufacturing and electric mobility.",
+salary:"Varies by company, specialization, experience and location.",
+roadmap:["Math","Physics","Mechanics","Automotive Basics","EV Technology","CAD","Projects"]
+},
+
+{
+name:"Environmental Engineer",icon:"🌱",category:"Engineering",
+what:"Develops engineering solutions for pollution, waste and environmental problems.",
+subjects:"Mathematics, Chemistry, Biology, Physics",
+topics:"Water Treatment, Waste Management, Pollution Control, Sustainability",
+skills:"Problem solving, science, environmental awareness",
+education:"B.Tech/B.E. in Environmental Engineering or related field.",
+jobs:"Environmental Engineer, Sustainability Engineer, Water Engineer",
+demand:"Increasing attention to environmental protection creates relevant opportunities.",
+salary:"Varies by organization, specialization, experience and location.",
+roadmap:["Science","Environmental Basics","Water","Waste","Pollution Control","Projects"]
+},
+
+{
+name:"Biomedical Engineer",icon:"🦾",category:"Engineering",
+what:"Combines engineering and biology to develop healthcare technologies.",
+subjects:"Biology, Physics, Mathematics",
+topics:"Medical Devices, Biomaterials, Electronics, Human Biology",
+skills:"Engineering, biology, design, problem solving",
+education:"Biomedical Engineering or related engineering/science degree.",
+jobs:"Biomedical Engineer, Medical Device Engineer, Clinical Engineer",
+demand:"Opportunities in medical devices, healthcare technology and research.",
+salary:"Varies by industry, qualification, experience and location.",
+roadmap:["Biology","Physics","Math","Electronics","Medical Devices","Projects"]
+},
+
+{
+name:"Nuclear Engineer",icon:"☢️",category:"Engineering",
+what:"Works with nuclear energy systems, safety and related technologies.",
+subjects:"Physics, Mathematics, Chemistry",
+topics:"Nuclear Physics, Reactor Systems, Radiation Safety, Thermodynamics",
+skills:"Mathematics, physics, safety awareness, analytical thinking",
+education:"Engineering or physics education followed by specialized nuclear study.",
+jobs:"Nuclear Engineer, Reactor Engineer, Nuclear Safety Specialist",
+demand:"Specialized opportunities in energy, research and related sectors.",
+salary:"Varies by country, employer, specialization and experience.",
+roadmap:["Physics","Math","Chemistry","Nuclear Basics","Safety","Specialization"]
+},
+
+{
+name:"Petroleum Engineer",icon:"🛢️",category:"Engineering",
+what:"Works on exploration, extraction and production of oil and gas resources.",
+subjects:"Mathematics, Physics, Chemistry",
+topics:"Drilling, Reservoirs, Geology, Fluid Mechanics",
+skills:"Engineering analysis, mathematics, problem solving",
+education:"B.Tech/B.E. in Petroleum Engineering or related field.",
+jobs:"Petroleum Engineer, Drilling Engineer, Reservoir Engineer",
+demand:"Demand is linked to energy markets and industry conditions.",
+salary:"Can vary significantly with industry conditions, location and experience.",
+roadmap:["Math","Physics","Chemistry","Geology","Reservoir Basics","Engineering Study"]
+},
+
+{
+name:"Industrial Engineer",icon:"🏭",category:"Engineering",
+what:"Improves processes, productivity, quality and efficiency in organizations.",
+subjects:"Mathematics, Physics, Computer Science",
+topics:"Operations Research, Quality, Manufacturing, Optimization",
+skills:"Analysis, mathematics, process improvement, communication",
+education:"B.Tech/B.E. in Industrial Engineering or related field.",
+jobs:"Industrial Engineer, Process Engineer, Quality Engineer",
+demand:"Useful in manufacturing, logistics, healthcare and service organizations.",
+salary:"Varies by industry, experience and location.",
+roadmap:["Math","Statistics","Process Mapping","Quality","Optimization","Projects"]
+},
+
+{
+name:"Mechatronics Engineer",icon:"🦾",category:"Engineering",
+what:"Combines mechanical, electrical and software engineering to create smart machines.",
+subjects:"Mathematics, Physics, Computer Science",
+topics:"Robotics, Electronics, Control Systems, Programming, Mechanics",
+skills:"Programming, electronics, mechanics, problem solving",
+education:"B.Tech/B.E. in Mechatronics or related engineering.",
+jobs:"Mechatronics Engineer, Automation Engineer, Robotics Engineer",
+demand:"Useful in automation, robotics and smart manufacturing.",
+salary:"Varies by industry, skills, experience and location.",
+roadmap:["Math","Physics","Programming","Electronics","Mechanics","Robotics","Projects"]
+},
+
+{
+name:"Architect",icon:"🏛️",category:"Engineering",
+what:"Designs buildings and other built environments.",
+subjects:"Mathematics, Art, Physics",
+topics:"Design, Architecture, CAD, Structures, Building Materials",
+skills:"Creativity, drawing, design, planning, communication",
+education:"B.Arch or a recognized architecture program is the usual pathway.",
+jobs:"Architect, Design Architect, Urban Design Professional",
+demand:"Opportunities depend on construction, urban development and design needs.",
+salary:"Varies by experience, firm, project and location.",
+roadmap:["Drawing","Math","Design","Architecture Basics","CAD","Portfolio","Architecture Study"]
+},
+
+{
+name:"Environmental Engineer",icon:"🌿",category:"Engineering",
+what:"Uses engineering methods to solve environmental and sustainability challenges.",
+subjects:"Mathematics, Chemistry, Biology, Physics",
+topics:"Pollution Control, Waste Management, Water Treatment, Sustainability",
+skills:"Science, analysis, problem solving, project planning",
+education:"Engineering degree in environmental or related disciplines.",
+jobs:"Environmental Engineer, Sustainability Engineer, Water Engineer",
+demand:"Relevant to environmental protection and sustainable development.",
+salary:"Varies by location, employer, specialization and experience.",
+roadmap:["Science","Environment","Water","Waste","Pollution","Sustainability","Projects"]
+},
+
+{
+name:"Urban Planner",icon:"🏙️",category:"Engineering",
+what:"Plans how cities and communities develop and use land and infrastructure.",
+subjects:"Geography, Mathematics, Economics, Social Science",
+topics:"Urban Design, GIS, Transport Planning, Land Use",
+skills:"Planning, geography, analysis, communication",
+education:"Urban Planning, Architecture, Geography or related higher education.",
+jobs:"Urban Planner, Transport Planner, Planning Analyst",
+demand:"Important as cities grow and require organized development.",
+salary:"Varies by employer, qualification, experience and location.",
+roadmap:["Geography","Cities","Maps","GIS","Planning","Projects","Higher Study"]
+},
+
+{
+name:"Marine Engineer",icon:"🚢",category:"Engineering",
+what:"Works with mechanical and engineering systems on ships and marine platforms.",
+subjects:"Mathematics, Physics",
+topics:"Marine Systems, Engines, Thermodynamics, Ship Machinery",
+skills:"Mechanical knowledge, troubleshooting, engineering analysis",
+education:"Marine Engineering or related engineering education.",
+jobs:"Marine Engineer, Ship Engineer, Marine Systems Engineer",
+demand:"Opportunities exist in shipping, marine services and related industries.",
+salary:"Varies by employer, vessel, experience and location.",
+roadmap:["Math","Physics","Mechanics","Marine Systems","Engines","Safety","Training"]
+},
+
+{
+name:"Embedded Systems Engineer",icon:"🔧",category:"Engineering",
+what:"Develops software and hardware systems embedded inside devices.",
+subjects:"Mathematics, Physics, Computer Science",
+topics:"C/C++, Microcontrollers, Electronics, RTOS, Sensors",
+skills:"Programming, electronics, debugging, problem solving",
+education:"Electronics, Electrical, Computer or related engineering degree.",
+jobs:"Embedded Engineer, Firmware Engineer, Hardware-Software Engineer",
+demand:"Used in automobiles, electronics, robotics, appliances and industrial systems.",
+salary:"Varies by skills, company, specialization and experience.",
+roadmap:["C/C++","Electronics","Microcontrollers","Sensors","Embedded C","Projects"]
+},
+
+{
+name:"IoT Engineer",icon:"📡",category:"Technology",
+what:"Builds systems where physical devices collect, process and exchange data.",
+subjects:"Computer Science, Mathematics, Physics",
+topics:"Sensors, Networking, Embedded Systems, Cloud, IoT Security",
+skills:"Programming, electronics, networking, problem solving",
+education:"Computer, Electronics or Electrical Engineering is useful.",
+jobs:"IoT Engineer, IoT Developer, Embedded IoT Engineer",
+demand:"Opportunities are connected to smart devices, automation and connected systems.",
+salary:"Varies by employer, experience and specialization.",
+roadmap:["Programming","Electronics","Sensors","Networking","Cloud","IoT Projects"]
+},
+
+{
+name:"Renewable Energy Engineer",icon:"☀️",category:"Engineering",
+what:"Works on technologies that generate and use energy from renewable sources.",
+subjects:"Physics, Mathematics, Chemistry",
+topics:"Solar Energy, Wind Energy, Energy Storage, Power Systems",
+skills:"Engineering analysis, physics, problem solving",
+education:"Electrical, Mechanical, Energy or related engineering degree.",
+jobs:"Renewable Energy Engineer, Solar Engineer, Energy Engineer",
+demand:"Growing interest in renewable energy and energy transition creates opportunities.",
+salary:"Varies by specialization, project, employer and location.",
+roadmap:["Physics","Math","Energy Basics","Solar/Wind","Storage","Projects"]
+},
+
+{
+name:"Research Engineer",icon:"🧪",category:"Engineering",
+what:"Turns scientific or technical research ideas into working systems and prototypes.",
+subjects:"Mathematics, Physics, Computer Science",
+topics:"Research Methods, Prototyping, Engineering Design, Programming",
+skills:"Research, experimentation, programming, problem solving",
+education:"Engineering or science degree; advanced study can be useful for specialized research.",
+jobs:"Research Engineer, R&D Engineer, Development Engineer",
+demand:"Opportunities exist in universities, laboratories, technology and engineering organizations.",
+salary:"Varies by research area, organization, qualification and experience.",
+roadmap:["Science","Math","Programming","Research","Experiments","Prototypes","Projects"]
+},
+
+{
+name:"Electrical Technician",icon:"🔧",category:"Engineering",
+what:"Installs, tests and maintains electrical equipment under appropriate professional standards.",
+subjects:"Mathematics, Physics",
+topics:"Electrical Safety, Wiring, Circuits, Testing Equipment",
+skills:"Practical skills, troubleshooting, safety awareness",
+education:"Technical training, diploma or vocational education.",
+jobs:"Electrical Technician, Maintenance Technician, Electrical Installer",
+demand:"Needed for electrical installation and maintenance work.",
+salary:"Varies by training, experience, employer and location.",
+roadmap:["Electrical Basics","Safety","Circuits","Tools","Testing","Practical Training"]
+},
+
+{
+name:"Automotive Technician",icon:"🔧",category:"Engineering",
+what:"Diagnoses, maintains and repairs vehicle systems.",
+subjects:"Physics, Mathematics",
+topics:"Vehicle Systems, Engines, Electronics, Diagnostics, EV Basics",
+skills:"Mechanical skills, troubleshooting, practical thinking",
+education:"Automotive vocational training or diploma is a common route.",
+jobs:"Automotive Technician, Service Technician, EV Technician",
+demand:"Vehicle maintenance creates ongoing opportunities, including emerging EV roles.",
+salary:"Varies by experience, specialization, workshop and location.",
+roadmap:["Vehicle Basics","Mechanics","Electronics","Diagnostics","EV Basics","Practical Training"]
+},
+
+{
+name:"Construction Manager",icon:"🏗️",category:"Engineering",
+what:"Coordinates construction projects, workers, schedules, budgets and resources.",
+subjects:"Mathematics, Physics, Business",
+topics:"Construction Management, Planning, Safety, Cost Estimation",
+skills:"Leadership, planning, communication, problem solving",
+education:"Civil Engineering, Construction Management or related education.",
+jobs:"Construction Manager, Site Manager, Project Coordinator",
+demand:"Infrastructure and construction projects create opportunities.",
+salary:"Varies by project size, employer, experience and location.",
+roadmap:["Construction Basics","Planning","Safety","Costing","Project Management","Experience"]
+},
+
+{
+name:"Surveyor",icon:"📐",category:"Engineering",
+what:"Measures and maps land, property boundaries and physical features.",
+subjects:"Mathematics, Geography, Physics",
+topics:"Surveying, Mapping, GPS, CAD, Measurements",
+skills:"Mathematics, accuracy, field work, technology",
+education:"Surveying, Civil Engineering, Geomatics or related training.",
+jobs:"Land Surveyor, Survey Technician, Geomatics Professional",
+demand:"Useful in construction, infrastructure, land development and mapping.",
+salary:"Varies by qualification, experience and location.",
+roadmap:["Math","Measurement","Surveying","GPS","CAD","Field Practice"]
+},
+
+/* SCIENCE */
+{
+name:"Astronomer",icon:"🔭",category:"Science",
+what:"Studies stars, planets, galaxies and other objects in space.",
+subjects:"Physics, Mathematics",
+topics:"Astronomy, Astrophysics, Space Science, Data Analysis",
+skills:"Mathematics, physics, research, observation",
+education:"Physics/Astronomy degree; research careers commonly require advanced study.",
+jobs:"Astronomer, Astrophysicist, Research Scientist",
+demand:"Specialized field with opportunities mainly in research and academic institutions.",
+salary:"Varies by institution, country, qualification and experience.",
+roadmap:["Math","Physics","Astronomy","Programming","Research","Higher Study"]
+},
+
+{
+name:"Physicist",icon:"⚛️",category:"Science",
+what:"Studies matter, energy, forces and the fundamental laws of nature.",
+subjects:"Physics, Mathematics",
+topics:"Mechanics, Electricity, Thermodynamics, Modern Physics",
+skills:"Mathematics, problem solving, experimentation, research",
+education:"B.Sc./B.S. in Physics followed by higher study for many research careers.",
+jobs:"Physicist, Research Scientist, Data/Technical Analyst",
+demand:"Opportunities exist in research, education, technology and specialized industries.",
+salary:"Varies by field, qualification, employer and location.",
+roadmap:["Physics","Math","Experiments","Programming","Research","Higher Study"]
+},
+
+{
+name:"Chemist",icon:"🧪",category:"Science",
+what:"Studies substances, their properties and chemical reactions.",
+subjects:"Chemistry, Mathematics, Physics",
+topics:"Organic Chemistry, Inorganic Chemistry, Analytical Chemistry",
+skills:"Laboratory skills, observation, analysis, safety",
+education:"B.Sc./B.S. in Chemistry; advanced roles may require higher study.",
+jobs:"Chemist, Laboratory Analyst, Research Assistant",
+demand:"Used in pharmaceuticals, materials, manufacturing, research and education.",
+salary:"Varies by industry, qualification and experience.",
+roadmap:["Chemistry","Lab Safety","Experiments","Analysis","Research","Higher Study"]
+},
+
+{
+name:"Biologist",icon:"🧬",category:"Science",
+what:"Studies living organisms and biological systems.",
+subjects:"Biology, Chemistry",
+topics:"Cell Biology, Genetics, Ecology, Evolution",
+skills:"Observation, research, laboratory work, analysis",
+education:"B.Sc./B.S. in Biology or related life sciences.",
+jobs:"Biologist, Research Assistant, Laboratory Professional",
+demand:"Opportunities exist in research, education, environment and life sciences.",
+salary:"Varies by specialization, organization and qualification.",
+roadmap:["Biology","Chemistry","Lab Skills","Genetics","Ecology","Research"]
+},
+
+{
+name:"Geologist",icon:"🌋",category:"Science",
+what:"Studies Earth, rocks, minerals and geological processes.",
+subjects:"Geography, Physics, Chemistry",
+topics:"Rocks, Minerals, Earth Processes, Geophysics",
+skills:"Observation, field work, analysis, scientific thinking",
+education:"B.Sc./B.S. in Geology or Earth Science.",
+jobs:"Geologist, Exploration Geologist, Environmental Geologist",
+demand:"Used in natural resources, environmental work, construction and research.",
+salary:"Varies by sector, location, experience and specialization.",
+roadmap:["Earth Science","Rocks","Maps","Field Work","Geology","Research"]
+},
+
+{
+name:"Meteorologist",icon:"🌦️",category:"Science",
+what:"Studies weather, atmosphere and atmospheric conditions.",
+subjects:"Physics, Mathematics, Geography",
+topics:"Atmospheric Science, Weather Models, Climate, Data Analysis",
+skills:"Mathematics, data analysis, observation, science",
+education:"Meteorology, Atmospheric Science, Physics or related education.",
+jobs:"Meteorologist, Weather Analyst, Atmospheric Scientist",
+demand:"Important for weather forecasting, aviation, agriculture and climate services.",
+salary:"Varies by organization, qualification, experience and location.",
+roadmap:["Math","Physics","Weather Basics","Data","Atmosphere","Forecasting"]
+},
+
+{
+name:"Marine Biologist",icon:"🐋",category:"Science",
+what:"Studies marine organisms and ocean ecosystems.",
+subjects:"Biology, Chemistry, Environmental Science",
+topics:"Marine Ecology, Ocean Biology, Conservation, Field Research",
+skills:"Biology, observation, research, field work",
+education:"Biology, Marine Biology or related life science degree.",
+jobs:"Marine Biologist, Researcher, Conservation Scientist",
+demand:"Opportunities exist in research, conservation, environmental organizations and education.",
+salary:"Varies by specialization, employer, location and experience.",
+roadmap:["Biology","Ocean Basics","Ecology","Field Work","Research","Higher Study"]
+},
+
+{
+name:"Environmental Scientist",icon:"🌍",category:"Science",
+what:"Studies environmental systems and human impacts on them.",
+subjects:"Biology, Chemistry, Geography",
+topics:"Ecology, Pollution, Climate, Conservation, Environmental Assessment",
+skills:"Research, data analysis, field work, scientific thinking",
+education:"Environmental Science, Biology, Chemistry, Geography or related degree.",
+jobs:"Environmental Scientist, Conservation Scientist, Environmental Analyst",
+demand:"Environmental monitoring and sustainability create opportunities.",
+salary:"Varies by sector, location, experience and qualification.",
+roadmap:["Biology","Chemistry","Environment","Field Work","Data Analysis","Projects"]
+},
+
+{
+name:"Forensic Scientist",icon:"🔎",category:"Science",
+what:"Applies scientific methods to evidence and investigations.",
+subjects:"Chemistry, Biology, Physics",
+topics:"Forensic Biology, Chemistry, Evidence Analysis, Laboratory Methods",
+skills:"Observation, laboratory work, accuracy, analytical thinking",
+education:"Forensic Science, Chemistry, Biology or related science degree.",
+jobs:"Forensic Scientist, Laboratory Analyst, Forensic Technician",
+demand:"Specialized opportunities exist in forensic laboratories and investigative services.",
+salary:"Varies by government/private employer, specialization and experience.",
+roadmap:["Science","Lab Skills","Forensics","Evidence Handling","Analysis","Higher Study"]
+},
+
+{
+name:"Statistician",icon:"📐",category:"Science",
+what:"Uses statistics to understand data, uncertainty and patterns.",
+subjects:"Mathematics, Statistics, Computer Science",
+topics:"Probability, Statistics, Data Analysis, Statistical Software",
+skills:"Mathematics, data analysis, critical thinking",
+education:"Statistics, Mathematics, Data Science or related degree.",
+jobs:"Statistician, Data Analyst, Research Analyst",
+demand:"Useful in research, business, government, healthcare and technology.",
+salary:"Varies by industry, qualification, experience and location.",
+roadmap:["Math","Probability","Statistics","Excel","Python/R","Projects"]
+},
+
+{
+name:"Agricultural Scientist",icon:"🌾",category:"Science",
+what:"Researches crops, soil, farming systems and agricultural technology.",
+subjects:"Biology, Chemistry, Agriculture",
+topics:"Crop Science, Soil Science, Plant Biology, Agricultural Technology",
+skills:"Research, biology, observation, data analysis",
+education:"Agriculture, Agronomy, Soil Science or related degree.",
+jobs:"Agricultural Scientist, Agronomist, Researcher",
+demand:"Important for food production, sustainable agriculture and agricultural research.",
+salary:"Varies by organization, qualification, specialization and location.",
+roadmap:["Biology","Agriculture","Soil","Crops","Research","Field Work"]
+},
+
+{
+name:"Wildlife Biologist",icon:"🦌",category:"Science",
+what:"Studies wildlife populations, behavior and ecosystems.",
+subjects:"Biology, Environmental Science",
+topics:"Ecology, Animal Behavior, Conservation, Field Research",
+skills:"Observation, biology, field work, research",
+education:"Biology, Zoology, Wildlife Science or related degree.",
+jobs:"Wildlife Biologist, Conservation Scientist, Researcher",
+demand:"Opportunities exist in conservation, research, wildlife organizations and government programs.",
+salary:"Varies by organization, location, experience and qualification.",
+roadmap:["Biology","Ecology","Animals","Field Skills","Conservation","Research"]
+},
+
+{
+name:"Zoologist",icon:"🦁",category:"Science",
+what:"Studies animals, their biology, behavior and relationships with ecosystems.",
+subjects:"Biology, Chemistry",
+topics:"Animal Biology, Ecology, Evolution, Behavior",
+skills:"Observation, research, biology, field work",
+education:"Zoology or related life-science degree.",
+jobs:"Zoologist, Researcher, Wildlife Professional, Educator",
+demand:"Opportunities occur in research, conservation, education and related organizations.",
+salary:"Varies by specialization, employer and experience.",
+roadmap:["Biology","Animal Science","Ecology","Field Work","Research","Higher Study"]
+},
+
+{
+name:"Geophysicist",icon:"🌎",category:"Science",
+what:"Uses physics and mathematics to study Earth's structure and processes.",
+subjects:"Physics, Mathematics, Geography",
+topics:"Seismology, Geomagnetism, Earth Physics, Data Analysis",
+skills:"Physics, mathematics, data analysis, research",
+education:"Physics, Geophysics, Earth Science or related degree.",
+jobs:"Geophysicist, Earth Scientist, Researcher",
+demand:"Used in Earth research, natural resources, environmental studies and hazard analysis.",
+salary:"Varies by sector, location, specialization and experience.",
+roadmap:["Math","Physics","Earth Science","Data","Field Work","Research"]
+},
+
+{
+name:"Geneticist",icon:"🧬",category:"Science",
+what:"Studies genes, heredity and genetic variation.",
+subjects:"Biology, Chemistry",
+topics:"Genetics, Molecular Biology, Genomics, Bioinformatics",
+skills:"Biology, laboratory work, data analysis, research",
+education:"Biology, Genetics, Biotechnology or related life-science degree; advanced study may be needed.",
+jobs:"Geneticist, Research Scientist, Genomics Specialist",
+demand:"Growing applications in research, biotechnology and healthcare-related science.",
+salary:"Varies by specialization, organization, qualification and experience.",
+roadmap:["Biology","Genetics","Molecular Biology","Lab Skills","Bioinformatics","Research"]
+},
+
+{
+name:"Microbiologist",icon:"🦠",category:"Science",
+what:"Studies microorganisms such as bacteria, fungi and other microbes.",
+subjects:"Biology, Chemistry",
+topics:"Microbiology, Cell Biology, Immunology, Laboratory Methods",
+skills:"Laboratory work, observation, biology, analysis",
+education:"Microbiology, Biology, Biotechnology or related degree.",
+jobs:"Microbiologist, Laboratory Scientist, Researcher",
+demand:"Used in healthcare, food, biotechnology, environmental science and research.",
+salary:"Varies by sector, qualification, experience and location.",
+roadmap:["Biology","Chemistry","Microbiology","Lab Safety","Experiments","Research"]
+},
+
+{
+name:"Biotechnologist",icon:"🧫",category:"Science",
+what:"Uses biological systems to develop useful products and technologies.",
+subjects:"Biology, Chemistry",
+topics:"Biotechnology, Genetics, Molecular Biology, Bioinformatics",
+skills:"Laboratory skills, biology, data analysis, research",
+education:"Biotechnology, Biology, Biochemistry or related degree.",
+jobs:"Biotechnologist, Research Assistant, Bioprocess Professional",
+demand:"Applications exist in healthcare, agriculture, food, research and industry.",
+salary:"Varies by specialization, organization and experience.",
+roadmap:["Biology","Chemistry","Genetics","Lab Skills","Biotechnology","Research"]
+},
+
+{
+name:"Biochemist",icon:"🧪",category:"Science",
+what:"Studies chemical processes occurring in living organisms.",
+subjects:"Biology, Chemistry",
+topics:"Biochemistry, Molecular Biology, Enzymes, Metabolism",
+skills:"Chemistry, biology, laboratory work, research",
+education:"Biochemistry, Biology, Chemistry or related science degree.",
+jobs:"Biochemist, Research Scientist, Laboratory Analyst",
+demand:"Used in biotechnology, pharmaceuticals, research and life sciences.",
+salary:"Varies by organization, specialization, qualification and experience.",
+roadmap:["Chemistry","Biology","Biochemistry","Lab Skills","Research","Higher Study"]
+},
+
+{
+name:"Research Scientist",icon:"🧬",category:"Science",
+what:"Conducts scientific research to answer questions and develop knowledge.",
+subjects:"Depends on specialization",
+topics:"Scientific Method, Data Analysis, Experiments, Research Methods",
+skills:"Critical thinking, research, experimentation, communication",
+education:"A relevant science degree; advanced research positions commonly require higher study.",
+jobs:"Research Scientist, Research Associate, Laboratory Scientist",
+demand:"Opportunities vary by research field, funding and institution.",
+salary:"Varies by research field, employer, qualification and location.",
+roadmap:["Science Basics","Research Method","Experiments","Data","Specialization","Research Projects"]
+},
+
+{
+name:"Materials Scientist",icon:"🔩",category:"Science",
+what:"Studies and develops materials with useful physical and chemical properties.",
+subjects:"Physics, Chemistry, Mathematics",
+topics:"Materials Science, Polymers, Metals, Nanomaterials",
+skills:"Science, laboratory work, analysis, problem solving",
+education:"Materials Science, Chemistry, Physics or Engineering degree.",
+jobs:"Materials Scientist, Materials Engineer, Research Scientist",
+demand:"Useful in electronics, energy, manufacturing, aerospace and advanced materials.",
+salary:"Varies by industry, specialization, experience and location.",
+roadmap:["Physics","Chemistry","Materials","Lab Work","Research","Projects"]
+},
+
+{
+name:"Oceanographer",icon:"🌊",category:"Science",
+what:"Studies oceans and marine physical, chemical and biological systems.",
+subjects:"Physics, Chemistry, Biology, Mathematics",
+topics:"Ocean Science, Marine Chemistry, Ocean Physics, Marine Biology",
+skills:"Science, data analysis, field research",
+education:"Oceanography, Marine Science or related science degree.",
+jobs:"Oceanographer, Marine Scientist, Researcher",
+demand:"Specialized opportunities in research, environment and marine organizations.",
+salary:"Varies by specialization, institution and experience.",
+roadmap:["Science","Ocean Basics","Math","Field Work","Data","Research"]
+},
+
+{
+name:"Climate Scientist",icon:"🌡️",category:"Science",
+what:"Studies Earth's climate system and changes in climate over time.",
+subjects:"Physics, Mathematics, Geography, Environmental Science",
+topics:"Climate Models, Atmospheric Science, Data Analysis, Earth Systems",
+skills:"Mathematics, data analysis, research, scientific thinking",
+education:"Climate Science, Atmospheric Science, Physics, Earth Science or related degree.",
+jobs:"Climate Scientist, Climate Analyst, Research Scientist",
+demand:"Growing scientific and policy interest in climate and environmental systems.",
+salary:"Varies by organization, specialization, experience and location.",
+roadmap:["Math","Physics","Climate Basics","Data","Models","Research"]
+},
+
+{
+name:"Food Technologist",icon:"🍎",category:"Science",
+what:"Applies science and technology to food production, safety and quality.",
+subjects:"Chemistry, Biology, Food Science",
+topics:"Food Chemistry, Food Safety, Processing, Quality Control",
+skills:"Science, laboratory work, quality analysis",
+education:"Food Technology, Food Science, Biotechnology or related degree.",
+jobs:"Food Technologist, Quality Analyst, Food Safety Professional",
+demand:"Food production and safety create opportunities in food industries and laboratories.",
+salary:"Varies by industry, qualification, experience and location.",
+roadmap:["Chemistry","Biology","Food Science","Lab Work","Quality","Projects"]
+},
+
+{
+name:"Quality Control Analyst",icon:"✅",category:"Science",
+what:"Checks products or processes against quality standards.",
+subjects:"Science, Mathematics",
+topics:"Quality Control, Testing, Statistics, Documentation",
+skills:"Attention to detail, analysis, testing, documentation",
+education:"Science, Engineering, Food Technology or related education.",
+jobs:"Quality Control Analyst, Quality Technician, QA Analyst",
+demand:"Quality roles exist across manufacturing, food, pharmaceuticals and technology.",
+salary:"Varies by industry, experience, employer and location.",
+roadmap:["Science","Quality Basics","Testing","Statistics","Documentation","Practical Experience"]
+},
+
+{
+name:"Cartographer",icon:"🗺️",category:"Science",
+what:"Creates and analyzes maps and geographic visualizations.",
+subjects:"Geography, Mathematics, Computer Science",
+topics:"GIS, Mapping, Remote Sensing, Geographic Data",
+skills:"Geography, design, data analysis, technology",
+education:"Geography, Cartography, GIS or related field.",
+jobs:"Cartographer, GIS Analyst, Mapping Specialist",
+demand:"Useful in mapping, urban planning, environment, transport and location technology.",
+salary:"Varies by organization, skills, experience and location.",
+roadmap:["Geography","Maps","GIS","Data","Remote Sensing","Projects"]
+},
+
+{
+name:"Marine Scientist",icon:"🐠",category:"Science",
+what:"Researches marine environments, ocean processes and ocean life.",
+subjects:"Biology, Chemistry, Physics",
+topics:"Marine Ecology, Oceanography, Conservation, Field Research",
+skills:"Research, science, observation, field work",
+education:"Marine Science, Biology, Oceanography or related degree.",
+jobs:"Marine Scientist, Researcher, Environmental Scientist",
+demand:"Opportunities exist in marine research, conservation and environmental work.",
+salary:"Varies by specialization, employer and experience.",
+roadmap:["Science","Marine Biology","Oceanography","Field Work","Research","Projects"]
+},
+
+{
+name:"Archaeologist",icon:"🏺",category:"Science",
+what:"Studies human history through material remains and archaeological evidence.",
+subjects:"History, Geography, Social Science",
+topics:"Archaeology, Excavation, Ancient Cultures, Research Methods",
+skills:"Research, observation, documentation, history",
+education:"Archaeology, History, Anthropology or related higher education.",
+jobs:"Archaeologist, Researcher, Heritage Professional",
+demand:"Opportunities exist in research, museums, heritage and archaeological organizations.",
+salary:"Varies by organization, qualification, experience and location.",
+roadmap:["History","Geography","Archaeology","Research","Field Work","Higher Study"]
+},
+
+{
+name:"Anthropologist",icon:"🌍",category:"Science",
+what:"Studies humans, cultures, societies and human development.",
+subjects:"Social Science, History, Geography",
+topics:"Culture, Society, Human Evolution, Research Methods",
+skills:"Research, communication, observation, critical thinking",
+education:"Anthropology or related social science degree.",
+jobs:"Anthropologist, Researcher, Cultural Consultant",
+demand:"Opportunities exist in research, education, development and cultural organizations.",
+salary:"Varies by specialization, employer, qualification and location.",
+roadmap:["Social Science","History","Anthropology","Research","Field Work","Higher Study"]
+},
+
+{
+name:"Sociologist",icon:"👥",category:"Science",
+what:"Studies society, social behavior, groups and institutions.",
+subjects:"Social Science, Mathematics",
+topics:"Sociology, Research Methods, Statistics, Social Theory",
+skills:"Research, communication, analysis, critical thinking",
+education:"Sociology or related social science degree.",
+jobs:"Sociologist, Social Researcher, Policy Researcher",
+demand:"Relevant to research, policy, education and social development.",
+salary:"Varies by sector, organization, qualification and experience.",
+roadmap:["Social Science","Research","Statistics","Sociology","Projects","Higher Study"]
+},
+
+{
+name:"Political Scientist",icon:"🏛️",category:"Science",
+what:"Studies governments, political systems and public policies.",
+subjects:"Political Science, History, Economics",
+topics:"Political Systems, Public Policy, International Relations, Research",
+skills:"Research, writing, analysis, communication",
+education:"Political Science or related social science degree.",
+jobs:"Political Researcher, Policy Analyst, Academic, Public Affairs Professional",
+demand:"Opportunities vary across government, research, education and public affairs.",
+salary:"Varies by sector, qualification, experience and location.",
+roadmap:["Political Science","History","Economics","Research","Writing","Higher Study"]
+},
+
+{
+name:"Linguist",icon:"🗣️",category:"Science",
+what:"Studies human language and how languages work.",
+subjects:"English/Languages, Computer Science can be useful",
+topics:"Grammar, Phonetics, Syntax, Semantics, Computational Linguistics",
+skills:"Language analysis, research, communication",
+education:"Linguistics, languages or related field.",
+jobs:"Linguist, Language Researcher, Computational Linguist",
+demand:"Applications exist in education, language technology, research and communication.",
+salary:"Varies by specialization, employer and location.",
+roadmap:["Languages","Grammar","Linguistics","Research","Language Technology","Projects"]
+},
+
+/* MEDICAL */
+{
+name:"Doctor",icon:"🩺",category:"Medical",
+what:"Diagnoses and treats patients and helps maintain health.",
+subjects:"Biology, Chemistry, Physics",
+topics:"Human Biology, Anatomy, Physiology, Medicine",
+skills:"Science, communication, decision making, empathy",
+education:"Medical degree such as MBBS followed by required training and registration.",
+jobs:"Doctor, General Physician, Specialist Doctor",
+demand:"Healthcare professionals are needed across communities and healthcare systems.",
+salary:"Varies greatly by specialty, employer, experience and location.",
+roadmap:["Biology","Chemistry","Physics","Medical Entrance Preparation","Medical Degree","Clinical Training"]
+},
+
+{
+name:"Dentist",icon:"🦷",category:"Medical",
+what:"Diagnoses and treats problems related to teeth and oral health.",
+subjects:"Biology, Chemistry, Physics",
+topics:"Dental Anatomy, Oral Health, Dental Procedures",
+skills:"Biology, precision, communication, practical skills",
+education:"BDS or equivalent recognized dental education and training.",
+jobs:"Dentist, Dental Surgeon, Dental Consultant",
+demand:"Oral healthcare creates ongoing need for qualified dental professionals.",
+salary:"Varies by location, experience, specialization and practice type.",
+roadmap:["Biology","Chemistry","Physics","Entrance Preparation","Dental Degree","Clinical Training"]
+},
+
+{
+name:"Pharmacist",icon:"💊",category:"Medical",
+what:"Works with medicines and supports their safe and appropriate use.",
+subjects:"Chemistry, Biology",
+topics:"Pharmacology, Drug Safety, Pharmacy Practice, Chemistry",
+skills:"Science, accuracy, communication, organization",
+education:"Pharmacy degree such as B.Pharm or other recognized pathway.",
+jobs:"Pharmacist, Clinical Pharmacy Professional, Pharmaceutical Professional",
+demand:"Pharmacy roles exist in hospitals, pharmacies, pharmaceutical companies and research.",
+salary:"Varies by qualification, employer, specialization and location.",
+roadmap:["Chemistry","Biology","Pharmacy Basics","Medicines","Training","Professional Practice"]
+},
+
+{
+name:"Physiotherapist",icon:"🏃",category:"Medical",
+what:"Helps people improve movement and physical function through professional rehabilitation.",
+subjects:"Biology, Physics",
+topics:"Human Anatomy, Physiology, Exercise Science, Rehabilitation",
+skills:"Communication, anatomy knowledge, observation, practical skills",
+education:"Recognized physiotherapy degree and clinical training.",
+jobs:"Physiotherapist, Rehabilitation Professional, Sports Physiotherapist",
+demand:"Rehabilitation and movement-related healthcare services create opportunities.",
+salary:"Varies by workplace, specialization, experience and location.",
+roadmap:["Biology","Anatomy","Physiology","Rehabilitation","Clinical Training","Practice"]
+},
+
+{
+name:"Veterinarian",icon:"🐾",category:"Medical",
+what:"Diagnoses and treats diseases and injuries in animals.",
+subjects:"Biology, Chemistry, Physics",
+topics:"Animal Anatomy, Veterinary Medicine, Animal Diseases",
+skills:"Biology, observation, communication, practical skills",
+education:"Veterinary medicine degree such as BVSc & AH or recognized equivalent.",
+jobs:"Veterinarian, Veterinary Surgeon, Animal Health Professional",
+demand:"Needed in animal healthcare, farms, pet care and veterinary services.",
+salary:"Varies by specialization, practice type, experience and location.",
+roadmap:["Biology","Chemistry","Animal Science","Entrance Preparation","Veterinary Degree","Clinical Training"]
+},
+
+{
+name:"Nutritionist",icon:"🥗",category:"Medical",
+what:"Uses nutrition science to support healthy eating and wellbeing.",
+subjects:"Biology, Chemistry",
+topics:"Nutrition, Food Science, Human Biology, Diet Planning",
+skills:"Nutrition knowledge, communication, analysis",
+education:"Nutrition, Dietetics, Food Science or related recognized education.",
+jobs:"Nutritionist, Nutrition Educator, Food & Wellness Professional",
+demand:"Nutrition services are used in healthcare, wellness, food and education.",
+salary:"Varies by qualification, role, experience and location.",
+roadmap:["Biology","Food Science","Nutrition","Human Biology","Training","Practical Experience"]
+},
+
+{
+name:"Medical Laboratory Scientist",icon:"🧫",category:"Medical",
+what:"Performs laboratory tests that support medical diagnosis.",
+subjects:"Biology, Chemistry",
+topics:"Clinical Chemistry, Microbiology, Hematology, Lab Safety",
+skills:"Laboratory skills, accuracy, observation, science",
+education:"Medical Laboratory Technology or related recognized medical laboratory education.",
+jobs:"Medical Laboratory Scientist, Lab Technologist, Laboratory Analyst",
+demand:"Medical testing is an important part of healthcare systems.",
+salary:"Varies by qualification, employer, specialization and location.",
+roadmap:["Biology","Chemistry","Lab Safety","Clinical Testing","Training","Practice"]
+},
+
+{
+name:"Radiologist",icon:"🩻",category:"Medical",
+what:"A medical doctor specializing in interpreting medical imaging and related diagnosis.",
+subjects:"Biology, Chemistry, Physics",
+topics:"Medical Imaging, Anatomy, Radiology, Diagnostic Medicine",
+skills:"Medical knowledge, analysis, attention to detail",
+education:"Medical degree followed by specialized postgraduate training in radiology.",
+jobs:"Radiologist, Diagnostic Imaging Specialist",
+demand:"Medical imaging is an important part of modern diagnosis.",
+salary:"Varies by country, hospital, specialization and experience.",
+roadmap:["Biology","Chemistry","Physics","Medical Degree","Specialization","Clinical Practice"]
+},
+
+{
+name:"Psychologist",icon:"🧠",category:"Medical",
+what:"Studies behavior and mental processes and may provide psychological services depending on qualifications.",
+subjects:"Biology, Psychology, Social Science",
+topics:"Psychology, Human Behavior, Research Methods, Statistics",
+skills:"Communication, listening, research, critical thinking",
+education:"Psychology degree followed by further study/training depending on the professional role and local requirements.",
+jobs:"Psychologist, Researcher, Counselor-related roles depending on qualifications",
+demand:"Psychology has applications in education, healthcare, organizations and research.",
+salary:"Varies by qualification, specialization, organization and location.",
+roadmap:["Psychology","Biology","Research","Statistics","Higher Study","Professional Training"]
+},
+
+{
+name:"Public Health Specialist",icon:"🏥",category:"Medical",
+what:"Works to improve health at population and community levels.",
+subjects:"Biology, Statistics, Social Science",
+topics:"Epidemiology, Health Policy, Biostatistics, Community Health",
+skills:"Research, statistics, communication, planning",
+education:"Public Health, Medicine, Biology, Statistics or related education.",
+jobs:"Public Health Specialist, Epidemiology Professional, Health Program Officer",
+demand:"Public health programs support disease prevention and community health.",
+salary:"Varies by organization, qualification, experience and location.",
+roadmap:["Biology","Statistics","Public Health","Research","Community Projects","Higher Study"]
+},
+
+/* BUSINESS */
+{
+name:"Business Analyst",icon:"📋",category:"Business",
+what:"Analyzes business problems and helps organizations improve processes and decisions.",
+subjects:"Mathematics, Economics, Business Studies",
+topics:"Business Analysis, Excel, Data, Requirements, Process Mapping",
+skills:"Analysis, communication, problem solving, presentation",
+education:"Business, Economics, Computer Science or related degree.",
+jobs:"Business Analyst, Business Systems Analyst, Process Analyst",
+demand:"Useful across industries where organizations need data-informed improvement.",
+salary:"Varies by industry, experience, employer and location.",
+roadmap:["Business Basics","Excel","Data","Analysis","Communication","Projects"]
+},
+
+{
+name:"Financial Analyst",icon:"💰",category:"Business",
+what:"Analyzes financial information to support business and investment decisions.",
+subjects:"Mathematics, Economics, Accounting",
+topics:"Financial Statements, Excel, Valuation, Financial Markets",
+skills:"Mathematics, analysis, Excel, communication",
+education:"Finance, Economics, Accounting or related degree.",
+jobs:"Financial Analyst, Investment Analyst, Corporate Finance Analyst",
+demand:"Financial analysis is used in companies, banks, investment firms and other organizations.",
+salary:"Varies by industry, experience, company and location.",
+roadmap:["Math","Economics","Accounting","Excel","Finance","Analysis"]
+},
+
+{
+name:"Accountant",icon:"🧾",category:"Business",
+what:"Records, analyzes and reports financial information.",
+subjects:"Mathematics, Accounting, Economics",
+topics:"Accounting, Tax Basics, Financial Statements, Auditing",
+skills:"Numeracy, accuracy, organization, analysis",
+education:"Accounting, Commerce, Finance or related education; professional qualifications may be useful.",
+jobs:"Accountant, Auditor, Tax Professional, Finance Associate",
+demand:"Accounting is required by businesses and organizations across many sectors.",
+salary:"Varies by qualification, experience, organization and location.",
+roadmap:["Math","Accounting","Commerce","Excel","Financial Statements","Professional Study"]
+},
+
+{
+name:"Economist",icon:"📉",category:"Business",
+what:"Studies economies, markets, resources and economic behavior.",
+subjects:"Mathematics, Economics, Statistics",
+topics:"Microeconomics, Macroeconomics, Econometrics, Markets",
+skills:"Mathematics, analysis, research, writing",
+education:"Economics degree; advanced study can be useful for research roles.",
+jobs:"Economist, Economic Analyst, Policy Researcher",
+demand:"Used in government, finance, research, consulting and business.",
+salary:"Varies by sector, qualification, experience and location.",
+roadmap:["Economics","Math","Statistics","Data","Research","Higher Study"]
+},
+
+{
+name:"Marketing Manager",icon:"📣",category:"Business",
+what:"Plans and manages marketing activities for products and organizations.",
+subjects:"Business Studies, Economics, English",
+topics:"Marketing, Branding, Digital Marketing, Consumer Behavior",
+skills:"Communication, creativity, analysis, planning",
+education:"Business, Marketing, Management or related degree.",
+jobs:"Marketing Manager, Brand Manager, Digital Marketing Manager",
+demand:"Organizations need marketing to reach customers and build brands.",
+salary:"Varies by company, experience, industry and location.",
+roadmap:["Marketing Basics","Communication","Digital Marketing","Analytics","Campaigns","Projects"]
+},
+
+{
+name:"Entrepreneur",icon:"🚀",category:"Business",
+what:"Creates and develops a business or organization around an idea or opportunity.",
+subjects:"Business Studies, Mathematics, Economics",
+topics:"Business Models, Finance, Marketing, Product Development",
+skills:"Problem solving, leadership, communication, creativity",
+education:"No single degree is required; business and technical knowledge can be valuable.",
+jobs:"Founder, Business Owner, Startup Entrepreneur",
+demand:"Entrepreneurship creates opportunities but also involves uncertainty and risk.",
+salary:"Income varies widely and may depend on business performance.",
+roadmap:["Find a Problem","Research","Build Idea","Create Prototype","Test","Learn Business","Launch"]
+},
+
+{
+name:"Human Resources Manager",icon:"👥",category:"Business",
+what:"Manages people-related processes within organizations.",
+subjects:"Business Studies, Psychology, English",
+topics:"Recruitment, Training, Employee Relations, HR Analytics",
+skills:"Communication, organization, people skills, problem solving",
+education:"Human Resources, Business, Psychology or related degree.",
+jobs:"HR Manager, Recruiter, HR Business Partner",
+demand:"Organizations need HR functions for hiring, development and employee support.",
+salary:"Varies by organization, experience, industry and location.",
+roadmap:["Communication","Business","HR Basics","Recruitment","HR Tools","Experience"]
+},
+
+{
+name:"Project Manager",icon:"📌",category:"Business",
+what:"Plans and coordinates projects to achieve defined goals, schedules and outcomes.",
+subjects:"Mathematics, Business Studies, English",
+topics:"Project Planning, Risk, Budgeting, Agile, Team Management",
+skills:"Leadership, planning, communication, organization",
+education:"Business, Management, Engineering, IT or related education can be useful.",
+jobs:"Project Manager, Program Coordinator, Project Lead",
+demand:"Project management is used across technology, construction, business and many industries.",
+salary:"Varies by industry, experience, certification and location.",
+roadmap:["Planning","Communication","Project Basics","Tools","Teamwork","Agile","Experience"]
+},
+
+{
+name:"Supply Chain Manager",icon:"📦",category:"Business",
+what:"Manages the movement of goods and resources from suppliers to customers.",
+subjects:"Mathematics, Economics, Business Studies",
+topics:"Logistics, Inventory, Procurement, Operations, Data",
+skills:"Planning, analysis, organization, communication",
+education:"Supply Chain, Operations, Business, Engineering or related degree.",
+jobs:"Supply Chain Manager, Operations Manager, Logistics Manager",
+demand:"Important in manufacturing, retail, e-commerce and logistics.",
+salary:"Varies by industry, company, experience and location.",
+roadmap:["Business Basics","Logistics","Inventory","Excel","Data","Operations","Experience"]
+},
+
+{
+name:"Management Consultant",icon:"🧩",category:"Business",
+what:"Helps organizations solve business, strategy and operational problems.",
+subjects:"Mathematics, Economics, Business Studies",
+topics:"Strategy, Business Analysis, Finance, Operations",
+skills:"Problem solving, communication, research, presentation",
+education:"Business, Economics, Engineering or related degree; advanced study may help.",
+jobs:"Management Consultant, Strategy Analyst, Business Consultant",
+demand:"Organizations use consulting for strategy, transformation and improvement projects.",
+salary:"Varies significantly by consulting firm, experience, location and specialization.",
+roadmap:["Math","Business","Case Studies","Research","Communication","Projects"]
+},
+
+{
+name:"Product Manager",icon:"📱",category:"Business",
+what:"Helps define and guide products from idea to development and improvement.",
+subjects:"Business Studies, Computer Science, Mathematics",
+topics:"Product Strategy, User Research, Analytics, Product Development",
+skills:"Communication, leadership, problem solving, prioritization",
+education:"There is no single required degree; technology, business and design knowledge can help.",
+jobs:"Product Manager, Product Owner, Product Analyst",
+demand:"Technology and digital businesses frequently need product professionals.",
+salary:"Varies by company, industry, experience and location.",
+roadmap:["Problem Solving","Users","Business","Technology Basics","Analytics","Build Products"]
+},
+
+{
+name:"AI Product Manager",icon:"🤖",category:"Business",
+what:"Guides products that use artificial intelligence and helps connect user needs with AI capabilities.",
+subjects:"Mathematics, Computer Science, Business Studies",
+topics:"AI Basics, Product Strategy, User Research, Data, AI Ethics",
+skills:"Product thinking, communication, technology understanding, analysis",
+education:"Business, Computer Science, Engineering or related education can be useful.",
+jobs:"AI Product Manager, Product Lead, AI Product Strategist",
+demand:"Growing as organizations develop products that include AI capabilities.",
+salary:"Varies by company, experience, product area and location.",
+roadmap:["AI Basics","Product Basics","User Research","Data","Build Projects","Product Strategy"]
+},
+
+{
+name:"Quantitative Analyst",icon:"📊",category:"Business",
+what:"Uses mathematics, statistics and programming to analyze financial problems.",
+subjects:"Mathematics, Statistics, Computer Science, Economics",
+topics:"Probability, Statistics, Python, Finance, Algorithms",
+skills:"Mathematics, programming, analytical thinking",
+education:"Mathematics, Statistics, Computer Science, Engineering or Finance; advanced study is common.",
+jobs:"Quant Analyst, Quant Researcher, Risk Analyst",
+demand:"Specialized demand in finance and quantitative research.",
+salary:"Can vary greatly by firm, location, experience and specialization.",
+roadmap:["Math","Probability","Statistics","Python","Finance","Algorithms","Projects"]
+},
+
+{
+name:"Actuary",icon:"📐",category:"Business",
+what:"Uses mathematics and statistics to analyze financial risk and uncertainty.",
+subjects:"Mathematics, Statistics, Economics",
+topics:"Probability, Statistics, Risk, Finance, Actuarial Mathematics",
+skills:"Mathematics, analytical thinking, accuracy",
+education:"Mathematics, Statistics, Actuarial Science or related education with professional actuarial exams.",
+jobs:"Actuary, Risk Analyst, Insurance Analyst",
+demand:"Used in insurance, finance, pensions and risk management.",
+salary:"Varies by qualification, exam progress, experience and employer.",
+roadmap:["Math","Probability","Statistics","Finance","Actuarial Exams","Experience"]
+},
+
+{
+name:"Investment Banker",icon:"🏦",category:"Business",
+what:"Works on financial transactions such as fundraising, mergers and acquisitions.",
+subjects:"Mathematics, Economics, Business Studies",
+topics:"Finance, Valuation, Markets, Financial Modeling",
+skills:"Analysis, mathematics, communication, attention to detail",
+education:"Finance, Economics, Business or related degree.",
+jobs:"Investment Banking Analyst, Associate, Corporate Finance Professional",
+demand:"Specialized finance career with opportunities influenced by financial markets.",
+salary:"Varies significantly by firm, location, experience and role.",
+roadmap:["Math","Economics","Finance","Excel","Financial Modeling","Internships"]
+},
+
+{
+name:"Management Accountant",icon:"💼",category:"Business",
+what:"Uses accounting information to support internal business decisions.",
+subjects:"Mathematics, Accounting, Economics",
+topics:"Cost Accounting, Budgeting, Financial Analysis, Management Accounting",
+skills:"Numeracy, analysis, organization, communication",
+education:"Accounting, Commerce, Finance or related professional education.",
+jobs:"Management Accountant, Cost Analyst, Finance Analyst",
+demand:"Useful in organizations for budgeting, planning and decision-making.",
+salary:"Varies by qualification, employer, experience and location.",
+roadmap:["Accounting","Math","Excel","Costing","Budgeting","Professional Study"]
+},
+
+{
+name:"Digital Marketer",icon:"📱",category:"Business",
+what:"Promotes products and organizations through digital channels.",
+subjects:"English, Business Studies, Computer Science",
+topics:"SEO, Social Media, Content, Analytics, Advertising",
+skills:"Communication, creativity, analytics, marketing",
+education:"Marketing, Business, Communication or practical digital marketing training.",
+jobs:"Digital Marketer, SEO Specialist, Social Media Manager",
+demand:"Digital channels are widely used by businesses and organizations.",
+salary:"Varies by skills, experience, employer and location.",
+roadmap:["Marketing","Content","SEO","Social Media","Analytics","Campaign Projects"]
+},
+
+{
+name:"Public Relations Specialist",icon:"📢",category:"Business",
+what:"Manages communication and public image for organizations.",
+subjects:"English, Business Studies, Social Science",
+topics:"PR, Media Relations, Communication, Brand Reputation",
+skills:"Writing, communication, organization, creativity",
+education:"Communication, Journalism, Public Relations, Business or related degree.",
+jobs:"PR Specialist, Communications Executive, Media Relations Professional",
+demand:"Organizations use communication professionals to manage public messaging.",
+salary:"Varies by industry, experience, employer and location.",
+roadmap:["Writing","Communication","Media","PR Basics","Projects","Experience"]
+},
+
+{
+name:"Supply Chain Analyst",icon:"📦",category:"Business",
+what:"Uses data to improve supply chain operations.",
+subjects:"Mathematics, Statistics, Business Studies",
+topics:"Logistics, Inventory, Excel, Data Analysis, Forecasting",
+skills:"Data analysis, mathematics, organization, problem solving",
+education:"Supply Chain, Business, Economics, Engineering or related degree.",
+jobs:"Supply Chain Analyst, Logistics Analyst, Operations Analyst",
+demand:"Data-driven supply chain management is important in many industries.",
+salary:"Varies by industry, experience, company and location.",
+roadmap:["Math","Excel","Data","Logistics","Inventory","Analytics","Projects"]
+},
+
+{
+name:"Tourism Manager",icon:"🧳",category:"Business",
+what:"Plans and manages tourism services, destinations and visitor experiences.",
+subjects:"Geography, Business Studies, English",
+topics:"Tourism Management, Hospitality, Marketing, Travel Operations",
+skills:"Communication, planning, customer service, organization",
+education:"Tourism, Hospitality, Business or related education.",
+jobs:"Tourism Manager, Travel Manager, Destination Manager",
+demand:"Opportunities depend on tourism activity, destinations and travel businesses.",
+salary:"Varies by organization, location, experience and role.",
+roadmap:["Geography","Tourism","Communication","Marketing","Travel Operations","Experience"]
+},
+
+{
+name:"Hotel Manager",icon:"🏨",category:"Business",
+what:"Manages hotel operations and guest services.",
+subjects:"Business Studies, English, Economics",
+topics:"Hospitality, Operations, Customer Service, Finance, HR",
+skills:"Leadership, communication, organization, problem solving",
+education:"Hospitality, Hotel Management, Business or related education.",
+jobs:"Hotel Manager, Operations Manager, Front Office Manager",
+demand:"Hospitality businesses require trained managers and service professionals.",
+salary:"Varies by hotel, location, experience and position.",
+roadmap:["Hospitality Basics","Communication","Operations","Customer Service","Management","Experience"]
+},
+
+{
+name:"Event Manager",icon:"🎉",category:"Business",
+what:"Plans and coordinates events from concept to completion.",
+subjects:"Business Studies, English, Mathematics",
+topics:"Event Planning, Budgeting, Marketing, Logistics",
+skills:"Organization, communication, creativity, teamwork",
+education:"Event Management, Business, Hospitality or practical experience.",
+jobs:"Event Manager, Event Coordinator, Event Producer",
+demand:"Events, conferences, festivals and business functions create opportunities.",
+salary:"Varies by event type, employer, experience and location.",
+roadmap:["Planning","Communication","Budgeting","Marketing","Event Projects","Experience"]
+},
+
+/* CREATIVE */
+{
+name:"UI/UX Designer",icon:"🎨",category:"Creative",
+what:"Designs digital interfaces and user experiences.",
+subjects:"Art, Computer Science, English",
+topics:"UI Design, UX Research, Wireframes, Prototyping, Design Systems",
+skills:"Creativity, design, user research, communication",
+education:"Design, UX, HCI or practical portfolio-based learning.",
+jobs:"UI Designer, UX Designer, Product Designer",
+demand:"Digital products need professionals who can improve usability and experience.",
+salary:"Varies by skills, experience, company and location.",
+roadmap:["Design Basics","Figma","UI","UX","User Research","Prototypes","Portfolio"]
+},
+
+{
+name:"Graphic Designer",icon:"🖌️",category:"Creative",
+what:"Creates visual designs for digital and print communication.",
+subjects:"Art, Computer Science, English",
+topics:"Typography, Layout, Branding, Photoshop/Illustration Tools",
+skills:"Creativity, visual communication, design",
+education:"Design education or portfolio-based self-learning can lead to opportunities.",
+jobs:"Graphic Designer, Brand Designer, Visual Designer",
+demand:"Businesses and organizations need visual communication across many channels.",
+salary:"Varies by portfolio, experience, employer and location.",
+roadmap:["Drawing","Design Basics","Design Software","Typography","Branding","Portfolio"]
+},
+
+{
+name:"Animator",icon:"🎞️",category:"Creative",
+what:"Creates animated visuals for entertainment, education and media.",
+subjects:"Art, Computer Science",
+topics:"Animation, Storyboarding, 2D/3D, Motion Design",
+skills:"Drawing, creativity, storytelling, software skills",
+education:"Animation, Design, Fine Arts or portfolio-based learning.",
+jobs:"2D Animator, 3D Animator, Motion Designer",
+demand:"Used in films, games, advertising, education and digital media.",
+salary:"Varies by specialization, studio, portfolio and experience.",
+roadmap:["Drawing","Animation Basics","Storyboarding","2D/3D Tools","Projects","Portfolio"]
+},
+
+{
+name:"Photographer",icon:"📷",category:"Creative",
+what:"Creates photographs for artistic, commercial, documentary or personal purposes.",
+subjects:"Art, Visual Studies",
+topics:"Composition, Lighting, Camera, Editing, Photography",
+skills:"Creativity, observation, visual storytelling",
+education:"Formal degree is not always required; practice and portfolio are important.",
+jobs:"Photographer, Product Photographer, Photojournalist",
+demand:"Opportunities exist in media, events, advertising, business and creative work.",
+salary:"Varies widely by assignment, clients, experience and location.",
+roadmap:["Camera Basics","Composition","Lighting","Editing","Practice","Portfolio"]
+},
+
+{
+name:"Video Editor",icon:"🎬",category:"Creative",
+what:"Turns raw video footage into polished visual stories.",
+subjects:"Art, English, Computer Science",
+topics:"Video Editing, Storytelling, Audio, Motion Graphics",
+skills:"Creativity, storytelling, editing software, attention to detail",
+education:"Formal degree is optional for many roles; strong portfolio matters.",
+jobs:"Video Editor, Film Editor, Content Editor",
+demand:"Video content is widely used by media, businesses and creators.",
+salary:"Varies by skills, clients, experience and location.",
+roadmap:["Video Basics","Editing Software","Cuts","Audio","Color","Motion","Portfolio"]
+},
+
+{
+name:"Fashion Designer",icon:"👗",category:"Creative",
+what:"Designs clothing and fashion products.",
+subjects:"Art, Mathematics, Home Science can be useful",
+topics:"Fashion Design, Textiles, Pattern Making, Illustration",
+skills:"Creativity, drawing, design, knowledge of materials",
+education:"Fashion Design or related design education is useful.",
+jobs:"Fashion Designer, Apparel Designer, Fashion Illustrator",
+demand:"Opportunities exist in fashion brands, apparel, retail and independent businesses.",
+salary:"Varies by brand, experience, specialization and location.",
+roadmap:["Drawing","Fashion Basics","Textiles","Design","Pattern Making","Portfolio"]
+},
+
+{
+name:"Interior Designer",icon:"🏠",category:"Creative",
+what:"Designs functional and visually appealing interior spaces.",
+subjects:"Art, Mathematics, Physics",
+topics:"Space Planning, Materials, Lighting, CAD, Interior Design",
+skills:"Creativity, planning, drawing, communication",
+education:"Interior Design, Architecture or related design education.",
+jobs:"Interior Designer, Space Designer, Interior Stylist",
+demand:"Opportunities exist in residential, commercial and hospitality spaces.",
+salary:"Varies by project, experience, clients and location.",
+roadmap:["Drawing","Design","Space Planning","Materials","CAD","Portfolio"]
+},
+
+{
+name:"Content Writer",icon:"✍️",category:"Creative",
+what:"Creates written content for websites, media, businesses and organizations.",
+subjects:"English, Social Science",
+topics:"Writing, Research, SEO, Storytelling, Editing",
+skills:"Writing, research, grammar, creativity",
+education:"No single degree is required; strong writing skills and portfolio are important.",
+jobs:"Content Writer, Copywriter, Technical Content Writer",
+demand:"Organizations need written content for websites, products and communication.",
+salary:"Varies by niche, employer, experience and freelance workload.",
+roadmap:["Grammar","Writing","Research","SEO","Editing","Portfolio"]
+},
+
+{
+name:"Journalist",icon:"📰",category:"Creative",
+what:"Researches, verifies and reports news and information.",
+subjects:"English, Social Science, History",
+topics:"Reporting, Research, Media Ethics, Interviewing",
+skills:"Writing, research, communication, critical thinking",
+education:"Journalism, Mass Communication or related education can be useful.",
+jobs:"Journalist, Reporter, News Writer, Digital Journalist",
+demand:"News organizations and digital media continue to need reporting and content skills.",
+salary:"Varies by organization, experience, role and location.",
+roadmap:["Writing","Current Affairs","Research","Reporting","Interviewing","Portfolio"]
+},
+
+{
+name:"Film Director",icon:"🎥",category:"Creative",
+what:"Leads the creative direction of films and video productions.",
+subjects:"English, Art, Media Studies",
+topics:"Filmmaking, Storytelling, Cinematography, Directing",
+skills:"Leadership, storytelling, creativity, communication",
+education:"Film, Media, Communication or practical filmmaking experience.",
+jobs:"Film Director, Video Director, Creative Director",
+demand:"Opportunities exist in film, advertising, online video and entertainment.",
+salary:"Highly variable depending on production, experience and project.",
+roadmap:["Storytelling","Film Basics","Camera","Editing","Short Films","Portfolio"]
+},
+
+{
+name:"Game Designer",icon:"🕹️",category:"Creative",
+what:"Designs rules, mechanics, systems and experiences for games.",
+subjects:"Computer Science, Mathematics, Art",
+topics:"Game Mechanics, Level Design, Storytelling, Game Engines",
+skills:"Creativity, problem solving, game thinking, communication",
+education:"Game Design, Computer Science, Design or portfolio-based learning.",
+jobs:"Game Designer, Level Designer, Systems Designer",
+demand:"Game development and interactive media create specialized opportunities.",
+salary:"Varies by studio, experience, specialization and location.",
+roadmap:["Game Analysis","Game Mechanics","Design","Game Engine","Prototype","Portfolio"]
+},
+
+{
+name:"UX Researcher",icon:"🔍",category:"Creative",
+what:"Studies users to help improve digital products and experiences.",
+subjects:"Psychology, English, Computer Science, Statistics",
+topics:"User Interviews, Usability Testing, Research Methods, Data",
+skills:"Research, communication, observation, analysis",
+education:"Psychology, HCI, Design, Sociology or related education.",
+jobs:"UX Researcher, User Researcher, Product Researcher",
+demand:"Digital product teams use user research to understand user needs.",
+salary:"Varies by company, experience, location and specialization.",
+roadmap:["Research Basics","Psychology","Interviews","Usability Testing","Analysis","Projects"]
+},
+
+{
+name:"Technical Writer",icon:"📝",category:"Creative",
+what:"Explains complex technical information clearly for users and teams.",
+subjects:"English, Computer Science",
+topics:"Technical Writing, Documentation, APIs, Information Design",
+skills:"Writing, research, technology understanding, clarity",
+education:"English, Communication, Computer Science or related education.",
+jobs:"Technical Writer, Documentation Specialist, API Writer",
+demand:"Software and technology companies need clear documentation.",
+salary:"Varies by technical knowledge, writing skills, company and location.",
+roadmap:["English","Writing","Tech Basics","Documentation","APIs","Portfolio"]
+},
+
+{
+name:"Animator / VFX Artist",icon:"✨",category:"Creative",
+what:"Creates visual effects and animated imagery for films, games and digital media.",
+subjects:"Art, Computer Science",
+topics:"VFX, 3D Modeling, Animation, Compositing, Motion",
+skills:"Creativity, visual skills, software knowledge",
+education:"Animation, VFX, Design or portfolio-based learning.",
+jobs:"VFX Artist, 3D Artist, Motion Artist, Animator",
+demand:"Used in films, advertising, games and digital content.",
+salary:"Varies by studio, specialization, portfolio and experience.",
+roadmap:["Drawing","3D Basics","Animation","VFX Tools","Projects","Portfolio"]
+},
+
+/* PUBLIC SERVICE */
+{
+name:"Lawyer",icon:"⚖️",category:"Public Service",
+what:"Provides legal advice and represents clients within the law.",
+subjects:"English, Political Science, History, Economics",
+topics:"Law, Constitution, Legal Research, Legal Writing",
+skills:"Communication, reasoning, research, writing",
+education:"Law degree such as LLB or recognized integrated law program.",
+jobs:"Advocate, Corporate Lawyer, Legal Consultant, Legal Researcher",
+demand:"Legal professionals work across courts, businesses, government and organizations.",
+salary:"Varies widely by specialization, experience, employer and practice.",
+roadmap:["English","Social Science","Law Basics","Legal Research","Law Degree","Training"]
+},
+
+{
+name:"Judge",icon:"👩‍⚖️",category:"Public Service",
+what:"Presides over legal proceedings and makes judicial decisions according to law.",
+subjects:"English, Political Science, History",
+topics:"Law, Constitution, Legal Procedure, Judicial Studies",
+skills:"Reasoning, legal knowledge, impartial decision making",
+education:"Law degree and required judicial career pathway/examinations depending on jurisdiction.",
+jobs:"Judge, Judicial Officer",
+demand:"Judicial systems require qualified legal professionals through formal selection processes.",
+salary:"Determined by judicial system, level, location and applicable rules.",
+roadmap:["School Studies","Law Degree","Legal Knowledge","Judicial Preparation","Selection Process","Training"]
+},
+
+{
+name:"Civil Services Officer",icon:"🏛️",category:"Public Service",
+what:"Works in government administration, public policy and implementation.",
+subjects:"History, Geography, Political Science, Economics",
+topics:"Constitution, Governance, Current Affairs, Public Administration",
+skills:"General knowledge, writing, analysis, communication",
+education:"A recognized undergraduate degree followed by the relevant competitive examination and selection process.",
+jobs:"Administrative Officer, Government Officer, Policy/Development Roles",
+demand:"Government administration provides structured career opportunities through competitive recruitment.",
+salary:"Depends on service, level, government rules and location.",
+roadmap:["NCERT Basics","Current Affairs","General Studies","Writing","Competitive Exam Preparation"]
+},
+
+{
+name:"Police Officer",icon:"👮",category:"Public Service",
+what:"Works in law enforcement, public safety and community protection.",
+subjects:"General Studies, Physical Education, English/Hindi",
+topics:"Law, Investigation, Public Safety, Police Procedures",
+skills:"Discipline, communication, decision making, teamwork",
+education:"Requirements vary by police service and recruitment level.",
+jobs:"Police Officer, Investigation Officer, Police Administrator",
+demand:"Police services require personnel through government recruitment systems.",
+salary:"Depends on rank, service, government rules and location.",
+roadmap:["Education","General Knowledge","Fitness","Exam Preparation","Recruitment","Training"]
+},
+
+{
+name:"Diplomat",icon:"🌐",category:"Public Service",
+what:"Represents a country in international relations and diplomacy.",
+subjects:"History, Political Science, Geography, Economics, Languages",
+topics:"International Relations, Diplomacy, World Affairs, Languages",
+skills:"Communication, negotiation, research, cultural awareness",
+education:"A recognized university degree followed by the relevant diplomatic/foreign service selection process.",
+jobs:"Diplomat, Foreign Service Officer, International Affairs Professional",
+demand:"International services recruit through formal government pathways.",
+salary:"Depends on government service, rank, location and applicable allowances.",
+roadmap:["History","Political Science","Languages","Current Affairs","Competitive Exam","Training"]
+},
+
+{
+name:"Policy Analyst",icon:"📜",category:"Public Service",
+what:"Researches public policies and evaluates their possible effects.",
+subjects:"Political Science, Economics, Mathematics, History",
+topics:"Public Policy, Research Methods, Statistics, Governance",
+skills:"Research, writing, data analysis, critical thinking",
+education:"Economics, Political Science, Public Policy, Statistics or related field.",
+jobs:"Policy Analyst, Research Analyst, Government Policy Professional",
+demand:"Policy research is used by governments, think tanks, NGOs and organizations.",
+salary:"Varies by organization, qualification, experience and location.",
+roadmap:["Social Science","Economics","Research","Statistics","Policy","Writing"]
+},
+
+/* OTHER */
+{
+name:"Pilot",icon:"✈️",category:"Other",
+what:"Operates aircraft safely according to aviation procedures and regulations.",
+subjects:"Mathematics, Physics, English",
+topics:"Aviation, Navigation, Meteorology, Aircraft Systems",
+skills:"Communication, concentration, decision making, technical knowledge",
+education:"Commercial pilot training and required aviation licenses/medical requirements.",
+jobs:"Commercial Pilot, Airline Pilot, Flight Instructor",
+demand:"Opportunities depend on aviation industry conditions and required licensing.",
+salary:"Varies greatly by airline, aircraft, experience, rank and location.",
+roadmap:["Math","Physics","English","Aviation Basics","Flight Training","Licensing"]
+},
+
+{
+name:"Chef",icon:"👨‍🍳",category:"Other",
+what:"Plans and prepares food in professional kitchens.",
+subjects:"Food Science, Mathematics, English",
+topics:"Cooking, Food Safety, Nutrition, Kitchen Management",
+skills:"Cooking, creativity, organization, teamwork",
+education:"Culinary training, hospitality education or practical experience.",
+jobs:"Chef, Sous Chef, Pastry Chef, Restaurant Professional",
+demand:"Restaurants, hotels, catering and food businesses employ culinary professionals.",
+salary:"Varies by role, establishment, experience and location.",
+roadmap:["Cooking Basics","Food Safety","Recipes","Kitchen Skills","Training","Experience"]
+},
+
+{
+name:"Forestry Officer",icon:"🌲",category:"Other",
+what:"Works to manage, protect and conserve forests and natural resources.",
+subjects:"Biology, Geography, Environmental Science",
+topics:"Forestry, Ecology, Conservation, Forest Management",
+skills:"Field work, biology, planning, environmental knowledge",
+education:"Forestry, Environmental Science, Biology or related education depending on role.",
+jobs:"Forest Officer, Forestry Professional, Conservation Officer",
+demand:"Forest management and conservation programs require trained professionals.",
+salary:"Varies by government service, organization, qualification and location.",
+roadmap:["Biology","Geography","Forestry","Ecology","Field Work","Competitive Exam if required"]
+},
+
+{
+name:"Teacher",icon:"👩‍🏫",category:"Other",
+what:"Helps students learn knowledge, skills and concepts.",
+subjects:"Depends on teaching subject",
+topics:"Teaching Methods, Subject Knowledge, Classroom Management",
+skills:"Communication, patience, explanation, organization",
+education:"Relevant degree plus required teacher education/eligibility according to school system.",
+jobs:"School Teacher, Subject Teacher, Educator",
+demand:"Schools and educational organizations need qualified teachers.",
+salary:"Varies by school, qualification, experience and location.",
+roadmap:["Choose Subject","Master Subject","Teaching Skills","Teacher Education","Practice","Teaching"]
+},
+
+{
+name:"Professor",icon:"🎓",category:"Other",
+what:"Teaches advanced subjects and often conducts research at colleges or universities.",
+subjects:"Depends on specialization",
+topics:"Subject Expertise, Research, Academic Writing, Teaching",
+skills:"Research, communication, teaching, critical thinking",
+education:"Advanced degree in a subject area; university requirements vary.",
+jobs:"Professor, Lecturer, Researcher, Academic",
+demand:"Higher education and research institutions recruit qualified academics.",
+salary:"Varies by institution, rank, qualification and location.",
+roadmap:["Choose Subject","Bachelor's","Master's","Research","Higher Study","Academic Career"]
+},
+
+{
+name:"Social Worker",icon:"🤝",category:"Other",
+what:"Supports people and communities facing social challenges.",
+subjects:"Social Science, Psychology, English",
+topics:"Social Work, Community Development, Counseling Basics, Policy",
+skills:"Communication, empathy, research, problem solving",
+education:"Social Work, Sociology, Psychology or related education.",
+jobs:"Social Worker, Community Worker, NGO Professional",
+demand:"Social services and community programs create opportunities for trained professionals.",
+salary:"Varies by organization, role, qualification and location.",
+roadmap:["Social Science","Communication","Social Work","Field Experience","Projects","Professional Study"]
+},
+
+{
+name:"Geographic Information Systems Specialist",icon:"🗺️",category:"Technology",
+what:"Uses geographic data and mapping technology to analyze locations and spatial information.",
+subjects:"Geography, Mathematics, Computer Science",
+topics:"GIS, Mapping, Remote Sensing, Spatial Data",
+skills:"Geography, data analysis, GIS software, problem solving",
+education:"GIS, Geography, Geomatics, Computer Science or related education.",
+jobs:"GIS Specialist, GIS Analyst, Spatial Data Analyst",
+demand:"Used in urban planning, environment, mapping, transportation and government.",
+salary:"Varies by skills, software knowledge, experience and location.",
+roadmap:["Geography","Maps","GIS","Spatial Data","Remote Sensing","Projects"]
+},
+
+{
+name:"Librarian",icon:"📚",category:"Other",
+what:"Manages information resources and helps people find reliable information.",
+subjects:"English, Computer Science, General Knowledge",
+topics:"Library Science, Information Management, Digital Resources",
+skills:"Organization, research, communication, technology",
+education:"Library and Information Science or relevant qualification depending on role.",
+jobs:"Librarian, Information Specialist, Library Assistant",
+demand:"Libraries, educational institutions and information centers need trained staff.",
+salary:"Varies by institution, qualification, experience and location.",
+roadmap:["Reading","Information Skills","Library Science","Digital Tools","Training","Experience"]
+},
+
+{
+name:"Archivist",icon:"🗃️",category:"Other",
+what:"Preserves and organizes historical, cultural and important records.",
+subjects:"History, English, Computer Science",
+topics:"Archival Science, Preservation, Cataloging, Digital Archives",
+skills:"Organization, research, attention to detail, documentation",
+education:"Archival Studies, Library Science, History or related education.",
+jobs:"Archivist, Records Manager, Digital Archivist",
+demand:"Museums, archives, libraries and organizations preserve important records.",
+salary:"Varies by institution, qualification, experience and location.",
+roadmap:["History","Research","Records","Preservation","Digital Archives","Higher Study"]
+},
+
+{
+name:"Fitness Trainer",icon:"🏋️",category:"Other",
+what:"Helps clients follow structured physical activity programs within professional scope.",
+subjects:"Biology, Physical Education",
+topics:"Exercise Science, Anatomy, Fitness Safety, Training Basics",
+skills:"Communication, exercise knowledge, organization",
+education:"Relevant fitness certification or training program is useful.",
+jobs:"Fitness Trainer, Personal Trainer, Fitness Coach",
+demand:"Fitness and wellness services create opportunities for trained professionals.",
+salary:"Varies by qualification, clients, workplace and location.",
+roadmap:["Exercise Basics","Anatomy","Safety","Certification","Practical Training","Experience"]
+},
+
+{
+name:"Sports Coach",icon:"🏆",category:"Other",
+what:"Trains athletes or teams to improve sports skills and performance.",
+subjects:"Physical Education, Biology",
+topics:"Sports Science, Training, Strategy, Fitness",
+skills:"Leadership, communication, sports knowledge, planning",
+education:"Sports coaching qualifications and practical experience are useful.",
+jobs:"Sports Coach, Team Coach, Academy Coach",
+demand:"Schools, academies, clubs and sports organizations employ coaches.",
+salary:"Varies by sport, organization, level and experience.",
+roadmap:["Choose Sport","Learn Rules","Training Basics","Coaching","Certification","Experience"]
+},
+
+{
+name:"Air Traffic Controller",icon:"🛫",category:"Other",
+what:"Helps coordinate aircraft movement to maintain safe and efficient air traffic.",
+subjects:"Mathematics, Physics, English",
+topics:"Aviation, Navigation, Air Traffic Procedures, Communication",
+skills:"Concentration, communication, decision making, attention to detail",
+education:"Specific aviation authority requirements, training and selection processes apply.",
+jobs:"Air Traffic Controller, Air Traffic Services Professional",
+demand:"Aviation systems require trained air traffic professionals.",
+salary:"Varies by country, authority, role, experience and location.",
+roadmap:["Math","Physics","English","Aviation Basics","Selection","Specialized Training"]
+},
+
+{
+name:"Museum Curator",icon:"🏺",category:"Other",
+what:"Manages collections and exhibitions in museums or cultural institutions.",
+subjects:"History, Art, English",
+topics:"Museum Studies, Art History, Collection Management, Research",
+skills:"Research, organization, writing, cultural knowledge",
+education:"Museum Studies, History, Art History or related higher education.",
+jobs:"Museum Curator, Collections Manager, Museum Researcher",
+demand:"Museums and cultural institutions employ specialists in collections and exhibitions.",
+salary:"Varies by institution, qualification, experience and location.",
+roadmap:["History","Art","Research","Museum Studies","Collections","Higher Study"]
+},
+
+{
+name:"Translator",icon:"🌐",category:"Other",
+what:"Converts written content accurately from one language to another.",
+subjects:"English, Hindi and other languages",
+topics:"Grammar, Vocabulary, Translation, Cultural Context",
+skills:"Language proficiency, writing, accuracy, research",
+education:"Language or translation education can be useful; strong language skills are essential.",
+jobs:"Translator, Localization Specialist, Language Professional",
+demand:"Translation is used in business, media, education, government and technology.",
+salary:"Varies by language pair, specialization, experience and workload.",
+roadmap:["Learn Languages","Grammar","Vocabulary","Translation Practice","Specialization","Portfolio"]
+},
+
+{
+name:"Interpreter",icon:"🎧",category:"Other",
+what:"Provides spoken or signed language interpretation between people.",
+subjects:"Languages, English, Social Science",
+topics:"Interpretation, Languages, Communication, Cultural Context",
+skills:"Listening, speaking, concentration, language proficiency",
+education:"Language/interpreting education and relevant professional training are useful.",
+jobs:"Interpreter, Conference Interpreter, Community Interpreter",
+demand:"Used in international communication, healthcare, business and public services.",
+salary:"Varies by language, setting, experience and location.",
+roadmap:["Languages","Listening","Speaking","Interpretation Practice","Specialization","Experience"]
+},
+
+{
+name:"Professor of Science",icon:"🔬",category:"Other",
+what:"Teaches science at advanced educational levels and may conduct research.",
+subjects:"Science specialization",
+topics:"Advanced Science, Research, Teaching Methods",
+skills:"Research, teaching, communication, subject expertise",
+education:"Advanced study in a science subject is generally required.",
+jobs:"Science Professor, Lecturer, Researcher",
+demand:"Universities and research institutions need qualified academics.",
+salary:"Varies by institution, rank, qualification and location.",
+roadmap:["Choose Science","Bachelor's","Master's","Research","Higher Study","Teaching"]
+},
+
+{
+name:"Airline Manager",icon:"✈️",category:"Business",
+what:"Manages business or operational activities within an airline or aviation organization.",
+subjects:"Business Studies, Mathematics, English",
+topics:"Aviation Management, Operations, Finance, Customer Service",
+skills:"Leadership, communication, planning, problem solving",
+education:"Business, Aviation Management, Hospitality or related education.",
+jobs:"Airline Manager, Operations Manager, Aviation Business Professional",
+demand:"Aviation businesses require professionals in operations and management.",
+salary:"Varies by airline, role, experience and location.",
+roadmap:["Business","Aviation Basics","Operations","Management","Experience"]
+},
+
+{
+name:"Restaurant Manager",icon:"🍽️",category:"Business",
+what:"Manages restaurant operations, staff, customer service and resources.",
+subjects:"Business Studies, English, Mathematics",
+topics:"Hospitality, Operations, Food Safety, Finance, HR",
+skills:"Leadership, organization, communication, problem solving",
+education:"Hospitality, Hotel Management, Business or practical experience.",
+jobs:"Restaurant Manager, Operations Manager, Food Service Manager",
+demand:"Restaurants and food-service businesses need trained managers.",
+salary:"Varies by restaurant, location, experience and role.",
+roadmap:["Food Service","Customer Service","Operations","Finance","Management","Experience"]
+},
+
+{
+name:"Social Media Manager",icon:"📲",category:"Creative",
+what:"Plans and manages social media content and online communication for organizations.",
+subjects:"English, Business Studies, Computer Science",
+topics:"Social Media, Content Strategy, Analytics, Branding",
+skills:"Writing, creativity, communication, analytics",
+education:"Marketing, Communication, Business or practical digital-media training.",
+jobs:"Social Media Manager, Content Strategist, Community Manager",
+demand:"Organizations increasingly use social platforms for communication and marketing.",
+salary:"Varies by platform skills, experience, employer and location.",
+roadmap:["Social Media","Writing","Content","Analytics","Branding","Portfolio"]
+},
+
+{
+name:"Content Creator",icon:"🎥",category:"Creative",
+what:"Creates digital content such as videos, articles, images or educational media.",
+subjects:"English, Art, Computer Science",
+topics:"Content Creation, Video, Writing, Editing, Social Media",
+skills:"Creativity, communication, storytelling, editing",
+education:"No specific degree is required; skills and portfolio are important.",
+jobs:"Content Creator, Video Creator, Educational Creator",
+demand:"Digital platforms create many opportunities for content production.",
+salary:"Highly variable depending on platform, audience, clients and business model.",
+roadmap:["Choose Niche","Learn Content Skills","Create","Edit","Publish","Build Portfolio"]
+},
+
+{
+name:"Technical Support Engineer",icon:"🛠️",category:"Technology",
+what:"Provides technical assistance for software, systems or technology products.",
+subjects:"Computer Science, Mathematics",
+topics:"Troubleshooting, Networking, Operating Systems, Product Knowledge",
+skills:"Problem solving, communication, technical support",
+education:"Computer Science, IT or technical training.",
+jobs:"Technical Support Engineer, Support Specialist, Application Support Engineer",
+demand:"Technology companies and organizations need support professionals.",
+salary:"Varies by technology, company, experience and location.",
+roadmap:["Computer Basics","Networking","OS","Troubleshooting","Product Knowledge","Experience"]
+},
+
+{
+name:"Frontend Developer",icon:"🖥️",category:"Technology",
+what:"Builds the part of websites and web applications that users interact with.",
+subjects:"Computer Science, Mathematics",
+topics:"HTML, CSS, JavaScript, Accessibility, UI Frameworks",
+skills:"Programming, design sense, debugging, responsive development",
+education:"Computer Science or practical web-development learning.",
+jobs:"Frontend Developer, UI Developer, Web Developer",
+demand:"Most interactive websites and applications require frontend development.",
+salary:"Varies by skills, framework knowledge, experience and location.",
+roadmap:["HTML","CSS","JavaScript","Responsive Design","Git","Framework","Projects"]
+},
+
+{
+name:"Backend Developer",icon:"⚙️",category:"Technology",
+what:"Builds the server-side logic, databases and APIs behind applications.",
+subjects:"Computer Science, Mathematics",
+topics:"Programming, APIs, Databases, Servers, Security",
+skills:"Programming, databases, problem solving, debugging",
+education:"Computer Science, IT or practical backend development learning.",
+jobs:"Backend Developer, API Developer, Server-side Developer",
+demand:"Backend systems support websites, mobile apps and business software.",
+salary:"Varies by language, technology, experience and location.",
+roadmap:["Programming","Databases","SQL","APIs","Backend Framework","Security","Projects"]
+},
+
+{
+name:"Full Stack Developer",icon:"🌐",category:"Technology",
+what:"Works on both frontend and backend parts of web applications.",
+subjects:"Computer Science, Mathematics",
+topics:"HTML, CSS, JavaScript, Backend, Databases, APIs",
+skills:"Programming, problem solving, debugging, system thinking",
+education:"Computer Science or practical full-stack development learning.",
+jobs:"Full Stack Developer, Web Engineer, Software Developer",
+demand:"Organizations value developers who can work across multiple parts of web applications.",
+salary:"Varies by skills, experience, technology and location.",
+roadmap:["HTML","CSS","JavaScript","Backend","SQL","APIs","Git","Full Projects"]
+},
+
+{
+name:"Game Programmer",icon:"👾",category:"Technology",
+what:"Programs the systems that make video games work.",
+subjects:"Computer Science, Mathematics, Physics",
+topics:"C++, Game Engines, Algorithms, Game Physics",
+skills:"Programming, mathematics, debugging, problem solving",
+education:"Computer Science, Game Development or related education.",
+jobs:"Game Programmer, Gameplay Programmer, Engine Programmer",
+demand:"Specialized opportunities exist across game studios and interactive media.",
+salary:"Varies by studio, platform, experience and location.",
+roadmap:["C++","Programming","Game Engine","Game Physics","Algorithms","Projects"]
+},
+
+{
+name:"Database Engineer",icon:"🗃️",category:"Technology",
+what:"Designs and develops reliable database systems.",
+subjects:"Computer Science, Mathematics",
+topics:"SQL, Database Design, Performance, Data Modeling",
+skills:"SQL, data modeling, programming, problem solving",
+education:"Computer Science, IT or related technical education.",
+jobs:"Database Engineer, Data Engineer, Database Developer",
+demand:"Reliable data systems are important across technology and business.",
+salary:"Varies by database technology, experience and location.",
+roadmap:["SQL","Database Design","Programming","Performance","Security","Projects"]
+},
+
+{
+name:"Site Reliability Engineer",icon:"📡",category:"Technology",
+what:"Improves the reliability, availability and performance of software systems.",
+subjects:"Computer Science, Mathematics",
+topics:"Linux, Cloud, Monitoring, Automation, Distributed Systems",
+skills:"Programming, troubleshooting, systems thinking, automation",
+education:"Computer Science, IT or related technical education.",
+jobs:"SRE, Reliability Engineer, Platform Engineer",
+demand:"Important for large-scale digital services that need reliable operation.",
+salary:"Varies by company, technical skills, experience and location.",
+roadmap:["Linux","Programming","Networking","Cloud","Monitoring","Automation","Projects"]
+},
+
+{
+name:"Network Security Engineer",icon:"🛡️",category:"Technology",
+what:"Designs security controls and protections for computer networks.",
+subjects:"Computer Science, Mathematics",
+topics:"Networking, Firewalls, Cryptography, Security Monitoring",
+skills:"Networking, security, troubleshooting, analytical thinking",
+education:"Cybersecurity, Computer Science, IT or networking education.",
+jobs:"Network Security Engineer, Security Engineer, Network Security Analyst",
+demand:"Organizations need secure networks to protect systems and information.",
+salary:"Varies by certification, experience, employer and location.",
+roadmap:["Networking","Linux","Security","Firewalls","Cryptography","Monitoring","Practice"]
+},
+
+{
+name:"Cloud Security Engineer",icon:"🔒",category:"Technology",
+what:"Protects cloud infrastructure, applications and data.",
+subjects:"Computer Science, Mathematics",
+topics:"Cloud Security, IAM, Networking, Encryption, Monitoring",
+skills:"Cloud knowledge, security, networking, problem solving",
+education:"Computer Science, IT, Cybersecurity or related education.",
+jobs:"Cloud Security Engineer, Cloud Security Analyst, Security Architect",
+demand:"Cloud adoption increases the need for cloud security skills.",
+salary:"Varies by cloud platform, experience, certification and location.",
+roadmap:["Cloud Basics","Networking","Security","IAM","Encryption","Monitoring","Projects"]
+},
+
+{
+name:"Prompt Engineer",icon:"💬",category:"Technology",
+what:"Designs and tests effective instructions and workflows for AI systems.",
+subjects:"English, Computer Science, Mathematics",
+topics:"Prompt Design, AI Models, Evaluation, Automation, AI Safety",
+skills:"Writing, experimentation, critical thinking, AI understanding",
+education:"There is no single required degree; strong technical and communication skills help.",
+jobs:"Prompt Engineer, AI Workflow Specialist, AI Application Specialist",
+demand:"AI systems create opportunities for people who can design useful workflows and evaluate outputs.",
+salary:"Varies widely because roles differ across organizations.",
+roadmap:["AI Basics","Writing","Prompting","Testing","Automation","Build AI Projects"]
+}
+
+];
+
+/* =========================================================
+   ADD SOME COMMON CAREERS AUTOMATICALLY
+   ========================================================= */
+
+const extraCareers = [
+["Nurse","🩺","Medical","Provides professional nursing care and supports patients.","Biology, Chemistry","Anatomy, Physiology, Nursing Science","Communication, observation, care skills","Recognized nursing education and clinical training.","Registered Nurse, Clinical Nurse","Healthcare systems need trained nursing professionals.","Varies by qualification, experience, employer and location.",["Biology","Anatomy","Nursing Study","Clinical Training","Professional Registration"]],
+["Physician Assistant","🩺","Medical","Supports healthcare teams in patient assessment and care within professional scope.","Biology, Chemistry","Anatomy, Physiology, Clinical Science","Communication, observation, teamwork","Relevant recognized education and clinical training.","Physician Assistant, Clinical Assistant","Demand varies by healthcare system and role.","Varies by country, qualification and experience.",["Biology","Anatomy","Clinical Science","Training","Practice"]],
+["Pharmacologist","🧪","Science","Studies how drugs interact with biological systems.","Biology, Chemistry","Pharmacology, Toxicology, Drug Research","Research, laboratory skills, analysis","Pharmacology, Pharmacy, Biology or related higher education.","Pharmacologist, Drug Researcher","Used in pharmaceutical and biomedical research.","Varies by specialization and experience.",["Chemistry","Biology","Pharmacology","Lab Research","Higher Study"]],
+["Marine Ecologist","🌊","Science","Studies relationships between marine organisms and ocean ecosystems.","Biology, Environmental Science","Marine Ecology, Conservation, Ocean Science","Research, field work, observation","Marine Biology, Ecology or related science education.","Marine Ecologist, Conservation Scientist","Relevant to marine conservation and environmental research.","Varies by organization and experience.",["Biology","Ecology","Marine Science","Field Work","Research"]],
+["Product Designer","🎨","Creative","Designs digital products by combining user needs, interface design and product thinking.","Art, Computer Science, English","UI Design, UX Research, Prototyping, Design Systems","Design, research, communication","Design, HCI or portfolio-based learning.","Product Designer, UX Designer","Digital product teams need user-centered design.","Varies by company, portfolio and experience.",["Design","UX","UI","Prototyping","Portfolio"]],
+["Copywriter","✍️","Creative","Writes persuasive text for advertisements, brands and marketing campaigns.","English, Business Studies","Copywriting, Advertising, Brand Voice, Marketing","Writing, creativity, research","No single degree is required; strong writing portfolio helps.","Copywriter, Advertising Writer, Brand Writer","Businesses use copy across websites, ads and campaigns.","Varies by niche, clients and experience.",["Writing","Advertising","Branding","Practice","Portfolio"]],
+["Game Artist","🎮","Creative","Creates visual assets for video games.","Art, Computer Science","2D Art, 3D Modeling, Textures, Game Art","Drawing, creativity, digital art","Art, Animation, Game Art or portfolio-based learning.","Game Artist, 2D Artist, 3D Artist","Game studios need artists for visual development.","Varies by studio, specialization and portfolio.",["Drawing","Digital Art","3D/2D","Game Engine","Portfolio"]],
+["Research Assistant","🔬","Science","Supports researchers with experiments, data collection and analysis.","Depends on field","Research Methods, Data, Experiments, Documentation","Research, organization, analysis","Relevant science or social science education.","Research Assistant, Lab Assistant","Universities and research organizations use research assistants.","Varies by institution and qualification.",["Choose Field","Research Basics","Data","Experiments","Higher Study"]],
+["Operations Manager","📋","Business","Manages day-to-day operations and helps organizations work efficiently.","Mathematics, Business Studies","Operations, Process Improvement, Quality, Management","Planning, leadership, analysis","Business, Management, Engineering or related education.","Operations Manager, Operations Lead","Needed across manufacturing, services, retail and technology.","Varies by industry and experience.",["Business","Operations","Data","Management","Experience"]],
+["Customer Success Manager","🤝","Business","Helps customers use products successfully and maintain strong relationships with organizations.","English, Business Studies","Customer Success, Product Knowledge, Analytics, Communication","Communication, problem solving, organization","Business, Communication or practical industry experience.","Customer Success Manager, Account Manager","Digital and subscription businesses commonly use customer-success teams.","Varies by company, industry and experience.",["Communication","Product Knowledge","Customer Service","Analytics","Experience"]],
+["Translator / Localization Specialist","🌐","Other","Adapts written content and software experiences for different languages and cultures.","Languages, English","Translation, Localization, Cultural Context, Terminology","Language skills, accuracy, research","Language or translation education is useful.","Translator, Localization Specialist","Global businesses need multilingual content.","Varies by language pair and specialization.",["Languages","Grammar","Translation","Localization","Portfolio"]],
+["Interior Architect","🏠","Creative","Plans and designs interior environments with strong focus on space and built elements.","Art, Mathematics, Physics","Space Planning, CAD, Materials, Interior Architecture","Design, planning, creativity","Architecture or interior design education depending on role.","Interior Architect, Spatial Designer","Design and construction projects create opportunities.","Varies by qualification and project.",["Drawing","Design","CAD","Space Planning","Portfolio"]],
+["Film Editor","🎬","Creative","Shapes recorded footage into a finished film or video narrative.","English, Art, Media","Editing, Storytelling, Sound, Color","Editing, storytelling, attention to detail","Film, Media or portfolio-based training.","Film Editor, Video Editor","Film, advertising and digital media require editing skills.","Varies by production and experience.",["Editing","Storytelling","Audio","Color","Portfolio"]],
+["Public Health Researcher","🏥","Medical","Conducts research on health problems affecting communities and populations.","Biology, Statistics, Social Science","Epidemiology, Biostatistics, Research Methods","Research, statistics, communication","Public Health, Biology, Statistics or related higher education.","Public Health Researcher, Epidemiology Researcher","Public health research supports prevention and healthcare policy.","Varies by organization and specialization.",["Biology","Statistics","Research","Public Health","Higher Study"]],
+["Geospatial Analyst","🗺️","Technology","Analyzes geographic and location-based data using digital tools.","Geography, Mathematics, Computer Science","GIS, Spatial Analysis, Remote Sensing, Mapping","Data analysis, GIS, geography","GIS, Geography, Geomatics or related education.","Geospatial Analyst, GIS Analyst","Location data is used in planning, environment, transport and technology.","Varies by skills and experience.",["Geography","GIS","Data","Mapping","Projects"]],
+["Automation Engineer","⚙️","Engineering","Designs automated systems and processes to improve efficiency.","Mathematics, Physics, Computer Science","Automation, PLCs, Robotics, Control Systems","Programming, electronics, problem solving","Electrical, Mechanical, Mechatronics or related engineering.","Automation Engineer, Controls Engineer","Automation is used across manufacturing and industrial systems.","Varies by industry and specialization.",["Math","Electronics","Programming","Automation","Projects"]]
+];
+
+extraCareers.forEach(c => {
+    careers.push({
+        name:c[0], icon:c[1], category:c[2],
+        what:c[3], subjects:c[4], topics:c[5], skills:c[6],
+        education:c[7], jobs:c[8], demand:c[9], salary:c[10],
+        roadmap:c[11]
+    });
+});
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+let selectedCategory = "All";
+
+function displayCareers(){
+
+    const grid = document.getElementById("careerGrid");
+    const searchText = document.getElementById("search").value.toLowerCase().trim();
+
+    const filtered = careers.filter(career => {
+
+        const matchesCategory =
+            selectedCategory === "All" ||
+            career.category === selectedCategory;
+
+        const matchesSearch =
+            career.name.toLowerCase().includes(searchText) ||
+            career.category.toLowerCase().includes(searchText) ||
+            career.what.toLowerCase().includes(searchText);
+
+        return matchesCategory && matchesSearch;
+    });
+
+    grid.innerHTML = "";
+
+    filtered.forEach((career,index) => {
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <div class="icon">${career.icon}</div>
+            <div class="category">${career.category.toUpperCase()}</div>
+            <h2>${career.name}</h2>
+            <p>${career.what}</p>
+            <button class="details-btn" onclick="openCareer(${careers.indexOf(career)})">
+                View Detailed Information →
+            </button>
+        `;
+
+        grid.appendChild(card);
+    });
+
+    document.getElementById("count").innerText =
+        `Showing ${filtered.length} career${filtered.length !== 1 ? "s" : ""} 🚀`;
+
+    if(filtered.length === 0){
+        grid.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;padding:50px">
+                <h2>😕 Career not found</h2>
+                <p style="margin-top:10px;color:#667085">
+                    Try another career name or choose a different category.
+                </p>
+            </div>
+        `;
+    }
+}
+
+function setCategory(category,button){
+
+    selectedCategory = category;
+
+    document.querySelectorAll(".filter").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    displayCareers();
+}
+
+function filterCareers(){
+    displayCareers();
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+function openCareer(index){
+
+    const career = careers[index];
+
+    document.getElementById("modalTitle").innerText =
+        `${career.icon} ${career.name}`;
+
+    document.getElementById("modalCategory").innerText =
+        career.category.toUpperCase();
+
+    document.getElementById("what").innerText = career.what;
+    document.getElementById("subjects").innerText = career.subjects;
+    document.getElementById("topics").innerText = career.topics;
+    document.getElementById("skills").innerText = career.skills;
+    document.getElementById("education").innerText = career.education;
+    document.getElementById("jobs").innerText = career.jobs;
+    document.getElementById("demand").innerText = career.demand;
+    document.getElementById("salary").innerText = career.salary;
+
+    const roadmap = document.getElementById("roadmap");
+    roadmap.innerHTML = "";
+
+    career.roadmap.forEach((step,i)=>{
+        const span = document.createElement("span");
+        span.className = "step";
+        span.innerText = `${i+1}. ${step}`;
+        roadmap.appendChild(span);
+    });
+
+    document.getElementById("careerModal").classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeModal(){
+    document.getElementById("careerModal").classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+function outsideClose(event){
+    if(event.target.id === "careerModal"){
+        closeModal();
+    }
+}
+
+document.addEventListener("keydown",function(event){
+    if(event.key === "Escape"){
+        closeModal();
+    }
+});
+
+
+/* START */
+displayCareers();
+
+</script>
+
+</body>
+</html>
+```
+
